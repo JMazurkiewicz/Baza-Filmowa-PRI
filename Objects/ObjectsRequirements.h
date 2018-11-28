@@ -1,0 +1,4 @@
+#pragma once
+
+#define MIN_ACTOR_YEAR_OF_BIRTH 1900
+#define MAX_ACTOR_YEAR_OF_BIRTH 2018
