@@ -29,7 +29,7 @@ int main(void) {
         case OPTION_QUERY:
             QueryMenu(&database);
             break;
-
+  
         case OPTION_SORT:
             SortMenu(&database);
             break;

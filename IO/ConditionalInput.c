@@ -2,7 +2,7 @@
 #include "IO/ConditionalInput.h"
 #include <stdio.h>
 
-static void tryAgain();
+static void tryAgain(void);
 
 char readSingleCharIf(bool (*predicate)(char)) {
 
@@ -45,7 +45,7 @@ void readStringIf(String target, bool (*predicate)(StringView)) {
 
 }
 
-void tryAgain() {
+void tryAgain(void) {
     printString("\aNieprawidlowe dane, sprobuj ponownie: ");
     clearStdin();
 }

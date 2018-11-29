@@ -1,4 +1,4 @@
-[PRI] Projekt 3 (15 pkt, termin oddania: 5.12)
+[PRI] Projekt 3 (15 pkt, termin oddania: 12.12)
 5. Napisz bazê danych przechowuj¹ca bazê filmów, aktorów i studiów nagraniowych. Baza powinna umo¿liwiaæ:
 - dodawanie i usuwanie filmów, aktorów i studiów nagraniowych
 - sortowanie filmów, aktorów i studiów nagraniowych wg ró¿nych kryteriów

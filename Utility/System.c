@@ -17,13 +17,3 @@ void clearConsole(void) {
 #endif
 
 }
-
-void sleep(int milliseconds) {
-
-#if defined(SYSTEM_WINDOWS)
-    Sleep(milliseconds);
-#elif defined(SYSTEM_LINUX)
-    usleep(1000 * milliseconds);
-#endif
-
-}

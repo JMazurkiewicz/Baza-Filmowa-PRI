@@ -4,7 +4,7 @@ void clearStdin(void) {
     fseek(stdin, 0, SEEK_END);
 }
 
-void newLine() {
+void newLine(void) {
     putchar('\n');
 }
 

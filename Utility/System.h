@@ -7,4 +7,3 @@
 #endif
 
 void clearConsole(void);
-void sleep(int milliseconds);

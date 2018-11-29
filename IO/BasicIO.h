@@ -5,5 +5,5 @@
 
 void clearStdin(void);
 
-void newLine();
+void newLine(void);
 void printString(String string);
