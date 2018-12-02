@@ -1,10 +1,9 @@
+#include "IO/ActorIO.h"
 #include "IO/BasicIO.h"
 #include "IO/ConditionalInput.h"
-#include "Scanning/ActorScanning.h"
 #include <stdbool.h>
 #include "UserInterface/InsertionMenu.h"
 #include "UserInterface/Logo.h"
-#include "Utility/System.h"
 
 typedef enum InsertionMenuCommand {
 
@@ -16,15 +15,17 @@ typedef enum InsertionMenuCommand {
 } InsertionMenuCommand;
 
 static void displayMenu();
-static bool isValidInput(char input);
+static bool isInputValid(char input);
 static void executeCommand(Database* database, InsertionMenuCommand command);
+
+static void insertActorIntoDatabse(ActorListNode* list);
 
 void insertionMenu(Database* database) {
 
     displayMenu();
 
     printString("Podaj numer operacji: ");
-    const char input = readSingleCharIf(isValidInput);
+    const char input = readSingleCharIf(isInputValid);
 
     executeCommand(database, (InsertionMenuCommand)input);
 
@@ -45,7 +46,7 @@ void displayMenu() {
 
 }
 
-bool isValidInput(char input) {
+bool isInputValid(char input) {
     return input >= '1' && input <= '4';
 }
 
@@ -54,7 +55,7 @@ void executeCommand(Database* database, InsertionMenuCommand command) {
     switch(command) {
 
     case INSERT_NEW_ACTOR:
-        addActor(database->actors, scanActorFromStdin());
+        insertActorIntoDatabse(database->actors);
         break;
 
     case INSERT_NEW_MOVIE:
@@ -71,4 +72,10 @@ void executeCommand(Database* database, InsertionMenuCommand command) {
 
     }
 
+}
+
+void insertActorIntoDatabse(ActorListNode* list) {
+    Actor newActor;
+    readActor(&newActor);
+    addActor(list, newActor);
 }

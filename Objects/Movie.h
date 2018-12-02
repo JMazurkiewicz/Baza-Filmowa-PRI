@@ -16,3 +16,4 @@ typedef struct Movie {
 } Movie;
 
 bool hasMovieThisTitle(const Movie* movie, StringView title);
+void readMovie(Movie* movie);

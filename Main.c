@@ -10,7 +10,7 @@ int main(void) {
     Database database;
     initDatabase(&database);
 
-    while(true) {
+    while(!0) {
 
         const MainMenuResult operation = mainMenu();
 

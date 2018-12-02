@@ -3,7 +3,6 @@
 #include <stdbool.h>
 #include "UserInterface/Logo.h"
 #include "UserInterface/SortMenu.h"
-#include "Utility/System.h"
 
 typedef enum SortMenuCommand {
 
@@ -14,7 +13,7 @@ typedef enum SortMenuCommand {
 } SortMenuCommand;
 
 static void displayMenu();
-static bool isValidInput(char input);
+static bool isInputValid(char input);
 static void executeCommand(Database* database, SortMenuCommand command);
 
 void sortMenu(Database* database) {
@@ -22,7 +21,7 @@ void sortMenu(Database* database) {
     displayMenu();
 
     printString("Podaj numer operacji: ");
-    const char input = readSingleCharIf(isValidInput);
+    const char input = readSingleCharIf(isInputValid);
 
     executeCommand(database, (SortMenuCommand)input);
 
@@ -42,7 +41,7 @@ void displayMenu() {
 
 }
 
-bool isValidInput(char input) {
+bool isInputValid(char input) {
     return input >= '1' && input <= '3';
 }
 

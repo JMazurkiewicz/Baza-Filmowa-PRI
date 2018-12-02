@@ -3,17 +3,16 @@
 #include <stdbool.h>
 #include "UserInterface/Logo.h"
 #include "UserInterface/MainMenu.h"
-#include "Utility/System.h"
 
 static void displayMenu();
-static bool isValidInput(char input);
+static bool isInputValid(char input);
 
 MainMenuResult mainMenu(void) {
 
     displayMenu();
 
     printString("Podaj numer opcji: ");
-    const char input = readSingleCharIf(isValidInput);
+    const char input = readSingleCharIf(isInputValid);
 
     return (MainMenuResult)input;
 
@@ -37,6 +36,6 @@ void displayMenu() {
 
 }
 
-bool isValidInput(char input) {
+bool isInputValid(char input) {
     return input >= '1' && input <= '7';
 }

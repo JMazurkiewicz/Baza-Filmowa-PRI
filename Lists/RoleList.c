@@ -30,15 +30,39 @@ Role* findRole(RoleListNode* head, Actor* actor, Movie* movie) {
 
 }
 
-void deleteRolesOf(RoleListNode* head, Actor* actor) {
+void deleteRolesOf(RoleListNode* head, const Actor* actor) {
 
+    RoleListNode* node = head;
 
+    while(node != NULL) {
+
+        if(node->value.actor == actor) {
+            RoleListNode* const next = node->next;
+            free(node);
+            node = next;
+        } else {
+            node = node->next;
+        }
+
+    }
 
 }
 
-void deleteRolesIn(RoleListNode* head, Movie* movie) {
+void deleteRolesIn(RoleListNode* head, const Movie* movie) {
 
+    RoleListNode* node = head;
 
+    while(node != NULL) {
+
+        if(node->value.movie == movie) {
+            RoleListNode* const next = node->next;
+            free(node);
+            node = next;
+        } else {
+            node = node->next;
+        }
+
+    }
 
 }
 

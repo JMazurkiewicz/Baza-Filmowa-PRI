@@ -3,7 +3,6 @@
 #include <stdbool.h>
 #include "UserInterface/DeletionMenu.h"
 #include "UserInterface/Logo.h"
-#include "Utility/System.h"
 
 typedef enum DeletionMenuCommand {
 
@@ -15,7 +14,7 @@ typedef enum DeletionMenuCommand {
 } DeletionMenuCommand;
 
 static void displayMenu();
-static bool isValidInput(char input);
+static bool isInputValid(char input);
 static void executeCommand(Database* database, DeletionMenuCommand command);
 
 void deletionMenu(Database* database) {
@@ -23,7 +22,7 @@ void deletionMenu(Database* database) {
     displayMenu();
 
     printString("Podaj numer operacji: ");
-    const char input = readSingleCharIf(isValidInput);
+    const char input = readSingleCharIf(isInputValid);
 
     executeCommand(database, (DeletionMenuCommand)input);
 
@@ -44,7 +43,7 @@ void displayMenu() {
 
 }
 
-bool isValidInput(char input) {
+bool isInputValid(char input) {
     return input >= '1' && input <= '4';
 }
 
