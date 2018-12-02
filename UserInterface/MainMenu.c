@@ -8,7 +8,7 @@
 static void displayMenu();
 static bool isValidInput(char input);
 
-MainMenuResult MainMenu(void) {
+MainMenuResult mainMenu(void) {
 
     displayMenu();
 

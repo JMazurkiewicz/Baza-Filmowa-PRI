@@ -5,5 +5,3 @@
 #else
 # define SYSTEM_LINUX
 #endif
-
-void clearConsole(void);

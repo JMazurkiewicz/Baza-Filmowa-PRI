@@ -2,4 +2,4 @@
 
 #include "Lists/Database.h"
 
-void SortMenu(Database* database);
+void sortMenu(Database* database);

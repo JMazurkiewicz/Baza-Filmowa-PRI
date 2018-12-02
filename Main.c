@@ -1,5 +1,3 @@
-#include <stdbool.h>
-
 #include "Lists/Database.h"
 #include "UserInterface/DeletionMenu.h"
 #include "UserInterface/InsertionMenu.h"
@@ -14,35 +12,31 @@ int main(void) {
 
     while(true) {
 
-        const MainMenuResult operation = MainMenu();
+        const MainMenuResult operation = mainMenu();
 
         switch(operation) {
 
-        case OPTION_ADD:
-            InsertionMenu(&database);
+        case MAIN_MENU_ADD:
+            insertionMenu(&database);
             break;
 
-        case OPTION_DELETE:
-            DeletionMenu(&database);
+        case MAIN_MENU_DELETE:
+            deletionMenu(&database);
             break;
 
-        case OPTION_QUERY:
-            QueryMenu(&database);
-            break;
-  
-        case OPTION_SORT:
-            SortMenu(&database);
+        case MAIN_MENU_QUERY:
+            queryMenu(&database);
             break;
 
-        case OPTION_SAVE_TO_FILE:
-            // [not available]
+        case MAIN_MENU_SORT:
+            sortMenu(&database);
             break;
 
-        case OPTION_LOAD_FROM_FILE:
-            // [not available]
+        case MAIN_MENU_RULES:
+            sortMenu(&database);
             break;
 
-        case OPTION_EXIT:
+        case MAIN_MENU_EXIT:
             return 0;
             break;
 

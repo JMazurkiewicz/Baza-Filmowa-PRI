@@ -2,4 +2,4 @@
 
 #include "Lists/Database.h"
 
-void DeletionMenu(Database* database);
+void deletionMenu(Database* database);

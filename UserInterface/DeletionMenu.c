@@ -7,7 +7,7 @@
 
 typedef enum DeletionMenuCommand {
 
-    DELETE_ACTOR,
+    DELETE_ACTOR = '1',
     DELETE_MOVIE,
     DELETE_STUDIO,
     DELETE_ROLE
@@ -18,7 +18,7 @@ static void displayMenu();
 static bool isValidInput(char input);
 static void executeCommand(Database* database, DeletionMenuCommand command);
 
-void DeletionMenu(Database* database) {
+void deletionMenu(Database* database) {
 
     displayMenu();
 

@@ -2,14 +2,13 @@
 
 typedef enum MainMenuResult {
 
-    OPTION_ADD = '1',
-    OPTION_DELETE,
-    OPTION_QUERY,
-    OPTION_SORT,
-    OPTION_SAVE_TO_FILE,
-    OPTION_LOAD_FROM_FILE,
-    OPTION_EXIT
+    MAIN_MENU_ADD = '1',
+    MAIN_MENU_DELETE,
+    MAIN_MENU_QUERY,
+    MAIN_MENU_SORT,
+    MAIN_MENU_RULES,
+    MAIN_MENU_EXIT
 
 } MainMenuResult;
 
-MainMenuResult MainMenu(void);
+MainMenuResult mainMenu(void);

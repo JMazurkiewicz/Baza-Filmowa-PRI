@@ -19,7 +19,7 @@ static void displayMenu();
 static bool isValidInput(char input);
 static void executeCommand(Database* database, InsertionMenuCommand command);
 
-void InsertionMenu(Database* database) {
+void insertionMenu(Database* database) {
 
     displayMenu();
 

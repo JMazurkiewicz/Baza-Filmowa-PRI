@@ -17,7 +17,7 @@ static void displayMenu();
 static bool isValidInput(char input);
 static void executeCommand(Database* database, QueryMenuCommand command);
 
-void QueryMenu(Database* database) {
+void queryMenu(Database* database) {
 
     displayMenu();
 

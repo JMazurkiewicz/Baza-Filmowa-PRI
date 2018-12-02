@@ -17,7 +17,7 @@ static void displayMenu();
 static bool isValidInput(char input);
 static void executeCommand(Database* database, SortMenuCommand command);
 
-void SortMenu(Database* database) {
+void sortMenu(Database* database) {
 
     displayMenu();
 
