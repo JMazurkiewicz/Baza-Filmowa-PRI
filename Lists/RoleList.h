@@ -14,7 +14,7 @@ typedef struct RoleListNode {
 bool addRole(RoleListNode* head, Actor* actor, Movie* movie);
 Role* findRole(RoleListNode* head, Actor* actor, Movie* movie);
 
-void deleteRolesOf(RoleListNode* head, const Actor* actor);
-void deleteRolesIn(RoleListNode* head, const Movie* movie);
+void deleteRolesOfActor(RoleListNode* head, const Actor* actor);
+void deleteRolesInMovie(RoleListNode* head, const Movie* movie);
 
 void freeRoleListMemory(RoleListNode* head);

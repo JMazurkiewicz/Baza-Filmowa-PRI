@@ -22,7 +22,7 @@ void deletionMenu(Database* database) {
     displayMenu();
 
     printString("Podaj numer operacji: ");
-    const char input = readSingleCharIf(isInputValid);
+    const char input = scanCharIf(isInputValid);
 
     executeCommand(database, (DeletionMenuCommand)input);
 
@@ -31,7 +31,7 @@ void deletionMenu(Database* database) {
 void displayMenu() {
 
     clearConsole();
-    displayBigLogo();
+    displayLogo();
 
     puts("Usun: ");
     puts("1) Aktora [niedostepne]");

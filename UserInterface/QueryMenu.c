@@ -21,7 +21,7 @@ void queryMenu(Database* database) {
     displayMenu();
 
     printString("Podaj numer operacji: ");
-    const char input = readSingleCharIf(isInputValid);
+    const char input = scanCharIf(isInputValid);
 
     executeCommand(database, (QueryMenuCommand)input);
 
@@ -30,7 +30,7 @@ void queryMenu(Database* database) {
 void displayMenu() {
 
     clearConsole();
-    displayBigLogo();
+    displayLogo();
 
     puts("O kim chcesz uzyskac wypis: ");
     puts("1) O aktorze [niedostepne]");

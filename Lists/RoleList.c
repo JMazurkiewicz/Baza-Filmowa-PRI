@@ -30,7 +30,7 @@ Role* findRole(RoleListNode* head, Actor* actor, Movie* movie) {
 
 }
 
-void deleteRolesOf(RoleListNode* head, const Actor* actor) {
+void deleteRolesOfActor(RoleListNode* head, const Actor* actor) {
 
     RoleListNode* node = head;
 
@@ -48,7 +48,7 @@ void deleteRolesOf(RoleListNode* head, const Actor* actor) {
 
 }
 
-void deleteRolesIn(RoleListNode* head, const Movie* movie) {
+void deleteRolesInMovie(RoleListNode* head, const Movie* movie) {
 
     RoleListNode* node = head;
 

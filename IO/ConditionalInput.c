@@ -4,7 +4,7 @@
 
 static void tryAgain(void);
 
-char readSingleCharIf(bool (*predicate)(char)) {
+char scanCharIf(bool (*predicate)(char)) {
 
     char input = getchar();
 
@@ -18,7 +18,7 @@ char readSingleCharIf(bool (*predicate)(char)) {
 
 }
 
-int readIntegerIf(bool (*predicate)(int)) {
+int scanIntegerIf(bool (*predicate)(int)) {
 
     int input;
 
@@ -32,7 +32,7 @@ int readIntegerIf(bool (*predicate)(int)) {
 
 }
 
-void readStringIf(String target, bool (*predicate)(StringView)) {
+void scanStringIf(String target, bool (*predicate)(StringView)) {
 
     scanf(SCAN_STRING, target);
 

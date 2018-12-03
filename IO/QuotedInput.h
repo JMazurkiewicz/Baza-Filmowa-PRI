@@ -2,4 +2,4 @@
 
 #include "Utility/String.h"
 
-void readQuotedInput(String target);
+void scanQuotedString(String target);

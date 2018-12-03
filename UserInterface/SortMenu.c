@@ -21,7 +21,7 @@ void sortMenu(Database* database) {
     displayMenu();
 
     printString("Podaj numer operacji: ");
-    const char input = readSingleCharIf(isInputValid);
+    const char input = scanCharIf(isInputValid);
 
     executeCommand(database, (SortMenuCommand)input);
 
@@ -30,7 +30,7 @@ void sortMenu(Database* database) {
 void displayMenu() {
 
     clearConsole();
-    displayBigLogo();
+    displayLogo();
 
     puts("Ktora tabele chcesz posortowac: ");
     puts("1) Aktorow [niedostepne]");

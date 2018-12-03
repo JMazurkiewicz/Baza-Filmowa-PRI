@@ -24,7 +24,7 @@ void insertionMenu(Database* database) {
     displayMenu();
 
     printString("Podaj numer operacji: ");
-    const char input = readSingleCharIf(isInputValid);
+    const char input = scanCharIf(isInputValid);
 
     executeCommand(database, (InsertionMenuCommand)input);
 
@@ -33,7 +33,7 @@ void insertionMenu(Database* database) {
 void displayMenu() {
 
     clearConsole();
-    displayBigLogo();
+    displayLogo();
 
     puts("Wstaw: ");
     puts("1) Nowego aktora [dostepne, bez dodawania rol]");
@@ -75,6 +75,6 @@ void executeCommand(Database* database, InsertionMenuCommand command) {
 
 void insertActorIntoDatabse(ActorListNode* list) {
     Actor newActor;
-    readActor(&newActor);
+    scanActor(&newActor);
     addActor(list, newActor);
 }

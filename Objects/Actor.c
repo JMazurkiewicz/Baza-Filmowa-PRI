@@ -12,16 +12,16 @@ bool hasActorTheseNames(const Actor* actor, StringView name, StringView lastName
     return strcmp(actor->name, name) == 0 && strcmp(actor->lastName, lastName) == 0;
 }
 
-void readActor(Actor* actor) {
+void scanActor(Actor* actor) {
 
     printString("Podaj imie aktora (zgodne z zasadami wprowadzania danych): ");
-    readName(actor->name);
+    scanName(actor->name);
 
     printString("Podaj nazwisko: ");
-    readName(actor->lastName);
+    scanName(actor->lastName);
 
     printString("Podaj rok urodzenia aktora: ");
-    actor->yearOfBirth = readIntegerIf(isYearOfBirthValid);
+    actor->yearOfBirth = scanIntegerIf(isYearOfBirthValid);
 
 }
 

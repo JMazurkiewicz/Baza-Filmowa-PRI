@@ -3,6 +3,6 @@
 #include <stdbool.h>
 #include "Utility/String.h"
 
-char readSingleCharIf(bool (*predicate)(char));
-int readIntegerIf(bool (*predicate)(int));
-void readStringIf(String target, bool (*predicate)(StringView));
+char scanCharIf(bool (*predicate)(char));
+int scanIntegerIf(bool (*predicate)(int));
+void scanStringIf(String target, bool (*predicate)(StringView));

@@ -1,13 +1,12 @@
 #include <ctype.h>
-#include "IO/BasicIO.h"
 #include "IO/ConditionalInput.h"
 #include "IO/NameInput.h"
 #include <stdbool.h>
 
 static bool isNameValid(StringView name);
 
-void readName(String name) {
-    readStringIf(name, isNameValid);
+void scanName(String name) {
+    scanStringIf(name, isNameValid);
 }
 
 bool isNameValid(StringView name) {

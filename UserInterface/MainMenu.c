@@ -12,7 +12,7 @@ MainMenuResult mainMenu(void) {
     displayMenu();
 
     printString("Podaj numer opcji: ");
-    const char input = readSingleCharIf(isInputValid);
+    const char input = scanCharIf(isInputValid);
 
     return (MainMenuResult)input;
 
@@ -21,7 +21,7 @@ MainMenuResult mainMenu(void) {
 void displayMenu() {
 
     clearConsole();
-    displayBigLogo();
+    displayLogo();
 
     puts("Menu glowne:");
     puts("1) Dodaj...");

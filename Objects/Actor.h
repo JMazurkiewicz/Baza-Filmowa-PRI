@@ -15,4 +15,4 @@ typedef struct Actor {
 } Actor;
 
 bool hasActorTheseNames(const Actor* actor, StringView name, StringView lastName);
-void readActor(Actor* actor);
+void scanActor(Actor* actor);

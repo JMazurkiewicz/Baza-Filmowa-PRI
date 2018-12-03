@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "UserInterface/Logo.h"
 
-void displayBigLogo(void) {
+void displayLogo(void) {
 
     static const char* LOGO[5] = {
         " ____                   _____ _ _",

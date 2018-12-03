@@ -1,3 +1,3 @@
 #pragma once
 
-void displayBigLogo(void);
+void displayLogo(void);
