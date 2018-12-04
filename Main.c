@@ -1,22 +1,22 @@
 #include "Lists/Database.h"
-#include "UserInterface/DeletionMenu.h"
-#include "UserInterface/InsertionMenu.h"
 #include "UserInterface/MainMenu.h"
-#include "UserInterface/QueryMenu.h"
-#include "UserInterface/SortMenu.h"
+#include "UserInterface/Submenus/DeletionMenu.h"
+#include "UserInterface/Submenus/InsertionMenu.h"
+#include "UserInterface/Submenus/QueryMenu.h"
+#include "UserInterface/Submenus/SortMenu.h"
 
 int main(void) {
 
     Database database;
     initDatabase(&database);
 
-    while(!0) {
+    while(true) {
 
         const MainMenuResult operation = mainMenu();
 
         switch(operation) {
 
-        case MAIN_MENU_ADD:
+        case MAIN_MENU_INSERT:
             insertionMenu(&database);
             break;
 
@@ -33,7 +33,7 @@ int main(void) {
             break;
 
         case MAIN_MENU_RULES:
-            sortMenu(&database);
+            // [@todo]
             break;
 
         case MAIN_MENU_EXIT:

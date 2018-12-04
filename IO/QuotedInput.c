@@ -8,9 +8,9 @@ void scanQuotedString(String target) {
 
     char symbol = getchar();
 
-    if (symbol != DELIMITER) {
-    	ungetc(symbol, stdin);
-    	scanf("%s", target);
+    if(symbol != DELIMITER) {
+        ungetc(symbol, stdin);
+        scanf("%s", target);
         return;
     }
 
@@ -23,7 +23,7 @@ void scanQuotedString(String target) {
 
 	    *target++ = symbol;
 
-    } while (true);
+    } while(true);
 
     *target = '\0';
 

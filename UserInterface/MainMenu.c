@@ -1,41 +1,27 @@
-#include "IO/BasicIO.h"
-#include "IO/ConditionalInput.h"
-#include <stdbool.h>
-#include "UserInterface/Logo.h"
 #include "UserInterface/MainMenu.h"
+#include "UserInterface/MenuPlayer.h"
 
-static void displayMenu();
-static bool isInputValid(char input);
+static bool isInputValid(int input);
+
+static const MenuData MAIN_MENU_DATA = {
+
+    .content =
+        "Menu glowne:\n"
+        "1) Dodaj...\n"
+        "2) Usun...\n"
+        "3) Wypisz dane o...\n"
+        "4) Sortuj...\n"
+        "5) Instrukcje [niedostepne]\n"
+        "6) Wyjscie\n",
+
+    .inputValidator = isInputValid
+
+};
 
 MainMenuResult mainMenu(void) {
-
-    displayMenu();
-
-    printString("Podaj numer opcji: ");
-    const char input = scanCharIf(isInputValid);
-
-    return (MainMenuResult)input;
-
+    return playMenu(&MAIN_MENU_DATA);
 }
 
-void displayMenu() {
-
-    clearConsole();
-    displayLogo();
-
-    puts("Menu glowne:");
-    puts("1) Dodaj...");
-    puts("2) Usun...");
-    puts("3) Wypisz dane o...");
-    puts("4) Sortuj...");
-    puts("5) Zapisz zmiany do pliku [niedostepne]");
-    puts("6) Wczytaj poprzedni zapis [niedostepne]");
-    puts("7) Wyjscie");
-
-    newLine();
-
-}
-
-bool isInputValid(char input) {
-    return input >= '1' && input <= '7';
+bool isInputValid(int input) {
+    return input >= 1 && input <= 7;
 }
