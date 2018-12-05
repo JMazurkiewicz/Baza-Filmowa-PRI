@@ -3,10 +3,10 @@
 
 const size_t STRING_NPOS = (size_t)(-1);
 
-size_t strFindIf(StringView target, int (*predicate)(int)) {
+size_t strFindIf(StringView string, int (*predicate)(int)) {
 
-    for(size_t index = 0; target[index] != '\0'; ++index) {
-        if(predicate(target[index])) {
+    for(size_t index = 0; string[index] != '\0'; ++index) {
+        if(predicate(string[index])) {
             return index;
         }
     }
@@ -15,10 +15,10 @@ size_t strFindIf(StringView target, int (*predicate)(int)) {
 
 }
 
-size_t strReverseFindIf(StringView target, int (*predicate)(int)) {
+size_t strReverseFindIf(StringView string, int (*predicate)(int)) {
 
-    for(size_t index = strlen(target); index-- > 0; ) {
-        if(predicate(target[index])) {
+    for(size_t index = strlen(string); index-- > 0; ) {
+        if(predicate(string[index])) {
             return index;
         }
     }
@@ -27,22 +27,22 @@ size_t strReverseFindIf(StringView target, int (*predicate)(int)) {
 
 }
 
-void trimWhitespace(String target) {
+void trimWhitespace(String string) {
 
-    const size_t posOfFirstGraphChar = strFindIf(target, isgraph);
+    const size_t posOfFirstGraphChar = strFindIf(string, isgraph);
 
     if(posOfFirstGraphChar == STRING_NPOS) {
-        target[0] = '\0';
+        string[0] = '\0';
         return;
     }
 
-    const size_t posAfterLastGraphChar = strReverseFindIf(target, isgraph) + 1;
+    const size_t posAfterLastGraphChar = strReverseFindIf(string, isgraph) + 1;
     const size_t graphCharsCount = posAfterLastGraphChar-posOfFirstGraphChar;
 
     if(posOfFirstGraphChar != 0) {
-        memmove(target, target+posOfFirstGraphChar, graphCharsCount);
+        memmove(string, string+posOfFirstGraphChar, graphCharsCount);
     }
 
-    target[graphCharsCount] = '\0';
+    string[graphCharsCount] = '\0';
 
 }

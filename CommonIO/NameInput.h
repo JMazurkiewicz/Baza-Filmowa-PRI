@@ -2,4 +2,4 @@
 
 #include "Utility/String.h"
 
-void scanName(String target);
+void scanName(String name);

@@ -1,6 +1,6 @@
-#include "IO/BasicIO.h"
-#include "IO/ConditionalInput.h"
-#include "IO/NameInput.h"
+#include "CommonIO/BasicIO.h"
+#include "CommonIO/ConditionalInput.h"
+#include "CommonIO/NameInput.h"
 #include "Objects/Actor.h"
 
 const int MIN_ACTORS_YEAR_OF_BIRTH = 1900;

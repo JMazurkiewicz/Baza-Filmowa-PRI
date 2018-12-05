@@ -1,5 +1,5 @@
-#include "IO/BasicIO.h"
-#include "IO/ConditionalInput.h"
+#include "CommonIO/BasicIO.h"
+#include "CommonIO/ConditionalInput.h"
 #include <stdio.h>
 
 static void tryAgain(void);
