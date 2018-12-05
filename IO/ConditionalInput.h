@@ -5,4 +5,6 @@
 
 char scanCharIf(bool (*predicate)(char));
 int scanIntegerIf(bool (*predicate)(int));
+
 void scanStringIf(String target, bool (*predicate)(StringView));
+void scanStringLineIf(String target, bool (*predicate)(StringView));

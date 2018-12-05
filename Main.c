@@ -1,4 +1,5 @@
 #include "Lists/Database.h"
+#include <stdbool.h>
 #include "UserInterface/MainMenu.h"
 #include "UserInterface/Submenus/DeletionMenu.h"
 #include "UserInterface/Submenus/InsertionMenu.h"
@@ -10,11 +11,9 @@ int main(void) {
     Database database;
     initDatabase(&database);
 
-    while(true) {
+    for(bool active = true; active; ) {
 
-        const MainMenuResult operation = mainMenu();
-
-        switch(operation) {
+        switch(mainMenu()) {
 
         case MAIN_MENU_INSERT:
             insertionMenu(&database);
@@ -37,7 +36,7 @@ int main(void) {
             break;
 
         case MAIN_MENU_EXIT:
-            return 0;
+            active = false;
             break;
 
         }

@@ -6,37 +6,14 @@
 static bool isNameValid(StringView name);
 
 void scanName(String name) {
-    scanStringIf(name, isNameValid);
+    scanStringLineIf(name, isNameValid);
+    trimWhitespace(name);
 }
 
 bool isNameValid(StringView name) {
 
-    bool isThisBeginOfName = true;
-
-    for(const char* it = name; *it != '\0'; ++it) {
-
-        if(isThisBeginOfName) {
-
-            if(isupper(*it) == 0) {
-                return false;
-            } else {
-                isThisBeginOfName = false;
-                continue;
-            }
-
-        }
-
-        if(*it == '-') {
-            isThisBeginOfName = true;
-            continue;
-        }
-
-        if(islower(*it) == 0) {
-            return false;
-        }
-
-    }
-
-    return isThisBeginOfName == false;
+    name += strFindIf(name, isgraph);
+    // @todo
+    return true;
 
 }

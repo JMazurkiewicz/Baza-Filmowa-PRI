@@ -7,3 +7,10 @@
 
 typedef char String[STRING_MAX_LENGTH + 1];
 typedef const char* StringView;
+
+extern const size_t STRING_NPOS;
+
+size_t strFindIf(StringView target, int (*predicate)(int));
+size_t strReverseFindIf(StringView target, int (*predicate)(int));
+
+void trimWhitespace(String target);

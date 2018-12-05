@@ -1,7 +1,7 @@
 #pragma once
 
-#ifdef _WIN32
+#if defined(_WIN32)
 # define SYSTEM_WINDOWS
-#else
-# define SYSTEM_LINUX
+#elif defined(__unix__)
+# define SYSTEM_UNIX
 #endif

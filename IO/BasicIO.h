@@ -4,6 +4,7 @@
 #include "Utility/String.h"
 
 void clearStdin(void);
+void getLine(String target);
 
 void clearConsole(void);
 void newLine(void);

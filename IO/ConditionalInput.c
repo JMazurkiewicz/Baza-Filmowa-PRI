@@ -45,6 +45,19 @@ void scanStringIf(String target, bool (*predicate)(StringView)) {
 
 }
 
+void scanStringLineIf(String target, bool (*predicate)(StringView)) {
+
+    getLine(target);
+
+    while(!predicate(target)) {
+        tryAgain();
+        getLine(target);
+    }
+
+    clearStdin();
+
+}
+
 void tryAgain(void) {
     printString("\aNieprawidlowe dane, sprobuj ponownie: ");
     clearStdin();
