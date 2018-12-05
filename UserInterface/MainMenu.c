@@ -23,5 +23,5 @@ MainMenuResult mainMenu(void) {
 }
 
 bool isInputValid(int input) {
-    return input >= 1 && input <= 7;
+    return input >= 1 && input <= 6;
 }

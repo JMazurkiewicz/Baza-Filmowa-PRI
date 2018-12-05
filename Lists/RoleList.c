@@ -1,3 +1,4 @@
+#include "CommonIO/BasicIO.h"
 #include "Lists/RoleList.h"
 #include <stdlib.h>
 
@@ -19,11 +20,9 @@ bool addRole(RoleListNode* head, Actor* actor, Movie* movie) {
 Role* findRole(RoleListNode* head, Actor* actor, Movie* movie) {
 
     for(RoleListNode* node = head; node != NULL; node = node->next) {
-
         if(hasRoleTheseParams(&node->value, actor, movie)) {
             return &node->value;
         }
-
     }
 
     return NULL;
@@ -48,7 +47,7 @@ void deleteRolesOfActor(RoleListNode* head, const Actor* actor) {
 
 }
 
-void deleteRolesInMovie(RoleListNode* head, const Movie* movie) {
+void deleteRolesFromMovie(RoleListNode* head, const Movie* movie) {
 
     RoleListNode* node = head;
 
@@ -66,14 +65,28 @@ void deleteRolesInMovie(RoleListNode* head, const Movie* movie) {
 
 }
 
+void scanActorsForMovie(RoleListNode* head, const ActorListNode* actors, Movie* movie) {
+    // @todo
+}
+
+void scanMoviesForActor(RoleListNode* head, const MovieListNode* movies, Actor* actor) {
+    // @todo
+}
+
+void printRolesOfActor(RoleListNode* head, const Actor* actor) {
+    // @todo
+}
+
+void printRolesFromMovie(RoleListNode* head, const Movie* movie) {
+    // @todo
+}
+
 void freeRoleListMemory(RoleListNode* head) {
 
     for(RoleListNode* node = head; node != NULL; ) {
-
         RoleListNode* const next = node->next;
         free(node);
         node = next;
-
     }
 
 }

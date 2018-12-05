@@ -13,4 +13,6 @@ typedef struct Studio {
 } Studio;
 
 bool hasStudioThisName(const Studio* studio, StringView name);
+
 void scanStudio(Studio* studio);
+void printStudio(const Studio* studio);

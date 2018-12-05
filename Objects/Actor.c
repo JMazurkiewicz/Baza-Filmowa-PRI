@@ -2,9 +2,7 @@
 #include "CommonIO/ConditionalInput.h"
 #include "CommonIO/NameInput.h"
 #include "Objects/Actor.h"
-
-const int MIN_ACTORS_YEAR_OF_BIRTH = 1900;
-const int MAX_ACTORS_YEAR_OF_BIRTH = 2018;
+#include "Utility/MovieLimits.h"
 
 static bool isYearOfBirthValid(int yearOfBirth);
 
@@ -14,7 +12,7 @@ bool hasActorTheseNames(const Actor* actor, StringView name, StringView lastName
 
 void scanActor(Actor* actor) {
 
-    printString("Podaj imie aktora (zgodne z zasadami wprowadzania danych): ");
+    printString("Podaj imie aktora: ");
     scanName(actor->name);
 
     printString("Podaj nazwisko: ");
@@ -23,6 +21,12 @@ void scanActor(Actor* actor) {
     printString("Podaj rok urodzenia aktora: ");
     actor->yearOfBirth = scanIntegerIf(isYearOfBirthValid);
 
+}
+
+void printActor(const Actor* actor) {
+    printf("Imie: %s\n", actor->name);
+    printf("Nazwisko: %s\n", actor->lastName);
+    printf("Rok urodzenia: %s\n", actor->yearOfBirth);
 }
 
 bool isYearOfBirthValid(int yearOfBirth) {

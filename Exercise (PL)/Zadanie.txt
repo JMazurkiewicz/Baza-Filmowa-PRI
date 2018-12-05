@@ -1,4 +1,5 @@
 [PRI] Projekt 3 (15 pkt, termin oddania: 12.12)
+
 5. Napisz bazê danych przechowuj¹ca bazê filmów, aktorów i studiów nagraniowych. Baza powinna umo¿liwiaæ:
 - dodawanie i usuwanie filmów, aktorów i studiów nagraniowych
 - sortowanie filmów, aktorów i studiów nagraniowych wg ró¿nych kryteriów
@@ -8,4 +9,5 @@
 - aktorzy mog¹ wystêpowaæ w kilku filmach
 - film mo¿e mieæ kilka aktorów i jedno studio nagraniowe
 - jedno studio nagraniowe realizuje kilka filmów
-Nale¿y wykorzystaæ dynamiczn¹ alokacje pamiêci (zadbaæ o jej odpowiednie zwalnianie i brak wycieków pamiêci). Wykorzystane struktury (lista, drzewo) jak i sortowanie nale¿y zaimplementowaæ samodzielnie. Program powinien byæ zabezpieczony przed próbami wpisania nieprawid³owych danych wejœciowych. Proszê równie¿ zadbaæ o przyjazny u¿ytkownikowi interfejs - losowy Kowalski powinien umieæ obs³u¿yæ ten program i mieæ dostêp do instrukcji. Kod ma byæ czytelny i podzielony na pliki .h i .c. Nale¿y zadbaæ o odpowiedni podzia³ kodu na funkcje.w
+
+Nale¿y wykorzystaæ dynamiczn¹ alokacje pamiêci (zadbaæ o jej odpowiednie zwalnianie i brak wycieków pamiêci). Wykorzystane struktury (lista, drzewo) jak i sortowanie nale¿y zaimplementowaæ samodzielnie. Program powinien byæ zabezpieczony przed próbami wpisania nieprawid³owych danych wejœciowych. Proszê równie¿ zadbaæ o przyjazny u¿ytkownikowi interfejs - losowy Kowalski powinien umieæ obs³u¿yæ ten program i mieæ dostêp do instrukcji. Kod ma byæ czytelny i podzielony na pliki .h i .c. Nale¿y zadbaæ o odpowiedni podzia³ kodu na funkcje.
