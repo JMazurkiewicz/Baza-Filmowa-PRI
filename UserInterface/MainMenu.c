@@ -1,8 +1,6 @@
 #include "UserInterface/MainMenu.h"
 #include "UserInterface/MenuPlayer.h"
 
-static bool isInputValid(int input);
-
 static const MenuData MAIN_MENU_DATA = {
 
     .content =
@@ -14,14 +12,10 @@ static const MenuData MAIN_MENU_DATA = {
         "5) Instrukcje [niedostepne]\n"
         "6) Wyjscie\n",
 
-    .inputValidator = isInputValid
+    .maxOptionValue = 6
 
 };
 
 MainMenuResult mainMenu(void) {
     return playMenu(&MAIN_MENU_DATA);
-}
-
-bool isInputValid(int input) {
-    return input >= 1 && input <= 6;
 }

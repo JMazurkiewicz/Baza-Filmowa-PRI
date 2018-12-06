@@ -3,17 +3,19 @@
 #include "Objects/Studio.h"
 #include "Utility/MovieLimits.h"
 
-static bool isYearOfFoundingValid(int yearOfFounding);
-
 bool hasStudioThisName(const Studio* studio, StringView name) {
     return strcmp(studio->name, name) == 0;
 }
 
+void scanStudiosName(String name) {
+    printString("Podaj nazwe studia: ");
+    getLine(name);
+    trimWhitespace(name);
+}
+
 void scanStudio(Studio* studio) {
 
-    printString("Podaj nazwe studia: ");
-    getLine(studio->name);
-    trimWhitespace(studio->name);
+    scanStudiosName(studio->name);
 
     printString("Podaj adres studia: ");
     getLine(studio->address);
@@ -24,7 +26,8 @@ void scanStudio(Studio* studio) {
     trimWhitespace(studio->contact);
 
     printString("Podaj rok zalozenia studia: ");
-    studio->yearOfFounding = scanIntegerIf(isYearOfFoundingValid);
+    studio->yearOfFounding =
+        scanIntegerFromRange(MIN_STUDIOS_YEAR_OF_FOUNDING, MAX_STUDIOS_YEAR_OF_FOUNDING);
 
 }
 
@@ -33,9 +36,4 @@ void printStudio(const Studio* studio) {
     printf("Adres studia: %s\n", studio->address);
     printf("Kontakt ze studiem: %s\n", studio->contact);
     printf("Rok zalozenia: %d\n", studio->yearOfFounding);
-}
-
-static bool isYearOfFoundingValid(int yearOfFounding) {
-    return MIN_STUDIOS_YEAR_OF_FOUNDING <= yearOfFounding &&
-        yearOfFounding <= MAX_STUDIOS_YEAR_OF_FOUNDING;
 }

@@ -10,7 +10,7 @@ int playMenu(const MenuData* data) {
     displayMenu(data->content);
 
     printString("Podaj numer opcji: ");
-    return scanIntegerIf(data->inputValidator);
+    return scanIntegerFromRange(1, data->maxOptionValue);
 
 }
 

@@ -2,4 +2,4 @@
 
 #include "Lists/Database.h"
 
-void queryMenu(Database* database);
+void queryMenu(const Database* database);

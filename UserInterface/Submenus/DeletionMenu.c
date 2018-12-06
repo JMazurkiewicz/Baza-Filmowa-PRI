@@ -1,8 +1,6 @@
 #include "UserInterface/MenuPlayer.h"
 #include "UserInterface/Submenus/DeletionMenu.h"
 
-static bool isInputValid(int input);
-
 static const MenuData DELETION_MENU_DATA = {
 
     .content =
@@ -10,9 +8,10 @@ static const MenuData DELETION_MENU_DATA = {
         "1) Aktora [niedostepne]\n"
         "2) Film [niedostepne]\n"
         "3) Studio [niedostepne]\n"
-        "4) Role [niedostepne]\n",
+        "4) Role [niedostepne]\n"
+        "5) Rezygnuje...\n",
 
-    .inputValidator = isInputValid
+    .maxOptionValue = 5
 
 };
 
@@ -38,8 +37,4 @@ void deletionMenu(Database* database) {
 
     }
 
-}
-
-bool isInputValid(int input) {
-    return input >= 1 && input <= 4;
 }

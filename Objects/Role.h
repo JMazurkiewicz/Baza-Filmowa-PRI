@@ -6,8 +6,8 @@
 
 typedef struct Role {
 
-    Actor* actor;
-    Movie* movie;
+    const Actor* actor;
+    const Movie* movie;
 
 } Role;
 

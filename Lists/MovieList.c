@@ -15,9 +15,9 @@ bool addMovie(MovieListNode* head, Movie movie) {
 
 }
 
-Movie* findMovie(MovieListNode* head, StringView title) {
+const Movie* findMovie(const MovieListNode* head, StringView title) {
 
-    for(MovieListNode* node = head; node != NULL; node = node->next) {
+    for(const MovieListNode* node = head; node != NULL; node = node->next) {
 
         if(hasMovieThisTitle(&node->value, title)) {
             return &node->value;

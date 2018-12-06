@@ -17,5 +17,7 @@ typedef struct Movie {
 
 bool hasMovieThisTitle(const Movie* movie, StringView title);
 
+void scanMoviesTitle(String title);
 void scanMovie(Movie* movie);
+
 void printMovie(const Movie* movie);

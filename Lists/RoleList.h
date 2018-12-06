@@ -13,14 +13,17 @@ typedef struct RoleListNode {
 
 } RoleListNode;
 
-bool addRole(RoleListNode* head, Actor* actor, Movie* movie);
-Role* findRole(RoleListNode* head, Actor* actor, Movie* movie);
+bool addRole(RoleListNode* head, const Actor* actor, const Movie* movie);
+
+Role* findRole(RoleListNode* head, const Actor* actor, const Movie* movie);
+Role* findNextRoleOfActor(RoleListNode* head, const Actor* actor);
+Role* findNextRoleFromMovie(RoleListNode* head, const Movie* movie);
 
 void deleteRolesOfActor(RoleListNode* head, const Actor* actor);
 void deleteRolesFromMovie(RoleListNode* head, const Movie* movie);
 
-void scanActorsForMovie(RoleListNode* head, const ActorListNode* actors, Movie* movie);
-void scanMoviesForActor(RoleListNode* head, const MovieListNode* movies, Actor* actor);
+void scanRolesFromMovie(RoleListNode* head, const ActorListNode* actors, const Movie* movie);
+void scanRolesOfActor(RoleListNode* head, const MovieListNode* movies, const Actor* actor);
 
 void printRolesOfActor(RoleListNode* head, const Actor* actor);
 void printRolesFromMovie(RoleListNode* head, const Movie* movie);

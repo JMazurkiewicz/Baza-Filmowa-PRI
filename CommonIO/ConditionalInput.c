@@ -24,7 +24,19 @@ int scanIntegerIf(bool (*predicate)(int)) {
 
     while(scanf("%d", &input) == 0 || !predicate(input)) {
         tryAgain();
-        clearStdin();
+    }
+
+    clearStdin();
+    return input;
+
+}
+
+int scanIntegerFromRange(int min, int max) {
+
+    int input;
+
+    while(scanf("%d", &input) == 0 || input < min || max < input) {
+        tryAgain();
     }
 
     clearStdin();

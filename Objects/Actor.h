@@ -13,5 +13,7 @@ typedef struct Actor {
 
 bool hasActorTheseNames(const Actor* actor, StringView name, StringView lastName);
 
+void scanActorsFullName(String name, String lastName);
 void scanActor(Actor* actor);
+
 void printActor(const Actor* actor);

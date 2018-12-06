@@ -12,7 +12,7 @@ typedef struct ActorListNode {
 } ActorListNode;
 
 bool addActor(ActorListNode* head, Actor actor);
-Actor* findActor(ActorListNode* head, StringView name, StringView lastName);
+const Actor* findActor(const ActorListNode* head, StringView name, StringView lastName);
 bool deleteActor(ActorListNode* head, StringView name, StringView lastName);
 
 void freeActorListMemory(ActorListNode* head);

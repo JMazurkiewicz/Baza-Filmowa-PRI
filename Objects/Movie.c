@@ -4,27 +4,30 @@
 #include "Objects/Movie.h"
 #include "Utility/MovieLimits.h"
 
-static bool isReleaseYearValid(int releaseYear);
-static bool isRunningTimeValid(int runningTime);
-
 bool hasMovieThisTitle(const Movie* movie, StringView title) {
     return strcmp(movie->title, title) == 0;
 }
 
+void scanMoviesTitle(String title) {
+    printString("Podaj tytul filmu: ");
+    getLine(title);
+    trimWhitespace(title);
+}
+
 void scanMovie(Movie* movie) {
 
-    printString("Podaj tytul filmu: ");
-    getLine(movie->title);
-    trimWhitespace(movie->title);
+    scanMoviesTitle(movie->title);
 
     printString("Podaj imie i nazwisko rezysera: ");
     scanName(movie->director);
 
     printString("Podaj rok wydania filmu: ");
-    movie->releaseYear = scanIntegerIf(isReleaseYearValid);
+    movie->releaseYear =
+        scanIntegerFromRange(MIN_MOVIES_RELEASE_YEAR, MAX_MOVIES_RELEASE_YEAR);
 
     printString("Podaj czas trwania filmu w minutach: ");
-    movie->runningTime = scanIntegerIf(isRunningTimeValid);
+    movie->runningTime =
+        scanIntegerFromRange(MIN_MOVIES_RUNNING_TIME, MAX_MOVIES_RUNNING_TIME);
 
 }
 
@@ -42,12 +45,4 @@ void printMovie(const Movie* movie) {
     }
     newLine();
 
-}
-
-static bool isReleaseYearValid(int releaseYear) {
-    return MIN_MOVIES_RELEASE_YEAR <= releaseYear && releaseYear <= MAX_MOVIES_RELEASE_YEAR;
-}
-
-static bool isRunningTimeValid(int runningTime) {
-    return MIN_MOVIES_RUNNING_TIME <= runningTime && runningTime <= MAX_MOVIES_RUNNING_TIME;
 }

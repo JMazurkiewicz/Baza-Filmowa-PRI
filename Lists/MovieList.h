@@ -12,7 +12,7 @@ typedef struct MovieListNode {
 } MovieListNode;
 
 bool addMovie(MovieListNode* head, Movie movie);
-Movie* findMovie(MovieListNode* head, StringView title);
+const Movie* findMovie(const MovieListNode* head, StringView title);
 bool deleteMovie(MovieListNode* head, StringView title);
 
 void freeMovieListMemory(MovieListNode* head);

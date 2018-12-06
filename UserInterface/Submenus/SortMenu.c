@@ -1,17 +1,16 @@
 #include "UserInterface/MenuPlayer.h"
 #include "UserInterface/Submenus/SortMenu.h"
 
-static bool isInputValid(int input);
-
 static const MenuData SORT_MENU_DATA = {
 
     .content =
         "Ktora tabele chcesz posortowac:\n"
         "1) Aktorow [niedostepne]\n"
         "2) Filmow [niedostepne]\n"
-        "3) Studiow nagraniowych [niedostepne]\n",
+        "3) Studiow nagraniowych [niedostepne]\n"
+        "4) Rezygnuje...\n",
 
-    .inputValidator = isInputValid
+    .maxOptionValue = 4
 
 };
 
@@ -33,8 +32,4 @@ void sortMenu(Database* database) {
 
     }
 
-}
-
-bool isInputValid(int input) {
-    return input >= 1 && input <= 3;
 }

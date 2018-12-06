@@ -5,3 +5,6 @@
 #elif defined(__unix__)
 # define SYSTEM_UNIX
 #endif
+
+void sleepFor(int milliseconds);
+void shortSleep();
