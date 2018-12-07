@@ -10,7 +10,7 @@ bool hasMovieThisTitle(const Movie* movie, StringView title) {
 
 void scanMoviesTitle(String title) {
     printString("Podaj tytul filmu: ");
-    getLine(title);
+    scanLine(title);
     trimWhitespace(title);
 }
 

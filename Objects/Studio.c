@@ -9,7 +9,7 @@ bool hasStudioThisName(const Studio* studio, StringView name) {
 
 void scanStudiosName(String name) {
     printString("Podaj nazwe studia: ");
-    getLine(name);
+    scanLine(name);
     trimWhitespace(name);
 }
 
@@ -18,11 +18,11 @@ void scanStudio(Studio* studio) {
     scanStudiosName(studio->name);
 
     printString("Podaj adres studia: ");
-    getLine(studio->address);
+    scanLine(studio->address);
     trimWhitespace(studio->address);
 
-    printString("Podaj kontakt ze studie (np. adres e-mail): ");
-    getLine(studio->contact);
+    printString("Podaj kontakt ze studiem (np. adres e-mail): ");
+    scanLine(studio->contact);
     trimWhitespace(studio->contact);
 
     printString("Podaj rok zalozenia studia: ");

@@ -7,4 +7,4 @@
 #endif
 
 void sleepFor(int milliseconds);
-void shortSleep();
+void shortSleep(void);

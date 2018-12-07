@@ -6,23 +6,23 @@ void clearStdin(void) {
     fseek(stdin, 0, SEEK_END);
 }
 
-void getLine(String target) {
+void scanLine(String target) {
 
     int input = getchar();
     size_t charCounter = 0;
 
-    for(; input != '\n' && input != EOF; input = getchar()) {
+    while(input != '\n' && input != EOF) {
 
         if(charCounter < STRING_MAX_LENGTH) {
-            *target++ = input;
-            ++charCounter;
+            target[charCounter++] = input;
+            input = getchar();
         } else {
             break;
         }
 
     }
 
-    *target = '\0';
+    target[charCounter] = '\0';
     clearStdin();
 
 }

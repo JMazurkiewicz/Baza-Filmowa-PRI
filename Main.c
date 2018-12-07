@@ -32,7 +32,7 @@ int main(void) {
             break;
 
         case MAIN_MENU_RULES:
-            // [@todo]
+            // @todo
             break;
 
         case MAIN_MENU_EXIT:

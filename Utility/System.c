@@ -16,6 +16,6 @@ void sleepFor(int milliseconds) {
 
 }
 
-void shortSleep() {
+void shortSleep(void) {
     sleepFor(2000);
 }

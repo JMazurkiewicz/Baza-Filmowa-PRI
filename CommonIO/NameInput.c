@@ -1,13 +1,13 @@
-#include <ctype.h>
 #include "CommonIO/ConditionalInput.h"
 #include "CommonIO/NameInput.h"
+#include <ctype.h>
 #include <stdbool.h>
 
 static bool isNameValid(StringView name);
-static bool isNameValidImpl(StringView name, size_t nameLength);
+static bool isNameGrammaticallyCorrect(StringView name, size_t nameLength);
 
 void scanName(String name) {
-    scanStringLineIf(name, isNameValid);
+    scanLineIf(name, isNameValid);
     trimWhitespace(name);
 }
 
@@ -18,41 +18,34 @@ bool isNameValid(StringView name) {
         return false;
     }
 
-    name += posOfFirstGraphChar;
-    const size_t nameLength = strReverseFindIf(name, isgraph);
+    const size_t nameLength = strReverseFindIf(name, isgraph) + 1;
 
-    return isNameValidImpl(name, nameLength);
+    return isNameGrammaticallyCorrect(name + posOfFirstGraphChar, nameLength);
 
 }
 
-bool isNameValidImpl(StringView name, size_t nameLength) {
+bool isNameGrammaticallyCorrect(StringView name, size_t nameLength) {
 
-    bool isThisBeginOfName = true;
+    bool beginOfName = true;
 
     for(StringConstIterator it = name; nameLength-- > 0; ++it) {
 
-        if(isThisBeginOfName) {
+        if(beginOfName) {
 
             if(isupper(*it) == 0) {
                 return false;
             } else {
-                isThisBeginOfName = false;
-                continue;
+                beginOfName = false;
             }
 
-        }
-
-        if(*it == ' ') {
-            isThisBeginOfName = true;
-            continue;
-        }
-
-        if(islower(*it) == 0) {
+        } else if(*it == ' ') {
+            beginOfName = true;
+        } else if(islower(*it) == 0) {
             return false;
         }
 
     }
 
-    return isThisBeginOfName == false;
+    return beginOfName == false;
 
 }

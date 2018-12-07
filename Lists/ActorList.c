@@ -10,7 +10,7 @@ bool addActor(ActorListNode* head, Actor actor) {
     ActorListNode* newHead = malloc(sizeof(ActorListNode));
     newHead->next = head;
     newHead->value = actor;
-
+    
     return true;
 
 }
