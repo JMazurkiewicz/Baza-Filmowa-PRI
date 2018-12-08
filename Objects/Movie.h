@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Objects/Studio.h"
+#include "Objects/Declarations.h"
 #include <stdbool.h>
 #include "Utility/String.h"
 
-typedef struct Movie {
+struct Movie {
 
     String title;
     String director;
@@ -13,7 +13,7 @@ typedef struct Movie {
 
     const Studio* studio;
 
-} Movie;
+};
 
 bool hasMovieThisTitle(const Movie* movie, StringView title);
 

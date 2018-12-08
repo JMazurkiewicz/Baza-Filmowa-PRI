@@ -39,7 +39,7 @@ bool addRole(RoleList* list, const Actor* actor, const Movie* movie) {
 const Role* findRole(const RoleList* list, const Actor* actor, const Movie* movie) {
 
     for(const RoleListNode* node = list->head; node != NULL; node = node->next) {
-        if(hasRoleTheseParams(&node->value, actor, movie)) {
+        if(hasRoleTheseMembers(&node->value, actor, movie)) {
             return &node->value;
         }
     }

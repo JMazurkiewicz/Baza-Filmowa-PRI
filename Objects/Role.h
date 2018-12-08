@@ -1,14 +1,13 @@
 #pragma once
 
-#include "Objects/Actor.h"
-#include "Objects/Movie.h"
+#include "Objects/Declarations.h"
 #include <stdbool.h>
 
-typedef struct Role {
+struct Role {
 
     const Actor* actor;
     const Movie* movie;
 
-} Role;
+};
 
-bool hasRoleTheseParams(const Role* role, const Actor* actor, const Movie* movie);
+bool hasRoleTheseMembers(const Role* role, const Actor* actor, const Movie* movie);

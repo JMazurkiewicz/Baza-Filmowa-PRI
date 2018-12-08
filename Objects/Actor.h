@@ -1,15 +1,16 @@
 #pragma once
 
+#include "Objects/Declarations.h"
 #include <stdbool.h>
 #include "Utility/String.h"
 
-typedef struct Actor {
+struct Actor {
 
     String name;
     String lastName;
     int yearOfBirth;
 
-} Actor;
+};
 
 bool hasActorTheseNames(const Actor* actor, StringView name, StringView lastName);
 

@@ -2,6 +2,7 @@
 #include "CommonIO/ConditionalInput.h"
 #include "CommonIO/NameInput.h"
 #include "Objects/Movie.h"
+#include "Objects/Studio.h"
 #include "Utility/MovieLimits.h"
 
 bool hasMovieThisTitle(const Movie* movie, StringView title) {
@@ -9,9 +10,11 @@ bool hasMovieThisTitle(const Movie* movie, StringView title) {
 }
 
 void scanMoviesTitle(String title) {
+
     printString("Podaj tytul filmu: ");
     scanLine(title);
     trimWhitespace(title);
+
 }
 
 void scanMovie(Movie* movie) {
@@ -35,16 +38,15 @@ void scanMovie(Movie* movie) {
 
 void printMovie(const Movie* movie) {
 
-    printf("Tytul: %s\n", movie->title);
+    printf("Tytul: \"%s\"\n", movie->title);
     printf("Rezyser: %s\n", movie->director);
     printf("Rok premiery: %d\n", movie->releaseYear);
-    printf("Czas trwania (w minutach): %d", movie->runningTime);
+    printf("Czas trwania (w minutach): %d\n", movie->runningTime);
 
     if(movie->studio != NULL) {
-        printf("Nazwa studia realizujacego film: %s", movie->studio->name);
+        printf("Nazwa studia realizujacego film: %s\n", movie->studio->name);
     } else {
-        printf("Studio w ktorym realizowano film (juz) nie istnieje...");
+        puts("Studio w ktorym realizowano film (juz) nie istnieje...");
     }
-    newLine();
 
 }
