@@ -1,3 +1,4 @@
+#include "CommonIO/BasicIO.h"
 #include "Lists/ActorList.h"
 #include <stdlib.h>
 
@@ -15,6 +16,11 @@ void freeActorList(ActorList* list) {
 
     initActorList(list);
 
+}
+
+
+bool isActorListEmpty(const ActorList* list) {
+    return list->head == NULL;
 }
 
 bool addActor(ActorList* list, const Actor* actor) {
@@ -58,5 +64,20 @@ bool deleteActor(ActorList* list, StringView name, StringView lastName) {
     }
 
     return false;
+
+}
+
+void printActorList(const ActorList* list) {
+
+    if(isActorListEmpty(list)) {
+        printString("Lista aktorow jest pusta!\n");
+    } else {
+
+        puts("Lista aktorow:");
+        for(const ActorListNode* node = list->head; node != NULL; node = node->next) {
+            printf("%s %s\n", node->value.name, node->value.lastName);
+        }
+
+    }
 
 }

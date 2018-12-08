@@ -11,7 +11,7 @@ typedef struct Movie {
     int releaseYear;
     int runningTime;
 
-    Studio* studio;
+    const Studio* studio;
 
 } Movie;
 

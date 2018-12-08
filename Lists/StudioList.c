@@ -1,3 +1,4 @@
+#include "CommonIO/BasicIO.h"
 #include "Lists/StudioList.h"
 #include <stdlib.h>
 
@@ -15,6 +16,10 @@ void freeStudioList(StudioList* list) {
 
     initStudioList(list);
 
+}
+
+bool isStudioListEmpty(const StudioList* list) {
+    return list->head == NULL;
 }
 
 bool addStudio(StudioList* list, const Studio* studio) {
@@ -58,5 +63,20 @@ bool deleteStudio(StudioList* list, StringView studioName) {
     }
 
     return false;
+
+}
+
+void printStudioList(const StudioList* list) {
+
+    if(isStudioListEmpty(list)) {
+        printString("Lista studiow nagraniowych jest pusta!\n");
+    } else {
+
+        puts("Lista studiow nagraniowych:");
+        for(const StudioListNode* node = list->head; node != NULL; node = node->next) {
+            printf("%s\n", node->value.name);
+        }
+
+    }
 
 }

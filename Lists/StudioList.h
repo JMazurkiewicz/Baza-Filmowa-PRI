@@ -19,6 +19,10 @@ typedef struct StudioList {
 void initStudioList(StudioList* list);
 void freeStudioList(StudioList* list);
 
+bool isStudioListEmpty(const StudioList* list);
+
 bool addStudio(StudioList* list, const Studio* studio);
 const Studio* findStudio(const StudioList* list, StringView studioName);
 bool deleteStudio(StudioList* list, StringView studioName);
+
+void printStudioList(const StudioList* list);

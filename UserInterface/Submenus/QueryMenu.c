@@ -3,43 +3,67 @@
 #include "UserInterface/Submenus/QueryMenu.h"
 #include "Utility/System.h"
 
-static void queryForActor(const Database* database);
-static void queryForMovie(const Database* database);
-static void queryForStudio(const Database* database);
+static void queryAboutActor(const Database* database);
+static void queryAboutMovie(const Database* database);
+static void queryAboutStudio(const Database* database);
 
 static const MenuData QUERY_MENU_DATA = {
 
     .content =
-        "O kim chcesz uzyskac wypis:\n"
-        "1) O aktorze [bez wypisania rol]\n"
-        "2) O filmie [bez wypisania rol]\n"
-        "3) O studiu nagraniowym [bez wypisania filmow i aktorow]\n"
-        "4) Rezygnuje...\n",
+        "Wypisz:\n"
+        "1) Dane o aktorze\n"
+        "2) Liste aktorow\n"
+        "3) Dane o filmie\n"
+        "4) Liste filmow\n"
+        "5) Dane o studiu nagraniowym [bez wypisania filmow i aktorow]\n"
+        "6) Liste studiow nagraniowych\n"
+        "7) Rezygnuje...\n",
 
-    .maxOptionValue = 4
+    .maxOptionValue = 7
 
 };
 
 void queryMenu(const Database* database) {
 
-    switch(playMenu(&QUERY_MENU_DATA)) {
+    const int option = playMenu(&QUERY_MENU_DATA);
+
+    newLine();
+    switch(option) {
 
     case 1:
-        queryForActor(database);
+        queryAboutActor(database);
         break;
 
     case 2:
-        queryForMovie(database);
+        printActorList(&database->actors);
         break;
 
     case 3:
-        queryForStudio(database);
+        queryAboutMovie(database);
+        break;
+
+    case 4:
+        printMovieList(&database->movies);
+        break;
+
+    case 5:
+        queryAboutStudio(database);
+        break;
+
+    case 6:
+        printStudioList(&database->studios);
+        break;
+
+    case 7:
+        return;
 
     }
 
+    shortSleep();
+
 }
 
-static void queryForActor(const Database* database) {
+void queryAboutActor(const Database* database) {
 
     String name, lastName;
     scanActorsFullName(name, lastName);
@@ -53,11 +77,11 @@ static void queryForActor(const Database* database) {
         printString("Taki aktor nie istnieje!");
     }
 
-    shortSleep();
-
 }
 
-static void queryForMovie(const Database* database) {
+
+
+void queryAboutMovie(const Database* database) {
 
     String title;
     scanMoviesTitle(title);
@@ -71,11 +95,9 @@ static void queryForMovie(const Database* database) {
         printString("Taki film nie istnieje!");
     }
 
-    shortSleep();
-
 }
 
-static void queryForStudio(const Database* database) {
+void queryAboutStudio(const Database* database) {
 
     String name;
     scanStudiosName(name);
@@ -85,12 +107,9 @@ static void queryForStudio(const Database* database) {
     if(studio != NULL) {
 
         printStudio(studio);
-        // + drukowanie filmów i studia
 
     } else {
         printString("Takie studio nie istnieje!");
     }
-
-    shortSleep();
 
 }
