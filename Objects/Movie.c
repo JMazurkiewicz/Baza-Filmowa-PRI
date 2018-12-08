@@ -29,6 +29,8 @@ void scanMovie(Movie* movie) {
     movie->runningTime =
         scanIntegerFromRange(MIN_MOVIES_RUNNING_TIME, MAX_MOVIES_RUNNING_TIME);
 
+    movie->studio = NULL;
+
 }
 
 void printMovie(const Movie* movie) {

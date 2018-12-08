@@ -7,12 +7,12 @@
 
 typedef struct Database {
 
-    ActorListNode* actors;
-    RoleListNode* roles;
-    MovieListNode* movies;
-    StudioListNode* studios;
+    ActorList actors;
+    RoleList roles;
+    MovieList movies;
+    StudioList studios;
 
 } Database;
 
 void initDatabase(Database* database);
-void freeDatabaseMemory(Database* database);
+void freeDatabase(Database* database);

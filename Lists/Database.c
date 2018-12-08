@@ -1,21 +1,15 @@
 #include "Lists/Database.h"
 
 void initDatabase(Database* database) {
-
-    database->actors = NULL;
-    database->roles = NULL;
-    database->movies = NULL;
-    database->studios = NULL;
-
+    initActorList(&database->actors);
+    initRoleList(&database->roles);
+    initMovieList(&database->movies);
+    initStudioList(&database->studios);
 }
 
-void freeDatabaseMemory(Database* database) {
-
-    freeActorListMemory(database->actors);
-    freeRoleListMemory(database->roles);
-    freeMovieListMemory(database->movies);
-    freeStudioListMemory(database->studios);
-
-    initDatabase(database);
-
+void freeDatabase(Database* database) {
+    freeActorList(&database->actors);
+    freeRoleList(&database->roles);
+    freeMovieList(&database->movies);
+    freeStudioList(&database->studios);
 }

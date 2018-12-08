@@ -11,8 +11,16 @@ typedef struct MovieListNode {
 
 } MovieListNode;
 
-bool addMovie(MovieListNode* head, Movie movie);
-const Movie* findMovie(const MovieListNode* head, StringView title);
-bool deleteMovie(MovieListNode* head, StringView title);
+typedef struct MovieList {
 
-void freeMovieListMemory(MovieListNode* head);
+    MovieListNode* head;
+
+} MovieList;
+
+
+void initMovieList(MovieList* list);
+void freeMovieList(MovieList* list);
+
+bool addMovie(MovieList* list, const Movie* movie);
+const Movie* findMovie(const MovieList* list, StringView title);
+bool deleteMovie(MovieList* list, StringView title);

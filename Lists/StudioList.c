@@ -1,70 +1,62 @@
 #include "Lists/StudioList.h"
 #include <stdlib.h>
 
-bool addStudio(StudioListNode* head, Studio studio) {
+void initStudioList(StudioList* list) {
+    list->head = NULL;
+}
 
-    if(findStudio(head, studio.name) != NULL) {
+void freeStudioList(StudioList* list) {
+
+    for(StudioListNode* node = list->head; node != NULL; ) {
+        StudioListNode* const next = node->next;
+        free(node);
+        node = next;
+    }
+
+    initStudioList(list);
+
+}
+
+bool addStudio(StudioList* list, const Studio* studio) {
+
+    if(findStudio(list, studio->name) != NULL) {
         return false;
     }
 
     StudioListNode* newHead = malloc(sizeof(StudioListNode));
-    newHead->next = head;
-    newHead->value = studio;
+    newHead->next = list->head;
+    newHead->value = *studio;
 
+    list->head = newHead;
     return true;
 
 }
 
-Studio* findStudio(StudioListNode* head, StringView studioName) {
+const Studio* findStudio(const StudioList* list, StringView studioName) {
 
-    for(StudioListNode* node = head; node != NULL; node = node->next) {
-
+    for(const StudioListNode* node = list->head; node != NULL; node = node->next) {
         if(hasStudioThisName(&node->value, studioName)) {
             return &node->value;
         }
-
     }
 
     return NULL;
 
 }
 
-bool deleteStudio(StudioListNode* head, StringView studioName) {
+bool deleteStudio(StudioList* list, StringView studioName) {
 
-    if(head != NULL) {
-        if(hasStudioThisName(&head->value, studioName)) {
-            free(head);
-            return true;
-        }
-    } else {
-        return false;
-    }
-
-    StudioListNode* previousElement = head;
-    StudioListNode* currentElement = head->next;
+    StudioListNode* previousElement = (StudioListNode*)list;
+    StudioListNode* currentElement = list->head;
 
     while(currentElement != NULL) {
-
         if(hasStudioThisName(&currentElement->value, studioName)) {
             previousElement->next = currentElement->next;
             free(currentElement);
             return true;
         }
-
     }
 
     return false;
-
-}
-
-void freeStudioListMemory(StudioListNode* head) {
-
-    for(StudioListNode* node = head; node != NULL; ) {
-
-        StudioListNode* const next = node->next;
-        free(node);
-        node = next;
-
-    }
 
 }

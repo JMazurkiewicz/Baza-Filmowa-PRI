@@ -10,8 +10,15 @@ typedef struct StudioListNode {
 
 } StudioListNode;
 
-bool addStudio(StudioListNode* head, Studio studio);
-Studio* findStudio(StudioListNode* head, StringView studioName);
-bool deleteStudio(StudioListNode* head, StringView studioName);
+typedef struct StudioList {
 
-void freeStudioListMemory(StudioListNode* head);
+    StudioListNode* head;
+
+} StudioList;
+
+void initStudioList(StudioList* list);
+void freeStudioList(StudioList* list);
+
+bool addStudio(StudioList* list, const Studio* studio);
+const Studio* findStudio(const StudioList* list, StringView studioName);
+bool deleteStudio(StudioList* list, StringView studioName);

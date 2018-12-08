@@ -11,9 +11,9 @@ static const MenuData QUERY_MENU_DATA = {
 
     .content =
         "O kim chcesz uzyskac wypis:\n"
-        "1) O aktorze [niedostepne]\n"
-        "2) O filmie [niedostepne]\n"
-        "3) O studiu nagraniowym [niedostepne]\n"
+        "1) O aktorze [bez wypisania rol]\n"
+        "2) O filmie [bez wypisania rol]\n"
+        "3) O studiu nagraniowym [bez wypisania filmow i aktorow]\n"
         "4) Rezygnuje...\n",
 
     .maxOptionValue = 4
@@ -44,15 +44,16 @@ static void queryForActor(const Database* database) {
     String name, lastName;
     scanActorsFullName(name, lastName);
 
-    const Actor* actor = findActor(database->actors, name, lastName);
+    const Actor* actor = findActor(&database->actors, name, lastName);
 
     if(actor != NULL) {
         printActor(actor);
-        printRolesOfActor(database->roles, actor);
+        printRolesOfActor(&database->roles, actor);
     } else {
         printString("Taki aktor nie istnieje!");
-        shortSleep();
     }
+
+    shortSleep();
 
 }
 
@@ -61,15 +62,16 @@ static void queryForMovie(const Database* database) {
     String title;
     scanMoviesTitle(title);
 
-    const Movie* movie = findMovie(database->movies, title);
+    const Movie* movie = findMovie(&database->movies, title);
 
     if(movie != NULL) {
         printMovie(movie);
-        printRolesFromMovie(database->roles, movie);
+        printRolesFromMovie(&database->roles, movie);
     } else {
         printString("Taki film nie istnieje!");
-        shortSleep();
     }
+
+    shortSleep();
 
 }
 
@@ -78,7 +80,7 @@ static void queryForStudio(const Database* database) {
     String name;
     scanStudiosName(name);
 
-    const Studio* studio = findStudio(database->studios, name);
+    const Studio* studio = findStudio(&database->studios, name);
 
     if(studio != NULL) {
 
@@ -87,7 +89,8 @@ static void queryForStudio(const Database* database) {
 
     } else {
         printString("Takie studio nie istnieje!");
-        shortSleep();
     }
+
+    shortSleep();
 
 }

@@ -43,6 +43,6 @@ int main(void) {
 
     }
 
-    freeDatabaseMemory(&database);
+    freeDatabase(&database);
 
 }

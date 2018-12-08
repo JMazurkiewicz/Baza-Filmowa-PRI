@@ -1,70 +1,63 @@
 #include "Lists/MovieList.h"
 #include <stdlib.h>
 
-bool addMovie(MovieListNode* head, Movie movie) {
+void initMovieList(MovieList* list) {
+    list->head = NULL;
+}
 
-    if(findMovie(head, movie.title) != NULL) {
+void freeMovieList(MovieList* list) {
+
+    for(MovieListNode* node = list->head; node != NULL; ) {
+        MovieListNode* const next = node->next;
+        free(node);
+        node = next;
+    }
+
+    initMovieList(list);
+
+}
+
+
+bool addMovie(MovieList* list, const Movie* movie) {
+
+    if(findMovie(list, movie->title) != NULL) {
         return false;
     }
 
     MovieListNode* newHead = malloc(sizeof(MovieListNode));
-    newHead->next = head;
-    newHead->value = movie;
+    newHead->next = list->head;
+    newHead->value = *movie;
 
+    list->head = newHead;
     return true;
 
 }
 
-const Movie* findMovie(const MovieListNode* head, StringView title) {
+const Movie* findMovie(const MovieList* list, StringView title) {
 
-    for(const MovieListNode* node = head; node != NULL; node = node->next) {
-
+    for(const MovieListNode* node = list->head; node != NULL; node = node->next) {
         if(hasMovieThisTitle(&node->value, title)) {
             return &node->value;
         }
-
     }
 
     return NULL;
 
 }
 
-bool deleteMovie(MovieListNode* head, StringView title) {
+bool deleteMovie(MovieList* list, StringView title) {
 
-    if(head != NULL) {
-        if(hasMovieThisTitle(&head->value, title)) {
-            free(head);
-            return true;
-        }
-    } else {
-        return false;
-    }
-
-    MovieListNode* previousElement = head;
-    MovieListNode* currentElement = head->next;
+    MovieListNode* previousElement = (MovieListNode*)list;
+    MovieListNode* currentElement = list->head;
 
     while(currentElement != NULL) {
-
         if(hasMovieThisTitle(&currentElement->value, title)) {
             previousElement->next = currentElement->next;
             free(currentElement);
             return true;
         }
-
     }
 
     return false;
-
-}
-
-void freeMovieListMemory(MovieListNode* head) {
-
-    for(MovieListNode* node = head; node != NULL; ) {
-
-        MovieListNode* const next = node->next;
-        free(node);
-        node = next;
-
-    }
 
 }

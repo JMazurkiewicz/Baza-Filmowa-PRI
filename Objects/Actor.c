@@ -31,5 +31,5 @@ void scanActor(Actor* actor) {
 void printActor(const Actor* actor) {
     printf("Imie: %s\n", actor->name);
     printf("Nazwisko: %s\n", actor->lastName);
-    printf("Rok urodzenia: %s\n", actor->yearOfBirth);
+    printf("Rok urodzenia: %d\n", actor->yearOfBirth);
 }

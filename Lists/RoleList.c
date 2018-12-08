@@ -4,24 +4,41 @@
 #include <stdlib.h>
 #include "Utility/MovieLimits.h"
 
-bool addRole(RoleListNode* head, const Actor* actor, const Movie* movie) {
+void initRoleList(RoleList* list) {
+    list->head = NULL;
+}
 
-    if(findRole(head, actor, movie) != NULL) {
+void freeRoleList(RoleList* list) {
+
+    for(RoleListNode* node = list->head; node != NULL; ) {
+        RoleListNode* const next = node->next;
+        free(node);
+        node = next;
+    }
+
+    initRoleList(list);
+
+}
+
+bool addRole(RoleList* list, const Actor* actor, const Movie* movie) {
+
+    if(findRole(list, actor, movie) != NULL) {
         return false;
     }
 
     RoleListNode* newHead = malloc(sizeof(RoleListNode));
-    newHead->next = head;
+    newHead->next = list->head;
     newHead->value.actor = actor;
     newHead->value.movie = movie;
 
+    list->head = newHead;
     return true;
 
 }
 
-Role* findRole(RoleListNode* head, const Actor* actor, const Movie* movie) {
+const Role* findRole(const RoleList* list, const Actor* actor, const Movie* movie) {
 
-    for(RoleListNode* node = head; node != NULL; node = node->next) {
+    for(const RoleListNode* node = list->head; node != NULL; node = node->next) {
         if(hasRoleTheseParams(&node->value, actor, movie)) {
             return &node->value;
         }
@@ -31,9 +48,9 @@ Role* findRole(RoleListNode* head, const Actor* actor, const Movie* movie) {
 
 }
 
-Role* findNextRoleOfActor(RoleListNode* head, const Actor* actor) {
+const Role* findRoleOfActor(const RoleList* list, const Actor* actor) {
 
-    for(RoleListNode* node = head; node != NULL; node = node->next) {
+    for(const RoleListNode* node = list->head; node != NULL; node = node->next) {
         if(node->value.actor == actor) {
             return &node->value;
         }
@@ -43,9 +60,9 @@ Role* findNextRoleOfActor(RoleListNode* head, const Actor* actor) {
 
 }
 
-Role* findNextRoleFromMovie(RoleListNode* head, const Movie* movie) {
+const Role* findRoleFromMovie(const RoleList* list, const Movie* movie) {
 
-    for(RoleListNode* node = head; node != NULL; node = node->next) {
+    for(const RoleListNode* node = list->head; node != NULL; node = node->next) {
         if(node->value.movie == movie) {
             return &node->value;
         }
@@ -55,9 +72,9 @@ Role* findNextRoleFromMovie(RoleListNode* head, const Movie* movie) {
 
 }
 
-void deleteRolesOfActor(RoleListNode* head, const Actor* actor) {
+void deleteRolesOfActor(RoleList* list, const Actor* actor) {
 
-    RoleListNode* node = head;
+    RoleListNode* node = list->head;
 
     while(node != NULL) {
 
@@ -73,9 +90,9 @@ void deleteRolesOfActor(RoleListNode* head, const Actor* actor) {
 
 }
 
-void deleteRolesFromMovie(RoleListNode* head, const Movie* movie) {
+void deleteRolesFromMovie(RoleList* list, const Movie* movie) {
 
-    RoleListNode* node = head;
+    RoleListNode* node = list->head;
 
     while(node != NULL) {
 
@@ -91,7 +108,7 @@ void deleteRolesFromMovie(RoleListNode* head, const Movie* movie) {
 
 }
 
-void scanRolesFromMovie(RoleListNode* head, const ActorListNode* actors, const Movie* movie) {
+void scanRolesFromMovie(RoleList* list, const ActorList* actors, const Movie* movie) {
 
     printString("Ile rol chcesz dodac w tym filmie: ");
     int roleCount = scanIntegerFromRange(0, MAX_ROLE_COUNT);
@@ -104,7 +121,7 @@ void scanRolesFromMovie(RoleListNode* head, const ActorListNode* actors, const M
         const Actor* const actor = findActor(actors, name, lastName);
 
         if(actor != NULL) {
-            addRole(head, actor, movie);
+            addRole(list, actor, movie);
             printString("Pomyslnie dodano aktora");
             --roleCount;
         } else {
@@ -115,7 +132,7 @@ void scanRolesFromMovie(RoleListNode* head, const ActorListNode* actors, const M
 
 }
 
-void scanRolesOfActor(RoleListNode* head, const MovieListNode* movies, const Actor* actor) {
+void scanRolesOfActor(RoleList* list, const MovieList* movies, const Actor* actor) {
 
     printString("Ile rol chcesz dodac dla tego aktora: ");
     int roleCount = scanIntegerFromRange(0, MAX_ROLE_COUNT);
@@ -128,7 +145,7 @@ void scanRolesOfActor(RoleListNode* head, const MovieListNode* movies, const Act
         const Movie* const movie = findMovie(movies, title);
 
         if(movie != NULL) {
-            addRole(head, actor, movie);
+            addRole(list, actor, movie);
             printString("Pomyslnie dodano film");
             --roleCount;
         } else {
@@ -139,15 +156,15 @@ void scanRolesOfActor(RoleListNode* head, const MovieListNode* movies, const Act
 
 }
 
-void printRolesOfActor(RoleListNode* head, const Actor* actor) {
+void printRolesOfActor(const RoleList* list, const Actor* actor) {
 
-    const Role* role = findNextRoleOfActor(head, actor);
+    const Role* role = findRoleOfActor(list, actor);
 
     if(role != NULL) {
 
         do {
             printf(" \"%s\"\n", role->movie->title);
-            role = findNextRoleOfActor(head->next, actor);
+            role = findRoleOfActor(list, actor);
         } while(role != NULL);
 
     } else {
@@ -156,29 +173,19 @@ void printRolesOfActor(RoleListNode* head, const Actor* actor) {
 
 }
 
-void printRolesFromMovie(RoleListNode* head, const Movie* movie) {
+void printRolesFromMovie(const RoleList* list, const Movie* movie) {
 
-    const Role* role = findNextRoleFromMovie(head, movie);
+    const Role* role = findRoleFromMovie(list, movie);
 
     if(role != NULL) {
 
         do {
             printf(" \"%s %s\"\n", role->actor->name, role->actor->lastName);
-            role = findNextRoleFromMovie(head->next, movie);
+            role = findRoleFromMovie(list, movie);
         } while(role != NULL);
 
     } else {
         puts("Film nie posiada zapisanych aktorow.");
-    }
-
-}
-
-void freeRoleListMemory(RoleListNode* head) {
-
-    for(RoleListNode* node = head; node != NULL; ) {
-        RoleListNode* const next = node->next;
-        free(node);
-        node = next;
     }
 
 }

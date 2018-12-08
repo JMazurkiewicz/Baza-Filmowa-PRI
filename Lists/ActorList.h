@@ -11,8 +11,15 @@ typedef struct ActorListNode {
 
 } ActorListNode;
 
-bool addActor(ActorListNode* head, Actor actor);
-const Actor* findActor(const ActorListNode* head, StringView name, StringView lastName);
-bool deleteActor(ActorListNode* head, StringView name, StringView lastName);
+typedef struct ActorList {
 
-void freeActorListMemory(ActorListNode* head);
+    ActorListNode* head;
+
+} ActorList;
+
+void initActorList(ActorList* list);
+void freeActorList(ActorList* list);
+
+bool addActor(ActorList* list, const Actor* actor);
+const Actor* findActor(const ActorList* list, StringView name, StringView lastName);
+bool deleteActor(ActorList* list, StringView name, StringView lastName);

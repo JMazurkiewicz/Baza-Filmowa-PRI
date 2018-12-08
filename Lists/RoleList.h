@@ -13,19 +13,26 @@ typedef struct RoleListNode {
 
 } RoleListNode;
 
-bool addRole(RoleListNode* head, const Actor* actor, const Movie* movie);
+typedef struct RoleList {
 
-Role* findRole(RoleListNode* head, const Actor* actor, const Movie* movie);
-Role* findNextRoleOfActor(RoleListNode* head, const Actor* actor);
-Role* findNextRoleFromMovie(RoleListNode* head, const Movie* movie);
+    RoleListNode* head;
 
-void deleteRolesOfActor(RoleListNode* head, const Actor* actor);
-void deleteRolesFromMovie(RoleListNode* head, const Movie* movie);
+} RoleList;
 
-void scanRolesFromMovie(RoleListNode* head, const ActorListNode* actors, const Movie* movie);
-void scanRolesOfActor(RoleListNode* head, const MovieListNode* movies, const Actor* actor);
+void initRoleList(RoleList* list);
+void freeRoleList(RoleList* list);
 
-void printRolesOfActor(RoleListNode* head, const Actor* actor);
-void printRolesFromMovie(RoleListNode* head, const Movie* movie);
+bool addRole(RoleList* list, const Actor* actor, const Movie* movie);
 
-void freeRoleListMemory(RoleListNode* head);
+const Role* findRole(const RoleList* list, const Actor* actor, const Movie* movie);
+const Role* findRoleOfActor(const RoleList* list, const Actor* actor);
+const Role* findRoleFromMovie(const RoleList* list, const Movie* movie);
+
+void deleteRolesOfActor(RoleList* list, const Actor* actor);
+void deleteRolesFromMovie(RoleList* list, const Movie* movie);
+
+void scanRolesFromMovie(RoleList* list, const ActorList* actors, const Movie* movie);
+void scanRolesOfActor(RoleList* list, const MovieList* movies, const Actor* actor);
+
+void printRolesOfActor(const RoleList* list, const Actor* actor);
+void printRolesFromMovie(const RoleList* list, const Movie* movie);

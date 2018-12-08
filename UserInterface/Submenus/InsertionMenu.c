@@ -1,15 +1,17 @@
 #include "UserInterface/MenuPlayer.h"
 #include "UserInterface/Submenus/InsertionMenu.h"
 
-static void insertActorIntoDatabase(ActorListNode* list);
+static void insertNewActorIntoDatabase(ActorList* list);
+static void insertNewMovieIntoDatabase(MovieList* list);
+static void insertNewStudioIntoDatabase(StudioList* list);
 
 static const MenuData INSERTION_MENU_DATA = {
 
     .content =
         "Wstaw:\n"
-        "1) Nowego aktora [dostepne, bez dodawania rol]\n"
-        "2) Nowy film [niedostepne]\n"
-        "3) Nowe studio [niedostepne]\n"
+        "1) Nowego aktora [bez dodawania rol]\n"
+        "2) Nowy film [bez dodawania rol]\n"
+        "3) Nowe studio [bez dodawania filmow]\n"
         "4) Nowa role [niedostepne]\n"
         "5) Rezygnuje...\n",
 
@@ -22,15 +24,15 @@ void insertionMenu(Database* database) {
     switch(playMenu(&INSERTION_MENU_DATA)) {
 
     case 1:
-        insertActorIntoDatabase(database->actors);
+        insertNewActorIntoDatabase(&database->actors);
         break;
 
     case 2:
-        // [niedostepne]
+        insertNewMovieIntoDatabase(&database->movies);
         break;
 
     case 3:
-        // [niedostepne]
+        insertNewStudioIntoDatabase(&database->studios);
         break;
 
     case 4:
@@ -41,8 +43,21 @@ void insertionMenu(Database* database) {
 
 }
 
-void insertActorIntoDatabase(ActorListNode* list) {
+void insertNewActorIntoDatabase(ActorList* list) {
     Actor newActor;
     scanActor(&newActor);
-    addActor(list, newActor);
+    addActor(list, &newActor);
+}
+
+
+static void insertNewMovieIntoDatabase(MovieList* list) {
+    Movie newMovie;
+    scanMovie(&newMovie);
+    addMovie(list, &newMovie);
+}
+
+static void insertNewStudioIntoDatabase(StudioList* list) {
+    Studio newStudio;
+    scanStudio(&newStudio);
+    addStudio(list, &newStudio);
 }
