@@ -1,7 +1,11 @@
 #include "CommonIO/BasicIO.h"
 #include "CommonIO/ConditionalInput.h"
+#include "Lists/ActorList.h"
+#include "Lists/MovieList.h"
 #include "Lists/RoleList.h"
 #include <stdlib.h>
+#include "Objects/Actor.h"
+#include "Objects/Movie.h"
 #include "Utility/MovieLimits.h"
 
 void initRoleList(RoleList* list) {
@@ -39,9 +43,11 @@ bool addRole(RoleList* list, const Actor* actor, const Movie* movie) {
 const Role* findRole(const RoleList* list, const Actor* actor, const Movie* movie) {
 
     for(const RoleListNode* node = list->head; node != NULL; node = node->next) {
+
         if(hasRoleTheseMembers(&node->value, actor, movie)) {
             return &node->value;
         }
+
     }
 
     return NULL;
@@ -51,9 +57,11 @@ const Role* findRole(const RoleList* list, const Actor* actor, const Movie* movi
 const Role* findRoleOfActor(const RoleList* list, const Actor* actor) {
 
     for(const RoleListNode* node = list->head; node != NULL; node = node->next) {
+
         if(node->value.actor == actor) {
             return &node->value;
         }
+
     }
 
     return NULL;
@@ -63,9 +71,11 @@ const Role* findRoleOfActor(const RoleList* list, const Actor* actor) {
 const Role* findRoleFromMovie(const RoleList* list, const Movie* movie) {
 
     for(const RoleListNode* node = list->head; node != NULL; node = node->next) {
+
         if(node->value.movie == movie) {
             return &node->value;
         }
+
     }
 
     return NULL;
@@ -121,11 +131,15 @@ void scanRolesFromMovie(RoleList* list, const ActorList* actors, const Movie* mo
         const Actor* const actor = findActor(actors, name, lastName);
 
         if(actor != NULL) {
+
             addRole(list, actor, movie);
             printString("Pomyslnie dodano aktora");
             --roleCount;
+
         } else {
+
             printString("Taki aktor nie istnieje, sprobuj ponownie");
+
         }
 
     }

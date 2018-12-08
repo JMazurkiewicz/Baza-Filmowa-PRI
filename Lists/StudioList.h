@@ -1,20 +1,21 @@
 #pragma once
 
+#include "Lists/Declarations.h"
 #include "Objects/Studio.h"
 #include <stdbool.h>
 
-typedef struct StudioListNode {
+struct StudioListNode {
 
-    struct StudioListNode* next;
+    StudioListNode* next;
     Studio value;
 
-} StudioListNode;
+};
 
-typedef struct StudioList {
+struct StudioList {
 
     StudioListNode* head;
 
-} StudioList;
+};
 
 void initStudioList(StudioList* list);
 void freeStudioList(StudioList* list);

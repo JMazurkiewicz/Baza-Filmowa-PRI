@@ -8,8 +8,8 @@
 typedef struct Database {
 
     ActorList actors;
-    RoleList roles;
     MovieList movies;
+    RoleList roles;
     StudioList studios;
 
 } Database;

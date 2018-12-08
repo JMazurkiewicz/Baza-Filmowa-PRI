@@ -1,23 +1,22 @@
 #pragma once
 
+#include "Lists/Declarations.h"
 #include "Objects/Movie.h"
-#include "Objects/Studio.h"
 #include <stdbool.h>
 #include "Utility/String.h"
 
-typedef struct MovieListNode {
+struct MovieListNode {
 
-    struct MovieListNode* next;
+    MovieListNode* next;
     Movie value;
 
-} MovieListNode;
+};
 
-typedef struct MovieList {
+struct MovieList {
 
     MovieListNode* head;
 
-} MovieList;
-
+};
 
 void initMovieList(MovieList* list);
 void freeMovieList(MovieList* list);

@@ -1,6 +1,5 @@
 #include "CommonIO/BasicIO.h"
 #include "Lists/MovieList.h"
-#include "Lists/RoleList.h"
 #include <stdlib.h>
 
 void initMovieList(MovieList* list) {
@@ -41,9 +40,11 @@ bool addMovie(MovieList* list, const Movie* movie) {
 const Movie* findMovie(const MovieList* list, StringView title) {
 
     for(const MovieListNode* node = list->head; node != NULL; node = node->next) {
+
         if(hasMovieThisTitle(&node->value, title)) {
             return &node->value;
         }
+
     }
 
     return NULL;
@@ -56,11 +57,13 @@ bool deleteMovie(MovieList* list, StringView title) {
     MovieListNode* currentElement = list->head;
 
     while(currentElement != NULL) {
+
         if(hasMovieThisTitle(&currentElement->value, title)) {
             previousElement->next = currentElement->next;
             free(currentElement);
             return true;
         }
+
     }
 
     return false;
@@ -70,7 +73,9 @@ bool deleteMovie(MovieList* list, StringView title) {
 void printMovieList(const MovieList* list) {
 
     if(isMovieListEmpty(list)) {
+
         printString("Lista filmow jest pusta!\n");
+
     } else {
 
         puts("Lista filmow:");

@@ -1,23 +1,20 @@
 #pragma once
 
-#include "Lists/ActorList.h"
-#include "Lists/MovieList.h"
-#include "Objects/Actor.h"
-#include "Objects/Movie.h"
+#include "Lists/Declarations.h"
 #include "Objects/Role.h"
 
-typedef struct RoleListNode {
+struct RoleListNode {
 
-    struct RoleListNode* next;
+    RoleListNode* next;
     Role value;
 
-} RoleListNode;
+};
 
-typedef struct RoleList {
+struct RoleList {
 
     RoleListNode* head;
 
-} RoleList;
+};
 
 void initRoleList(RoleList* list);
 void freeRoleList(RoleList* list);
