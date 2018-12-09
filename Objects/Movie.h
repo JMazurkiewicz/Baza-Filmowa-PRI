@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Objects/Declarations.h"
+#include "Objects/IO/MovieIO.h"
 #include <stdbool.h>
 #include "Utility/String.h"
 
@@ -16,8 +17,3 @@ struct Movie {
 };
 
 bool hasMovieThisTitle(const Movie* movie, StringView title);
-
-void scanMoviesTitle(String title);
-void scanMovie(Movie* movie);
-
-void printMovie(const Movie* movie);

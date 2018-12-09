@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Objects/Declarations.h"
+#include "Objects/IO/StudioIO.h"
 #include <stdbool.h>
 #include "Utility/String.h"
 
@@ -14,8 +15,3 @@ struct Studio {
 };
 
 bool hasStudioThisName(const Studio* studio, StringView name);
-
-void scanStudiosName(String name);
-void scanStudio(Studio* studio);
-
-void printStudio(const Studio* studio);

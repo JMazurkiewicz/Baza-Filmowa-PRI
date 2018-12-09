@@ -12,7 +12,7 @@ static const MenuData INSERTION_MENU_DATA = {
     .content =
         "Wstaw:\n"
         "1) Nowego aktora [bez dodawania rol]\n"
-        "2) Nowy film [bez dodawania rol]\n"
+        "2) Nowy film [bez dodawania rol/studia]\n"
         "3) Nowe studio [bez dodawania filmow]\n"
         "4) Nowa rola [niedostepne]\n"
         "5) Rezygnuje...\n",
@@ -48,11 +48,18 @@ void insertionMenu(Database* database) {
 void insertNewActorIntoDatabase(ActorList* list) {
 
     Actor newActor;
-    scanActor(&newActor);
+    scanActorsIdentifiers(&newActor);
 
-    if(!addActor(list, &newActor)) {
+    if(findActor(list, newActor.name, newActor.lastName) != NULL) {
+
         printString("Taki aktor juz istnieje w bazie!\n");
         shortSleep();
+
+    } else {
+
+        scanActorsData(&newActor);
+        addActor(list, &newActor);
+
     }
 
 }
@@ -61,11 +68,18 @@ void insertNewActorIntoDatabase(ActorList* list) {
 static void insertNewMovieIntoDatabase(MovieList* list) {
 
     Movie newMovie;
-    scanMovie(&newMovie);
+    scanMoviesIdentifier(&newMovie);
 
-    if(!addMovie(list, &newMovie)) {
+    if(findMovie(list, newMovie.title) != NULL) {
+
         printString("Taki film juz istnieje w bazie!\n");
         shortSleep();
+
+    } else {
+
+        scanMoviesData(&newMovie);
+        addMovie(list, &newMovie);
+
     }
 
 }
@@ -73,11 +87,18 @@ static void insertNewMovieIntoDatabase(MovieList* list) {
 static void insertNewStudioIntoDatabase(StudioList* list) {
 
     Studio newStudio;
-    scanStudio(&newStudio);
+    scanStudiosIdentifier(&newStudio);
 
-    if(!addStudio(list, &newStudio)) {
+    if(findStudio(list, newStudio.name) != NULL) {
+
         printString("Takie studio juz istnieje w bazie!");
         shortSleep();
+
+    } else {
+
+        scanStudiosData(&newStudio);
+        addStudio(list, &newStudio);
+
     }
 
 }

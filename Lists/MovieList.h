@@ -23,7 +23,7 @@ void freeMovieList(MovieList* list);
 
 bool isMovieListEmpty(const MovieList* list);
 
-bool addMovie(MovieList* list, const Movie* movie);
+void addMovie(MovieList* list, const Movie* movie);
 const Movie* findMovie(const MovieList* list, StringView title);
 bool deleteMovie(MovieList* list, StringView title);
 

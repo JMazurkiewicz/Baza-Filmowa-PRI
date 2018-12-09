@@ -22,18 +22,13 @@ bool isActorListEmpty(const ActorList* list) {
     return list->head == NULL;
 }
 
-bool addActor(ActorList* list, const Actor* actor) {
-
-    if(findActor(list, actor->name, actor->lastName) != NULL) {
-        return false;
-    }
+void addActor(ActorList* list, const Actor* actor) {
 
     ActorListNode* newHead = malloc(sizeof(ActorListNode));
     newHead->next = list->head;
     newHead->value = *actor;
 
     list->head = newHead;
-    return true;
 
 }
 

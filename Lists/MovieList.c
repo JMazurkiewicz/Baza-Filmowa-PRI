@@ -22,18 +22,13 @@ bool isMovieListEmpty(const MovieList* list) {
     return list->head == NULL;
 }
 
-bool addMovie(MovieList* list, const Movie* movie) {
-
-    if(findMovie(list, movie->title) != NULL) {
-        return false;
-    }
+void addMovie(MovieList* list, const Movie* movie) {
 
     MovieListNode* newHead = malloc(sizeof(MovieListNode));
     newHead->next = list->head;
     newHead->value = *movie;
 
     list->head = newHead;
-    return true;
 
 }
 

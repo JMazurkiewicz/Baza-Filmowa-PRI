@@ -22,18 +22,13 @@ bool isStudioListEmpty(const StudioList* list) {
     return list->head == NULL;
 }
 
-bool addStudio(StudioList* list, const Studio* studio) {
-
-    if(findStudio(list, studio->name) != NULL) {
-        return false;
-    }
+void addStudio(StudioList* list, const Studio* studio) {
 
     StudioListNode* newHead = malloc(sizeof(StudioListNode));
     newHead->next = list->head;
     newHead->value = *studio;
 
     list->head = newHead;
-    return true;
 
 }
 
@@ -63,7 +58,7 @@ bool deleteStudio(StudioList* list, StringView studioName) {
             free(currentElement);
             return true;
         }
-        
+
     }
 
     return false;

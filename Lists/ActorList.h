@@ -23,7 +23,7 @@ void freeActorList(ActorList* list);
 
 bool isActorListEmpty(const ActorList* list);
 
-bool addActor(ActorList* list, const Actor* actor);
+void addActor(ActorList* list, const Actor* actor);
 const Actor* findActor(const ActorList* list, StringView name, StringView lastName);
 bool deleteActor(ActorList* list, StringView name, StringView lastName);
 
