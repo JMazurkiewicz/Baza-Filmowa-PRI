@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Lists/Declarations.h"
+#include "Lists/IO/StudioListIO.h"
 #include "Objects/Studio.h"
 #include <stdbool.h>
+#include "Utility/String.h"
 
 struct StudioListNode {
 
@@ -25,5 +27,3 @@ bool isStudioListEmpty(const StudioList* list);
 void addStudio(StudioList* list, const Studio* studio);
 const Studio* findStudio(const StudioList* list, StringView studioName);
 bool deleteStudio(StudioList* list, StringView studioName);
-
-void printStudioList(const StudioList* list);
