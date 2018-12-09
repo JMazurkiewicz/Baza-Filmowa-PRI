@@ -27,7 +27,18 @@ size_t strReverseFindIf(StringView string, int (*predicate)(int)) {
 
 }
 
-void trimWhitespace(String string) {
+int strCaseInsensitiveCompare(StringView left, StringView right) {
+
+    while(*left != '\0' && *right != '\0' && tolower(*left) == tolower(*right)) {
+        ++left;
+        ++right;
+    }
+
+    return tolower(*left) - tolower(*right);
+
+}
+
+void strTrimWhitespace(String string) {
 
     const size_t posOfFirstGraphChar = strFindIf(string, isgraph);
 

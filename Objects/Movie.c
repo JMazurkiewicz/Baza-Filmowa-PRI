@@ -2,6 +2,6 @@
 
 bool hasMovieThisTitle(const Movie* movie, StringView title) {
 
-    return strcmp(movie->title, title) == 0;
+    return strCaseInsensitiveCompare(movie->title, title) == 0;
 
 }

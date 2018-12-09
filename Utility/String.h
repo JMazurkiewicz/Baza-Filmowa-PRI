@@ -13,6 +13,6 @@ extern const size_t STRING_NPOS;
 size_t strFindIf(StringView string, int (*predicate)(int));
 size_t strReverseFindIf(StringView string, int (*predicate)(int));
 
-// @todo int strCaseInsensitiveCompare(StringView left, StringView right);
+int strCaseInsensitiveCompare(StringView left, StringView right);
 
-void trimWhitespace(String string);
+void strTrimWhitespace(String string);

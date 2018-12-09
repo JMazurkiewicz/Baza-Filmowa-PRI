@@ -8,7 +8,7 @@ static bool isNameGrammaticallyCorrect(StringView name, size_t nameLength);
 
 void scanName(String name) {
     scanLineIf(name, isNameValid);
-    trimWhitespace(name);
+    strTrimWhitespace(name);
 }
 
 bool isNameValid(StringView name) {

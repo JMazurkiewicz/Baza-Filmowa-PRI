@@ -10,7 +10,7 @@ void scanMoviesTitle(String title) {
 
     printString("Podaj tytul filmu: ");
     scanLine(title);
-    trimWhitespace(title);
+    strTrimWhitespace(title);
 
 }
 

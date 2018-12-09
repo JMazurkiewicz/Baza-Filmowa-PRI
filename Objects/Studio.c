@@ -2,6 +2,6 @@
 
 bool hasStudioThisName(const Studio* studio, StringView name) {
 
-    return strcmp(studio->name, name) == 0;
-    
+    return strCaseInsensitiveCompare(studio->name, name) == 0;
+
 }

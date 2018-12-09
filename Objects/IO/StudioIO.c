@@ -8,7 +8,7 @@ void scanStudiosName(String name) {
 
     printString("Podaj nazwe studia: ");
     scanLine(name);
-    trimWhitespace(name);
+    strTrimWhitespace(name);
 
 }
 
@@ -20,11 +20,11 @@ void scanStudiosData(Studio* studio) {
 
     printString("Podaj adres studia: ");
     scanLine(studio->address);
-    trimWhitespace(studio->address);
+    strTrimWhitespace(studio->address);
 
     printString("Podaj kontakt ze studiem (np. adres e-mail): ");
     scanLine(studio->contact);
-    trimWhitespace(studio->contact);
+    strTrimWhitespace(studio->contact);
 
     printString("Podaj rok zalozenia studia: ");
     studio->yearOfFounding =
