@@ -53,9 +53,16 @@ bool deleteMovie(MovieList* list, StringView title) {
     while(currentElement != NULL) {
 
         if(hasMovieThisTitle(&currentElement->value, title)) {
+
             previousElement->next = currentElement->next;
             free(currentElement);
             return true;
+
+        } else {
+
+            previousElement = previousElement->next;
+            currentElement = currentElement->next;
+
         }
 
     }

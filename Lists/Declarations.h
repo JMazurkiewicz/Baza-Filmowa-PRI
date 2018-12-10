@@ -9,3 +9,5 @@ typedef struct ActorList ActorList;
 typedef struct MovieList MovieList;
 typedef struct RoleList RoleList;
 typedef struct StudioList StudioList;
+
+typedef struct Database Database;

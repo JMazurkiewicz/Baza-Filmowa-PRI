@@ -1,7 +1,6 @@
 #include "CommonIO/BasicIO.h"
 #include "UserInterface/MenuPlayer.h"
 #include "UserInterface/Submenus/QueryMenu.h"
-#include "Utility/System.h"
 
 static void queryAboutActor(const Database* database);
 static void queryAboutMovie(const Database* database);
@@ -11,11 +10,11 @@ static const MenuData QUERY_MENU_DATA = {
 
     .content =
         "Wypisz:\n"
-        "1) Dane o aktorze\n"
+        "1) Dane o konkretnym aktorze\n"
         "2) Liste aktorow\n"
-        "3) Dane o filmie\n"
+        "3) Dane o konkretnym filmie\n"
         "4) Liste filmow\n"
-        "5) Dane o studiu nagraniowym [bez wypisania filmow i aktorow]\n"
+        "5) Dane o konkretnym studiu nagraniowym\n"
         "6) Liste studiow nagraniowych\n"
         "7) Rezygnuje...\n",
 
@@ -25,16 +24,14 @@ static const MenuData QUERY_MENU_DATA = {
 
 void queryMenu(const Database* database) {
 
-    const int option = playMenu(&QUERY_MENU_DATA);
-
-    newLine();
-    switch(option) {
+    switch(playMenu(&QUERY_MENU_DATA)) {
 
     case 1:
         queryAboutActor(database);
         break;
 
     case 2:
+        newLine();
         printActorList(&database->actors);
         break;
 
@@ -43,6 +40,7 @@ void queryMenu(const Database* database) {
         break;
 
     case 4:
+        newLine();
         printMovieList(&database->movies);
         break;
 
@@ -51,6 +49,7 @@ void queryMenu(const Database* database) {
         break;
 
     case 6:
+        newLine();
         printStudioList(&database->studios);
         break;
 
@@ -59,7 +58,7 @@ void queryMenu(const Database* database) {
 
     }
 
-    shortSleep();
+    waitForEnter();
 
 }
 
@@ -71,10 +70,15 @@ void queryAboutActor(const Database* database) {
     const Actor* actor = findActor(&database->actors, name, lastName);
 
     if(actor != NULL) {
+
+        newLine();
         printActor(actor);
         printRolesOfActor(&database->roles, actor);
+
     } else {
+
         printString("Taki aktor nie istnieje!");
+
     }
 
 }
@@ -89,10 +93,15 @@ void queryAboutMovie(const Database* database) {
     const Movie* movie = findMovie(&database->movies, title);
 
     if(movie != NULL) {
+
+        newLine();
         printMovie(movie);
         printRolesFromMovie(&database->roles, movie);
+
     } else {
+
         printString("Taki film nie istnieje!");
+
     }
 
 }
@@ -106,10 +115,14 @@ void queryAboutStudio(const Database* database) {
 
     if(studio != NULL) {
 
+        newLine();
         printStudio(studio);
+        printMoviesFromStudio(&database->movies, studio);
 
     } else {
+
         printString("Takie studio nie istnieje!");
+
     }
 
 }

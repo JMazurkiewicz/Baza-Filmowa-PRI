@@ -1,11 +1,11 @@
 #include "CommonIO/BasicIO.h"
 #include "UserInterface/MenuPlayer.h"
 #include "UserInterface/Submenus/InsertionMenu.h"
-#include "Utility/System.h"
 
-static void insertNewActorIntoDatabase(ActorList* list);
-static void insertNewMovieIntoDatabase(MovieList* list);
-static void insertNewStudioIntoDatabase(StudioList* list);
+static void insertNewActorIntoDatabase(Database* database);
+static void insertNewMovieIntoDatabase(Database* database);
+static void insertNewRoleIntoDatabase(Database* database);
+static void insertNewStudioIntoDatabase(Database* database);
 
 static const MenuData INSERTION_MENU_DATA = {
 
@@ -13,8 +13,8 @@ static const MenuData INSERTION_MENU_DATA = {
         "Wstaw:\n"
         "1) Nowego aktora [bez dodawania rol]\n"
         "2) Nowy film [bez dodawania rol/studia]\n"
-        "3) Nowe studio [bez dodawania filmow]\n"
-        "4) Nowa rola [niedostepne]\n"
+        "3) Nowa rola\n"
+        "4) Nowe studio [bez dodawania filmow]\n"
         "5) Rezygnuje...\n",
 
     .maxOptionValue = 5
@@ -26,78 +26,118 @@ void insertionMenu(Database* database) {
     switch(playMenu(&INSERTION_MENU_DATA)) {
 
     case 1:
-        insertNewActorIntoDatabase(&database->actors);
+        insertNewActorIntoDatabase(database);
         break;
 
     case 2:
-        insertNewMovieIntoDatabase(&database->movies);
+        insertNewMovieIntoDatabase(database);
         break;
 
     case 3:
-        insertNewStudioIntoDatabase(&database->studios);
+        insertNewRoleIntoDatabase(database);
         break;
 
     case 4:
-        // [niedostepne]
+        insertNewStudioIntoDatabase(database);
         break;
 
     }
 
 }
 
-void insertNewActorIntoDatabase(ActorList* list) {
+void insertNewActorIntoDatabase(Database* database) {
 
     Actor newActor;
     scanActorsIdentifiers(&newActor);
 
-    if(findActor(list, newActor.name, newActor.lastName) != NULL) {
+    if(findActor(&database->actors, newActor.name, newActor.lastName) != NULL) {
 
         printString("Taki aktor juz istnieje w bazie!\n");
-        shortSleep();
+        waitForEnter();
 
     } else {
 
         scanActorsData(&newActor);
-        addActor(list, &newActor);
+        // @todo Skanowanie ról dla aktora
+
+        addActor(&database->actors, &newActor);
 
     }
 
 }
 
 
-static void insertNewMovieIntoDatabase(MovieList* list) {
+static void insertNewMovieIntoDatabase(Database* database) {
 
     Movie newMovie;
     scanMoviesIdentifier(&newMovie);
 
-    if(findMovie(list, newMovie.title) != NULL) {
+    if(findMovie(&database->movies, newMovie.title) != NULL) {
 
         printString("Taki film juz istnieje w bazie!\n");
-        shortSleep();
+        waitForEnter();
 
     } else {
 
         scanMoviesData(&newMovie);
-        addMovie(list, &newMovie);
+        // @todo Skanowanie studia
+        // @todo Skanowanie ról
+        addMovie(&database->movies, &newMovie);
 
     }
 
 }
 
-static void insertNewStudioIntoDatabase(StudioList* list) {
+static void insertNewRoleIntoDatabase(Database* database) {
+
+    String name, lastName;
+    scanActorsFullName(name, lastName);
+
+    const Actor* actor = findActor(&database->actors, name, lastName);
+
+    if(actor == NULL) {
+        puts("Taki aktor nie istnieje w bazie!");
+    } else {
+
+        String title;
+        scanMoviesTitle(title);
+
+        const Movie* movie = findMovie(&database->movies, title);
+
+        if(movie == NULL) {
+            puts("Taki film nie istnieje w bazie!");
+        } else {
+
+            if(findRole(&database->roles, actor, movie) != NULL) {
+                puts("Taka rola istnieje juz w bazie!");
+            } else {
+                addRole(&database->roles, actor, movie);
+                return;
+            }
+
+        }
+
+    }
+
+    waitForEnter();
+
+}
+
+static void insertNewStudioIntoDatabase(Database* database) {
 
     Studio newStudio;
     scanStudiosIdentifier(&newStudio);
 
-    if(findStudio(list, newStudio.name) != NULL) {
+    if(findStudio(&database->studios, newStudio.name) != NULL) {
 
         printString("Takie studio juz istnieje w bazie!");
-        shortSleep();
+        waitForEnter();
 
     } else {
 
         scanStudiosData(&newStudio);
-        addStudio(list, &newStudio);
+        // @todo Skanowanie tytułów filmów
+        addStudio(&database->studios, &newStudio);
 
     }
 

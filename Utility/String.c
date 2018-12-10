@@ -1,14 +1,20 @@
 #include <ctype.h>
 #include "Utility/String.h"
 
-const size_t STRING_NPOS = (size_t)(-1);
+const size_t STRING_NPOS = -1;
+
+bool strIsEmpty(StringView string) {
+    return string[0] == '\0';
+}
 
 size_t strFindIf(StringView string, int (*predicate)(int)) {
 
     for(size_t index = 0; string[index] != '\0'; ++index) {
-        if(predicate(string[index])) {
+
+        if(predicate(string[index]) != 0) {
             return index;
         }
+
     }
 
     return STRING_NPOS;
@@ -18,9 +24,11 @@ size_t strFindIf(StringView string, int (*predicate)(int)) {
 size_t strReverseFindIf(StringView string, int (*predicate)(int)) {
 
     for(size_t index = strlen(string); index-- > 0; ) {
-        if(predicate(string[index])) {
+
+        if(predicate(string[index]) != 0) {
             return index;
         }
+
     }
 
     return STRING_NPOS;
@@ -44,7 +52,7 @@ void strTrimWhitespace(String string) {
 
     if(posOfFirstGraphChar == STRING_NPOS) {
         string[0] = '\0';
-        return;
+        return;        
     }
 
     const size_t posAfterLastGraphChar = strReverseFindIf(string, isgraph) + 1;

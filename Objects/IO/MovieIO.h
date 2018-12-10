@@ -8,4 +8,5 @@ void scanMoviesTitle(String title);
 void scanMoviesIdentifier(Movie* movie);
 void scanMoviesData(Movie* movie);
 
+void printMoviesTitle(const Movie* movie);
 void printMovie(const Movie* movie);

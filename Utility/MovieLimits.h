@@ -10,5 +10,3 @@ extern const int MAX_MOVIES_RUNNING_TIME;
 
 extern const int MIN_STUDIOS_YEAR_OF_FOUNDING;
 extern const int MAX_STUDIOS_YEAR_OF_FOUNDING;
-
-extern const int MAX_ROLE_COUNT;

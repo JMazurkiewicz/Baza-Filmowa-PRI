@@ -27,6 +27,10 @@ void scanActorsData(Actor* actor) {
 
 }
 
+void printActorsFullName(const Actor* actor) {
+    printf("%s %s", actor->name, actor->lastName);
+}
+
 void printActor(const Actor* actor) {
 
     printf("Imie: %s\n", actor->name);

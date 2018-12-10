@@ -13,7 +13,10 @@ void printStudioList(const StudioList* list) {
         puts("Lista studiow nagraniowych:");
 
         for(const StudioListNode* node = list->head; node != NULL; node = node->next) {
-            printf("%s\n", node->value.name);
+
+            printStudiosName(&node->value);
+            newLine();
+
         }
 
     }

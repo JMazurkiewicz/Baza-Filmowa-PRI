@@ -6,6 +6,14 @@ void clearStdin(void) {
     fseek(stdin, 0, SEEK_END);
 }
 
+void waitForEnter(void) {
+
+    printString("Nacisnij enter aby kontynuowac...");
+    getchar();
+    clearStdin();
+
+}
+
 void scanLine(String target) {
 
     int input = getchar();

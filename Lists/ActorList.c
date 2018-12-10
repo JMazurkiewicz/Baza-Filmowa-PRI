@@ -53,9 +53,16 @@ bool deleteActor(ActorList* list, StringView name, StringView lastName) {
     while(currentElement != NULL) {
 
         if(hasActorTheseNames(&currentElement->value, name, lastName)) {
+
             previousElement->next = currentElement->next;
             free(currentElement);
             return true;
+
+        } else {
+
+            previousElement = previousElement->next;
+            currentElement = currentElement->next;
+
         }
 
     }

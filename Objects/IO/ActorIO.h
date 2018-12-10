@@ -8,4 +8,5 @@ void scanActorsFullName(String name, String lastName);
 void scanActorsIdentifiers(Actor* actor);
 void scanActorsData(Actor* actor);
 
+void printActorsFullName(const Actor* actor);
 void printActor(const Actor* actor);

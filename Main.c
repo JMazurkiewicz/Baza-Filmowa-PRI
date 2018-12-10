@@ -3,6 +3,7 @@
 #include "UserInterface/MainMenu.h"
 #include "UserInterface/Submenus/DeletionMenu.h"
 #include "UserInterface/Submenus/InsertionMenu.h"
+#include "UserInterface/Submenus/Instructions.h"
 #include "UserInterface/Submenus/QueryMenu.h"
 #include "UserInterface/Submenus/SortMenu.h"
 
@@ -32,7 +33,7 @@ int main(void) {
             break;
 
         case MAIN_MENU_RULES:
-            // @todo
+            instructions();
             break;
 
         case MAIN_MENU_EXIT:

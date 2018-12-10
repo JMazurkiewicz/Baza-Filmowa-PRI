@@ -17,3 +17,4 @@ struct Movie {
 };
 
 bool hasMovieThisTitle(const Movie* movie, StringView title);
+bool isMovieFromStudio(const Movie* movie, const Studio* studio);

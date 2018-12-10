@@ -17,11 +17,11 @@ void freeRoleList(RoleList* list) {
 
 }
 
-bool addRole(RoleList* list, const Actor* actor, const Movie* movie) {
+bool isRoleListEmpty(const RoleList* list) {
+    return list->head == NULL;
+}
 
-    if(findRole(list, actor, movie) != NULL) {
-        return false;
-    }
+void addRole(RoleList* list, const Actor* actor, const Movie* movie) {
 
     RoleListNode* newHead = malloc(sizeof(RoleListNode));
     newHead->next = list->head;
@@ -29,7 +29,6 @@ bool addRole(RoleList* list, const Actor* actor, const Movie* movie) {
     newHead->value.movie = movie;
 
     list->head = newHead;
-    return true;
 
 }
 

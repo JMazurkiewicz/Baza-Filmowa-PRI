@@ -19,15 +19,15 @@ void sortMenu(Database* database) {
     switch(playMenu(&SORT_MENU_DATA)) {
 
     case 1:
-        // [not available]
+        // @todo sortowanie
         break;
 
     case 2:
-        // [not available]
+        // @todo sortowanie
         break;
 
     case 3:
-        // [not available]
+        // @todo sortowanie
         break;
 
     }

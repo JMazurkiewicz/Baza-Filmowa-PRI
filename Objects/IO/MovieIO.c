@@ -35,9 +35,16 @@ void scanMoviesData(Movie* movie) {
 
 }
 
+void printMoviesTitle(const Movie* movie) {
+    printf("\"%s\"", movie->title);
+}
+
 void printMovie(const Movie* movie) {
 
-    printf("Tytul: \"%s\"\n", movie->title);
+    printString("Tytul: ");
+    printMoviesTitle(movie);
+    newLine();
+
     printf("Rezyser: %s\n", movie->director);
     printf("Rok premiery: %d\n", movie->releaseYear);
     printf("Czas trwania (w minutach): %d\n", movie->runningTime);

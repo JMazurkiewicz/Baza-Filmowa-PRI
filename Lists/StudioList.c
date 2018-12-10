@@ -53,9 +53,16 @@ bool deleteStudio(StudioList* list, StringView studioName) {
     while(currentElement != NULL) {
 
         if(hasStudioThisName(&currentElement->value, studioName)) {
+
             previousElement->next = currentElement->next;
             free(currentElement);
             return true;
+
+        } else {
+
+            previousElement = previousElement->next;
+            currentElement = currentElement->next;
+
         }
 
     }

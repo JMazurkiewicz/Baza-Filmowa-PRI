@@ -32,9 +32,16 @@ void scanStudiosData(Studio* studio) {
 
 }
 
+void printStudiosName(const Studio* studio) {
+    printf("%s", studio->name);
+}
+
 void printStudio(const Studio* studio) {
 
-    printf("Nazwa studia: %s\n", studio->name);
+    printString("Nazwa studia: ");
+    printStudiosName(studio);
+    newLine();
+
     printf("Adres studia: %s\n", studio->address);
     printf("Kontakt ze studiem: %s\n", studio->contact);
     printf("Rok zalozenia: %d\n", studio->yearOfFounding);

@@ -1,5 +1,6 @@
 #include "CommonIO/BasicIO.h"
 #include "CommonIO/ConditionalInput.h"
+#include <ctype.h>
 
 static void tryAgain(void);
 
@@ -13,6 +14,20 @@ int scanIntegerFromRange(int min, int max) {
 
     clearStdin();
     return input;
+
+}
+
+bool scanBoolean() {
+
+    char input = toupper(getchar());
+
+    while(input != 'T' && input != 'N') {
+        tryAgain();
+        input = toupper(getchar());
+    }
+
+    clearStdin();
+    return input == 'T';
 
 }
 

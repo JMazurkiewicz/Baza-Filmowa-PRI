@@ -20,7 +20,9 @@ struct RoleList {
 void initRoleList(RoleList* list);
 void freeRoleList(RoleList* list);
 
-bool addRole(RoleList* list, const Actor* actor, const Movie* movie);
+bool isRoleListEmpty(const RoleList* list);
+
+void addRole(RoleList* list, const Actor* actor, const Movie* movie);
 
 const Role* findRole(const RoleList* list, const Actor* actor, const Movie* movie);
 const Role* findRoleOfActor(const RoleList* list, const Actor* actor);
