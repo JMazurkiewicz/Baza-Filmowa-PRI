@@ -19,7 +19,6 @@ bool hasMovieThisTitle(const Movie* movie, StringView title);
 bool isMovieFromStudio(const Movie* movie, const Studio* studio);
 
 void scanMoviesTitle(String title);
-
 void scanMoviesIdentifier(Movie* movie);
 void scanMoviesData(Movie* movie);
 

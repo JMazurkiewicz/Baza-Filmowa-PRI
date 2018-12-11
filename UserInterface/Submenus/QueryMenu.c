@@ -2,9 +2,9 @@
 #include "UserInterface/MenuPlayer.h"
 #include "UserInterface/Submenus/QueryMenu.h"
 
-static void queryAboutActor(const Database* database);
-static void queryAboutMovie(const Database* database);
-static void queryAboutStudio(const Database* database);
+static void queryAboutActor(Database* database);
+static void queryAboutMovie(Database* database);
+static void queryAboutStudio(Database* database);
 
 static const MenuData QUERY_MENU_DATA = {
 
@@ -22,7 +22,7 @@ static const MenuData QUERY_MENU_DATA = {
 
 };
 
-void queryMenu(const Database* database) {
+void queryMenu(Database* database) {
 
     switch(playMenu(&QUERY_MENU_DATA)) {
 
@@ -63,7 +63,7 @@ void queryMenu(const Database* database) {
 
 }
 
-void queryAboutActor(const Database* database) {
+void queryAboutActor(Database* database) {
 
     String name, lastName;
     scanActorsFullName(name, lastName);
@@ -86,7 +86,7 @@ void queryAboutActor(const Database* database) {
 
 
 
-void queryAboutMovie(const Database* database) {
+void queryAboutMovie(Database* database) {
 
     String title;
     scanMoviesTitle(title);
@@ -107,7 +107,7 @@ void queryAboutMovie(const Database* database) {
 
 }
 
-void queryAboutStudio(const Database* database) {
+void queryAboutStudio(Database* database) {
 
     String name;
     scanStudiosName(name);

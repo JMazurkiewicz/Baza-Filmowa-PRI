@@ -104,31 +104,15 @@ static void insertNewMovieIntoDatabase(Database* database) {
 
 static void insertNewRoleIntoDatabase(Database* database) {
 
-    String name, lastName;
-    scanActorsFullName(name, lastName);
+    Role newRole;
 
-    const Actor* actor = findActor(&database->actors, name, lastName);
+    if(scanRoleFromDatabase(&newRole, database)) {
 
-    if(actor == NULL) {
-        puts("Taki aktor nie istnieje w bazie!");
-    } else {
-
-        String title;
-        scanMoviesTitle(title);
-
-        const Movie* movie = findMovie(&database->movies, title);
-
-        if(movie == NULL) {
-            puts("Taki film nie istnieje w bazie!");
+        if(findRole(&database->roles, newRole.actor, newRole.movie) != NULL) {
+            puts("Taka rola istnieje juz w bazie!");
         } else {
-
-            if(findRole(&database->roles, actor, movie) != NULL) {
-                puts("Taka rola istnieje juz w bazie!");
-            } else {
-                addRole(&database->roles, actor, movie);
-                return;
-            }
-
+            addRole(&database->roles, newRole.actor, newRole.movie);
+            return;
         }
 
     }

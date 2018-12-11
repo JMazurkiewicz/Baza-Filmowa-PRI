@@ -3,6 +3,8 @@
 #include "Lists/RoleList.h"
 #include "Objects/Role.h"
 
+static void printActorOnList(const Actor* actor);
+
 void printActorList(const ActorList* list) {
 
     if(isActorListEmpty(list)) {
@@ -14,11 +16,7 @@ void printActorList(const ActorList* list) {
         puts("Lista aktorow:");
 
         for(const ActorListNode* node = list->head; node != NULL; node = node->next) {
-
-            printString("- ");
-            printActorsFullName(&node->value);
-            newLine();
-
+            printActorOnList(&node->value);
         }
 
     }
@@ -40,9 +38,7 @@ void printActorsWorkingWithStudio(const ActorList* actors, const RoleList* roles
                     puts("Lista aktorow wspolpracujacych ze studiem:");
                 }
 
-                printString("- ");
-                printActorsFullName(&actorNode->value);
-                newLine();
+                printActorOnList(&actorNode->value);
                 break;
 
             }
@@ -52,5 +48,13 @@ void printActorsWorkingWithStudio(const ActorList* actors, const RoleList* roles
     if(noResults) {
         puts("Studio nie wspolpracowalo z zadnymi aktorami.");
     }
+
+}
+
+static void printActorOnList(const Actor* actor) {
+
+    printString("- ");
+    printActorsFullName(actor);
+    newLine();
 
 }

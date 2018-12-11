@@ -8,7 +8,7 @@
 
 static const StringView TRY_AGAIN = "Czy chcesz sprobowac ponownie (T/N): ";
 
-void scanRolesOfActor(RoleList* roles, const MovieList* movies, const Actor* actor) {
+void scanRolesOfActor(RoleList* roles, MovieList* movies, const Actor* actor) {
 
     printString("Czy chcesz dodac role aktorowi (T/N): ");
 
@@ -20,12 +20,12 @@ void scanRolesOfActor(RoleList* roles, const MovieList* movies, const Actor* act
         const Movie* const movie = findMovie(movies, title);
 
         if(movie == NULL) {
-            puts("Taki film nie istnieje w bazie!");
+            puts("\aTaki film nie istnieje w bazie!");
             printString(TRY_AGAIN);
         } else {
 
             if(findRole(roles, actor, movie) != NULL) {
-                puts("Aktor posiada juz taka role!");
+                puts("\aAktor posiada juz taka role!");
                 printString(TRY_AGAIN);
             } else {
                 addRole(roles, actor, movie);
@@ -38,7 +38,7 @@ void scanRolesOfActor(RoleList* roles, const MovieList* movies, const Actor* act
 
 }
 
-void scanRolesFromMovie(RoleList* roles, const ActorList* actors, const Movie* movie) {
+void scanRolesFromMovie(RoleList* roles, ActorList* actors, const Movie* movie) {
 
     printString("Czy chcesz dodac aktora do filmu (T/N): ");
 
@@ -50,12 +50,12 @@ void scanRolesFromMovie(RoleList* roles, const ActorList* actors, const Movie* m
         const Actor* const actor = findActor(actors, name, lastName);
 
         if(actor == NULL) {
-            puts("Taki aktor nie istnieje w bazie!");
+            puts("\aTaki aktor nie istnieje w bazie!");
             printString(TRY_AGAIN);
         } else {
 
             if(findRole(roles, actor, movie) != NULL) {
-                puts("Film posiada juz takiego aktora!");
+                puts("\aFilm posiada juz takiego aktora!");
                 printString(TRY_AGAIN);
             } else {
                 addRole(roles, actor, movie);

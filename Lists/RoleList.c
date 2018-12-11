@@ -50,7 +50,7 @@ const Role* findRoleOfActor(const RoleList* list, const Actor* actor) {
 
     for(const RoleListNode* node = list->head; node != NULL; node = node->next) {
 
-        if(node->value.actor == actor) {
+        if(isThisRoleOfActor(&node->value, actor)) {
             return &node->value;
         }
 
@@ -64,7 +64,7 @@ const Role* findRoleFromMovie(const RoleList* list, const Movie* movie) {
 
     for(const RoleListNode* node = list->head; node != NULL; node = node->next) {
 
-        if(node->value.movie == movie) {
+        if(isThisRoleFromMovie(&node->value, movie)) {
             return &node->value;
         }
 
@@ -74,38 +74,22 @@ const Role* findRoleFromMovie(const RoleList* list, const Movie* movie) {
 
 }
 
+bool deleteRole(const RoleList* list, const Actor* actor, const Movie* movie) {
+
+    // @todo
+
+    return false;
+
+}
+
 void deleteRolesOfActor(RoleList* list, const Actor* actor) {
 
-    RoleListNode* node = list->head;
-
-    while(node != NULL) {
-
-        if(node->value.actor == actor) {
-            RoleListNode* const next = node->next;
-            free(node);
-            node = next;
-        } else {
-            node = node->next;
-        }
-
-    }
+    // @todo
 
 }
 
 void deleteRolesFromMovie(RoleList* list, const Movie* movie) {
 
-    RoleListNode* node = list->head;
-
-    while(node != NULL) {
-
-        if(node->value.movie == movie) {
-            RoleListNode* const next = node->next;
-            free(node);
-            node = next;
-        } else {
-            node = node->next;
-        }
-
-    }
+    // @todo
 
 }

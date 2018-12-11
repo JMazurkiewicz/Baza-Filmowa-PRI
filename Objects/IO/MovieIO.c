@@ -23,12 +23,10 @@ void scanMoviesData(Movie* movie) {
     scanName(movie->director);
 
     printString("Podaj rok wydania filmu: ");
-    movie->releaseYear =
-        scanIntegerFromRange(MIN_MOVIES_RELEASE_YEAR, MAX_MOVIES_RELEASE_YEAR);
+    movie->releaseYear = scanIntegerFromRange(MIN_MOVIES_RELEASE_YEAR, MAX_MOVIES_RELEASE_YEAR);
 
     printString("Podaj czas trwania filmu w minutach: ");
-    movie->runningTime =
-        scanIntegerFromRange(MIN_MOVIES_RUNNING_TIME, MAX_MOVIES_RUNNING_TIME);
+    movie->runningTime = scanIntegerFromRange(MIN_MOVIES_RUNNING_TIME, MAX_MOVIES_RUNNING_TIME);
 
     movie->studio = NULL;
 
@@ -49,7 +47,11 @@ void printMovie(const Movie* movie) {
     printf("Czas trwania (w minutach): %d\n", movie->runningTime);
 
     if(movie->studio != NULL) {
-        printf("Nazwa studia realizujacego film: %s\n", movie->studio->name);
+
+        printString("Nazwa studia realizujacego film: ");
+        printStudiosName(movie->studio);
+        newLine();
+
     } else {
         puts("Studio w ktorym realizowano film (juz) nie istnieje...");
     }

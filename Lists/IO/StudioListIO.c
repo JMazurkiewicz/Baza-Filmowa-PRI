@@ -5,7 +5,7 @@
 
 static const StringView TRY_AGAIN = "Czy chcesz ponownie sprobowac dodac studio (T/N): ";
 
-const Studio* scanStudioOfMovie(const StudioList* studios) {
+const Studio* scanStudioOfMovie(StudioList* studios) {
 
     printString("Czy chcesz dodac studio, w ktorym realizowano film (T/N): ");
 
@@ -17,7 +17,7 @@ const Studio* scanStudioOfMovie(const StudioList* studios) {
         const Studio* const studio = findStudio(studios, studioName);
 
         if(studio == NULL) {
-            puts("Takie studio nie istnieje w bazie!");
+            puts("\aTakie studio nie istnieje w bazie!");
             printString(TRY_AGAIN);
         } else {
             return studio;

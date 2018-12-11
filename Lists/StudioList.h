@@ -24,9 +24,9 @@ void freeStudioList(StudioList* list);
 bool isStudioListEmpty(const StudioList* list);
 
 void addStudio(StudioList* list, const Studio* studio);
-const Studio* findStudio(const StudioList* list, StringView studioName);
+Studio* findStudio(StudioList* list, StringView studioName);
 bool deleteStudio(StudioList* list, StringView studioName);
 
-const Studio* scanStudioOfMovie(const StudioList* studios);
+const Studio* scanStudioOfMovie(StudioList* studios);
 
 void printStudioList(const StudioList* studios);

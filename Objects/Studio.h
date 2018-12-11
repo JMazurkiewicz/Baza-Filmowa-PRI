@@ -16,7 +16,6 @@ struct Studio {
 bool hasStudioThisName(const Studio* studio, StringView name);
 
 void scanStudiosName(String name);
-
 void scanStudiosIdentifier(Studio* studio);
 void scanStudiosData(Studio* studio);
 

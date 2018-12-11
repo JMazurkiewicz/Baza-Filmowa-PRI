@@ -15,7 +15,6 @@ struct Actor {
 bool hasActorTheseNames(const Actor* actor, StringView name, StringView lastName);
 
 void scanActorsFullName(String name, String lastName);
-
 void scanActorsIdentifiers(Actor* actor);
 void scanActorsData(Actor* actor);
 

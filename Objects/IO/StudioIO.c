@@ -26,8 +26,7 @@ void scanStudiosData(Studio* studio) {
     strTrimWhitespace(studio->contact);
 
     printString("Podaj rok zalozenia studia: ");
-    studio->yearOfFounding =
-        scanIntegerFromRange(MIN_STUDIOS_YEAR_OF_FOUNDING, MAX_STUDIOS_YEAR_OF_FOUNDING);
+    studio->yearOfFounding = scanIntegerFromRange(MIN_STUDIOS_YEAR_OF_FOUNDING, MAX_STUDIOS_YEAR_OF_FOUNDING);
 
 }
 

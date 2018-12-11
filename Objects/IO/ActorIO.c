@@ -21,8 +21,7 @@ void scanActorsIdentifiers(Actor* actor) {
 void scanActorsData(Actor* actor) {
 
     printString("Podaj rok urodzenia aktora: ");
-    actor->yearOfBirth =
-        scanIntegerFromRange(MIN_ACTORS_YEAR_OF_BIRTH, MAX_ACTORS_YEAR_OF_BIRTH);
+    actor->yearOfBirth = scanIntegerFromRange(MIN_ACTORS_YEAR_OF_BIRTH, MAX_ACTORS_YEAR_OF_BIRTH);
 
 }
 

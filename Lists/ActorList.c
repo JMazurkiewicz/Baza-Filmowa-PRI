@@ -31,9 +31,9 @@ void addActor(ActorList* list, const Actor* actor) {
 
 }
 
-const Actor* findActor(const ActorList* list, StringView name, StringView lastName) {
+Actor* findActor(ActorList* list, StringView name, StringView lastName) {
 
-    for(const ActorListNode* node = list->head; node != NULL; node = node->next) {
+    for(ActorListNode* node = list->head; node != NULL; node = node->next) {
 
         if(hasActorTheseNames(&node->value, name, lastName)) {
             return &node->value;

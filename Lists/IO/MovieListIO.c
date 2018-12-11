@@ -2,7 +2,8 @@
 #include "CommonIO/ConditionalInput.h"
 #include "Lists/MovieList.h"
 
-static const StringView TRY_AGAIN = "Czy chcesz sprobowac ponownie dodac film do studia (T/N): ";
+static void setMoviesStudio(Movie* movie, const Studio* studio);
+static void printMovieOnList(const Movie* movie);
 
 void scanMoviesOfStudio(MovieList* movies, const Studio* studio) {
 
@@ -16,25 +17,32 @@ void scanMoviesOfStudio(MovieList* movies, const Studio* studio) {
         Movie* const movie = findMovie(movies, title);
 
         if(movie == NULL) {
-            puts("Taki film nie istnieje w bazie!");
-            printString(TRY_AGAIN);
+
+            puts("\aTaki film nie istnieje w bazie!");
+            printString("Czy chcesz sprobowac ponownie dodac film do studia (T/N): ");
+
         } else {
 
-            if(movie->studio != NULL) {
-
-                printString("Film posiada juz przypisane studio, czy chcesz je zastapic (T/N): ");
-                if(scanBoolean()) {
-                    movie->studio = studio;
-                }
-
-            } else {
-                movie->studio = studio;
-            }
-
+            setMoviesStudio(movie, studio);
             printString("Czy chcesz dodac kolejny film do studia (T/N): ");
 
         }
 
+    }
+
+}
+
+void setMoviesStudio(Movie* movie, const Studio* studio) {
+
+    if(movie->studio != NULL) {
+
+        printString("Film posiada juz przypisane studio, czy chcesz je zastapic (T/N): ");
+        if(scanBoolean()) {
+            movie->studio = studio;
+        }
+
+    } else {
+        movie->studio = studio;
     }
 
 }
@@ -50,11 +58,7 @@ void printMovieList(const MovieList* list) {
         puts("Lista filmow:");
 
         for(const MovieListNode* node = list->head; node != NULL; node = node->next) {
-
-            printString("- ");
-            printMoviesTitle(&node->value);
-            newLine();
-
+            printMovieOnList(&node->value);
         }
 
     }
@@ -74,9 +78,7 @@ void printMoviesFromStudio(const MovieList* list, const Studio* studio) {
                 puts("Lista filmow tego studia:");
             }
 
-            printString("- ");
-            printMoviesTitle(&node->value);
-            newLine();
+            printMovieOnList(&node->value);
 
         }
 
@@ -85,5 +87,13 @@ void printMoviesFromStudio(const MovieList* list, const Studio* studio) {
     if(noResults) {
         puts("Studio nie posiada filmow.");
     }
+
+}
+
+void printMovieOnList(const Movie* movie) {
+
+    printString("- ");
+    printMoviesTitle(movie);
+    newLine();
 
 }

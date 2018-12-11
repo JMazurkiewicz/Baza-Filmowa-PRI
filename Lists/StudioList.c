@@ -31,9 +31,9 @@ void addStudio(StudioList* list, const Studio* studio) {
 
 }
 
-const Studio* findStudio(const StudioList* list, StringView studioName) {
+Studio* findStudio(StudioList* list, StringView studioName) {
 
-    for(const StudioListNode* node = list->head; node != NULL; node = node->next) {
+    for(StudioListNode* node = list->head; node != NULL; node = node->next) {
 
         if(hasStudioThisName(&node->value, studioName)) {
             return &node->value;

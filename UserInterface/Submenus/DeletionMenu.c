@@ -102,15 +102,40 @@ static void deleteMovieFromDatabase(Database* database) {
 static void deleteRoleFromDatabase(Database* database) {
 
     if(isRoleListEmpty(&database->roles)) {
-
         puts("Lista rol jest pusta!");
-        waitForEnter();
-
     } else {
 
-        // @todo Usuwanie jednej roli
+        String name, lastName;
+        scanActorsFullName(name, lastName);
+
+        const Actor* actor = findActor(&database->actors, name, lastName);
+
+        if(actor == NULL) {
+            puts("Taki aktor nie istnieje w bazie!");
+        } else {
+
+            String title;
+            scanMoviesTitle(title);
+
+            const Movie* movie = findMovie(&database->movies, title);
+
+            if(movie == NULL) {
+                puts("Taki film nie istnieje w bazie!");
+            } else {
+
+                if(!deleteRole(&database->roles, actor, movie)) {
+                    puts("Nie ma takiej roli w bazie!");
+                } else {
+                    return;
+                }
+
+            }
+
+        }
 
     }
+
+    waitForEnter();
 
 }
 
