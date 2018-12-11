@@ -1,6 +1,5 @@
 #include "CommonIO/BasicIO.h"
 #include "CommonIO/ConditionalInput.h"
-#include "Objects/IO/StudioIO.h"
 #include "Objects/Studio.h"
 #include "Utility/MovieLimits.h"
 

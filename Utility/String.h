@@ -4,7 +4,6 @@
 #include <string.h>
 
 #define STRING_MAX_LENGTH (128)
-#define STRING_MAX_LENGTH_STR "128"
 
 typedef char String[STRING_MAX_LENGTH + 1];
 typedef const char* StringView;

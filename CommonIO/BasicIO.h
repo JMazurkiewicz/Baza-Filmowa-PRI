@@ -9,4 +9,4 @@ void scanLine(String target);
 
 void clearConsole(void);
 void newLine(void);
-void printString(String string);
+void printString(StringView string);

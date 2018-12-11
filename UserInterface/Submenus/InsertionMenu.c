@@ -1,4 +1,5 @@
 #include "CommonIO/BasicIO.h"
+#include "Lists/Database.h"
 #include "UserInterface/MenuPlayer.h"
 #include "UserInterface/Submenus/InsertionMenu.h"
 
@@ -11,10 +12,10 @@ static const MenuData INSERTION_MENU_DATA = {
 
     .content =
         "Wstaw:\n"
-        "1) Nowego aktora [bez dodawania rol]\n"
-        "2) Nowy film [bez dodawania rol/studia]\n"
+        "1) Nowego aktora\n"
+        "2) Nowy film\n"
         "3) Nowa rola\n"
-        "4) Nowe studio [bez dodawania filmow]\n"
+        "4) Nowe studio\n"
         "5) Rezygnuje...\n",
 
     .maxOptionValue = 5
@@ -52,15 +53,20 @@ void insertNewActorIntoDatabase(Database* database) {
 
     if(findActor(&database->actors, newActor.name, newActor.lastName) != NULL) {
 
-        printString("Taki aktor juz istnieje w bazie!\n");
+        puts("Taki aktor juz istnieje w bazie!");
         waitForEnter();
 
     } else {
 
         scanActorsData(&newActor);
-        // @todo Skanowanie ról dla aktora
-
         addActor(&database->actors, &newActor);
+
+        if(!isMovieListEmpty(&database->movies)) {
+
+            const Actor* const newlyAddedActor = &database->actors.head->value;
+            scanRolesOfActor(&database->roles, &database->movies, newlyAddedActor);
+
+        }
 
     }
 
@@ -80,9 +86,17 @@ static void insertNewMovieIntoDatabase(Database* database) {
     } else {
 
         scanMoviesData(&newMovie);
-        // @todo Skanowanie studia
-        // @todo Skanowanie ról
+
+        if(!isStudioListEmpty(&database->studios)) {
+            newMovie.studio = scanStudioOfMovie(&database->studios);
+        }
+
         addMovie(&database->movies, &newMovie);
+
+        if(!isActorListEmpty(&database->actors)) {
+            const Movie* const newlyAddedMovie = &database->movies.head->value;
+            scanRolesFromMovie(&database->roles, &database->actors, newlyAddedMovie);
+        }
 
     }
 
@@ -136,8 +150,12 @@ static void insertNewStudioIntoDatabase(Database* database) {
     } else {
 
         scanStudiosData(&newStudio);
-        // @todo Skanowanie tytułów filmów
         addStudio(&database->studios, &newStudio);
+
+        if(!isMovieListEmpty(&database->movies)) {
+            const Studio* const newlyAddedStudio = &database->studios.head->value;
+            scanMoviesOfStudio(&database->movies, newlyAddedStudio);
+        }
 
     }
 

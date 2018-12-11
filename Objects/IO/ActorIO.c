@@ -2,7 +2,6 @@
 #include "CommonIO/ConditionalInput.h"
 #include "CommonIO/NameInput.h"
 #include "Objects/Actor.h"
-#include "Objects/IO/ActorIO.h"
 #include "Utility/MovieLimits.h"
 
 void scanActorsFullName(String name, String lastName) {

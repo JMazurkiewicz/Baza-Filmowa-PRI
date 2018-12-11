@@ -14,6 +14,7 @@ void printActorList(const ActorList* list) {
 
         for(const ActorListNode* node = list->head; node != NULL; node = node->next) {
 
+            printString("- ");
             printActorsFullName(&node->value);
             newLine();
 

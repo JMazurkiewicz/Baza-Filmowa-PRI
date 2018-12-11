@@ -49,6 +49,6 @@ void newLine(void) {
     putchar('\n');
 }
 
-void printString(String string) {
+void printString(StringView string) {
     fputs(string, stdout);
 }

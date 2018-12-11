@@ -4,16 +4,68 @@
 #include "Lists/IO/RoleListIO.h"
 #include "Lists/MovieList.h"
 #include "Lists/RoleList.h"
+#include "Objects/Movie.h"
+#include "Utility/String.h"
 
-void scanRolesFromMovie(RoleList* list, const ActorList* actors, const Movie* movie) {
+static const StringView TRY_AGAIN = "Czy chcesz sprobowac ponownie (T/N): ";
 
+void scanRolesOfActor(RoleList* roles, const MovieList* movies, const Actor* actor) {
 
+    printString("Czy chcesz dodac role aktorowi (T/N): ");
+
+    while(scanBoolean()) {
+
+        String title;
+        scanMoviesTitle(title);
+
+        const Movie* const movie = findMovie(movies, title);
+
+        if(movie == NULL) {
+            puts("Taki film nie istnieje w bazie!");
+            printString(TRY_AGAIN);
+        } else {
+
+            if(findRole(roles, actor, movie) != NULL) {
+                puts("Aktor posiada juz taka role!");
+                printString(TRY_AGAIN);
+            } else {
+                addRole(roles, actor, movie);
+                printString("Czy chcesz dodac kolejna role aktorowi (T/N): ");
+            }
+
+        }
+
+    }
 
 }
 
-void scanRolesOfActor(RoleList* list, const MovieList* movies, const Actor* actor) {
+void scanRolesFromMovie(RoleList* roles, const ActorList* actors, const Movie* movie) {
 
+    printString("Czy chcesz dodac aktora do filmu (T/N): ");
 
+    while(scanBoolean()) {
+
+        String name, lastName;
+        scanActorsFullName(name, lastName);
+
+        const Actor* const actor = findActor(actors, name, lastName);
+
+        if(actor == NULL) {
+            puts("Taki aktor nie istnieje w bazie!");
+            printString(TRY_AGAIN);
+        } else {
+
+            if(findRole(roles, actor, movie) != NULL) {
+                puts("Film posiada juz takiego aktora!");
+                printString(TRY_AGAIN);
+            } else {
+                addRole(roles, actor, movie);
+                printString("Czy chcesz dodac kolejnego aktora do filmu (T/N): ");
+            }
+
+        }
+
+    }
 
 }
 
@@ -30,7 +82,7 @@ void printRolesOfActor(const RoleList* list, const Actor* actor) {
                 puts("Lista filmow tego aktora:");
             }
 
-            putchar(' ');
+            printString("- ");
             printMoviesTitle(node->value.movie);
             newLine();
 
@@ -57,7 +109,7 @@ void printRolesFromMovie(const RoleList* list, const Movie* movie) {
                 puts("Aktorzy bioracy udzial w filmie:");
             }
 
-            putchar(' ');
+            printString("- ");
             printActorsFullName(node->value.actor);
             newLine();
 

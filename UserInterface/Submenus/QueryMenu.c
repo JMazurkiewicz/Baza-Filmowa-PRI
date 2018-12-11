@@ -58,6 +58,7 @@ void queryMenu(const Database* database) {
 
     }
 
+    newLine();
     waitForEnter();
 
 }

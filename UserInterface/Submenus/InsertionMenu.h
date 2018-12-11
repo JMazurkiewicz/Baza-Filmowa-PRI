@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Lists/Database.h"
+#include "Lists/Declarations.h"
 
 void insertionMenu(Database* database);

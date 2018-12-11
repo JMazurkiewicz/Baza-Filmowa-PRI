@@ -1,5 +1,8 @@
 #pragma once
 
 #include "Lists/Declarations.h"
+#include "Objects/Declarations.h"
 
-void printStudioList(const StudioList* list);
+const Studio* scanStudioOfMovie(const StudioList* studios);
+
+void printStudioList(const StudioList* studios);
