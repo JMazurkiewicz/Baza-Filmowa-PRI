@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Lists/Declarations.h"
-#include "Lists/IO/RoleListIO.h"
 #include "Objects/Role.h"
 
 struct RoleListNode {
@@ -30,3 +29,9 @@ const Role* findRoleFromMovie(const RoleList* list, const Movie* movie);
 
 void deleteRolesOfActor(RoleList* list, const Actor* actor);
 void deleteRolesFromMovie(RoleList* list, const Movie* movie);
+
+void scanRolesOfActor(RoleList* list, const MovieList* movies, const Actor* actor);
+void scanRolesFromMovie(RoleList* list, const ActorList* actors, const Movie* movie);
+
+void printRolesOfActor(const RoleList* list, const Actor* actor);
+void printRolesFromMovie(const RoleList* list, const Movie* movie);

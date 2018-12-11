@@ -1,6 +1,5 @@
 #include "CommonIO/BasicIO.h"
 #include "CommonIO/ConditionalInput.h"
-#include "Lists/IO/StudioListIO.h"
 #include "Lists/StudioList.h"
 #include "Utility/String.h"
 

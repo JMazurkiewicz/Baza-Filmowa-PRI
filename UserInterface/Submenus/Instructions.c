@@ -7,7 +7,7 @@ static const StringView INSTRUCTIONS = {
     "Aplikacja sluzy do budowania bazy danych filmow, aktorow i studiow nagraniowych\n"
     "na nastepujacych zasadach:\n"
     "1) Jeden aktor moze wystepowac w wielu filmach\n"
-    "2) W bazie nie moze pojawic sie dwoch aktorow z takim samym imieniem i nazwiskiem\n"
+    "2) W bazie nie moze byc dwoch aktorow z takim samym imieniem i nazwiskiem\n"
     "3) Jeden film moze miec wielu aktorow\n"
     "4) Jeden film ma dokladnie jedno studio nagraniowe\n"
     "5) W bazie nie moga pojawic sie dwa filmy o takich samych tytulach\n"

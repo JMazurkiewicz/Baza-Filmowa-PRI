@@ -12,4 +12,6 @@ struct Role {
 
 bool isThisRoleOfActor(const Role* role, const Actor* actor);
 bool isThisRoleFromMovie(const Role* role, const Movie* movie);
+bool isThisRoleFromMovieOfStudio(const Role* role, const Studio* studio);
+
 bool hasRoleTheseMembers(const Role* role, const Actor* actor, const Movie* movie);

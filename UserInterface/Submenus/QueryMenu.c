@@ -119,6 +119,7 @@ void queryAboutStudio(const Database* database) {
         newLine();
         printStudio(studio);
         printMoviesFromStudio(&database->movies, studio);
+        printActorsWorkingWithStudio(&database->actors, &database->roles, studio);
 
     } else {
 
