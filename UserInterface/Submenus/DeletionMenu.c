@@ -39,7 +39,6 @@ void deletionMenu(Database* database) {
 
     case 4:
         deleteStudioFromDatabase(database);
-        break;
 
     }
 

@@ -22,5 +22,7 @@ void scanMoviesTitle(String title);
 void scanMoviesIdentifier(Movie* movie);
 void scanMoviesData(Movie* movie);
 
+void changeMoviesStudio(Movie* movie, const Studio* studio);
+
 void printMoviesTitle(const Movie* movie);
 void printMovie(const Movie* movie);

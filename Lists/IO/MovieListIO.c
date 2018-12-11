@@ -2,7 +2,6 @@
 #include "CommonIO/ConditionalInput.h"
 #include "Lists/MovieList.h"
 
-static void setMoviesStudio(Movie* movie, const Studio* studio);
 static void printMovieOnList(const Movie* movie);
 
 void scanMoviesOfStudio(MovieList* movies, const Studio* studio) {
@@ -23,26 +22,11 @@ void scanMoviesOfStudio(MovieList* movies, const Studio* studio) {
 
         } else {
 
-            setMoviesStudio(movie, studio);
+            changeMoviesStudio(movie, studio);
             printString("Czy chcesz dodac kolejny film do studia (T/N): ");
 
         }
 
-    }
-
-}
-
-void setMoviesStudio(Movie* movie, const Studio* studio) {
-
-    if(movie->studio != NULL) {
-
-        printString("Film posiada juz przypisane studio, czy chcesz je zastapic (T/N): ");
-        if(scanBoolean()) {
-            movie->studio = studio;
-        }
-
-    } else {
-        movie->studio = studio;
     }
 
 }

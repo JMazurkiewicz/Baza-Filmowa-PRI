@@ -17,6 +17,21 @@ void scanMoviesIdentifier(Movie* movie) {
     scanMoviesTitle(movie->title);
 }
 
+void changeMoviesStudio(Movie* movie, const Studio* studio) {
+
+    if(movie->studio != NULL) {
+
+        printString("Film posiada juz przypisane studio, czy chcesz je zastapic (T/N): ");
+        if(scanBoolean()) {
+            movie->studio = studio;
+        }
+
+    } else {
+        movie->studio = studio;
+    }
+
+}
+
 void scanMoviesData(Movie* movie) {
 
     printString("Podaj imie i nazwisko rezysera: ");

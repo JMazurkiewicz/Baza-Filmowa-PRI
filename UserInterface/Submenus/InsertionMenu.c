@@ -7,6 +7,7 @@ static void insertNewActorIntoDatabase(Database* database);
 static void insertNewMovieIntoDatabase(Database* database);
 static void insertNewRoleIntoDatabase(Database* database);
 static void insertNewStudioIntoDatabase(Database* database);
+static void insertStudioForMovie(Database* database);
 
 static const MenuData INSERTION_MENU_DATA = {
 
@@ -16,9 +17,10 @@ static const MenuData INSERTION_MENU_DATA = {
         "2) Nowy film\n"
         "3) Nowa rola\n"
         "4) Nowe studio\n"
-        "5) Rezygnuje...\n",
+        "5) Studio do istniejacego filmu\n"
+        "6) Rezygnuje...\n",
 
-    .maxOptionValue = 5
+    .maxOptionValue = 6
 
 };
 
@@ -41,6 +43,9 @@ void insertionMenu(Database* database) {
     case 4:
         insertNewStudioIntoDatabase(database);
         break;
+
+    case 5:
+        insertStudioForMovie(database);
 
     }
 
@@ -73,7 +78,7 @@ void insertNewActorIntoDatabase(Database* database) {
 }
 
 
-static void insertNewMovieIntoDatabase(Database* database) {
+void insertNewMovieIntoDatabase(Database* database) {
 
     Movie newMovie;
     scanMoviesIdentifier(&newMovie);
@@ -102,7 +107,7 @@ static void insertNewMovieIntoDatabase(Database* database) {
 
 }
 
-static void insertNewRoleIntoDatabase(Database* database) {
+void insertNewRoleIntoDatabase(Database* database) {
 
     Role newRole;
 
@@ -121,7 +126,7 @@ static void insertNewRoleIntoDatabase(Database* database) {
 
 }
 
-static void insertNewStudioIntoDatabase(Database* database) {
+void insertNewStudioIntoDatabase(Database* database) {
 
     Studio newStudio;
     scanStudiosIdentifier(&newStudio);
@@ -142,5 +147,34 @@ static void insertNewStudioIntoDatabase(Database* database) {
         }
 
     }
+
+}
+
+void insertStudioForMovie(Database* database) {
+
+    String title;
+    scanMoviesTitle(title);
+
+    Movie* movie = findMovie(&database->movies, title);
+    if(movie == NULL) {
+        puts("\aNie ma takiego filmu w bazie!");
+    } else {
+
+        String studioName;
+        scanStudiosName(studioName);
+
+        const Studio* studio = findStudio(&database->studios, studioName);
+        if(studio == NULL) {
+            puts("\aNie ma takiego studia w bazie!");
+        } else {
+
+            changeMoviesStudio(movie, studio);
+            return;
+
+        }
+
+    }
+
+    waitForEnter();
 
 }
