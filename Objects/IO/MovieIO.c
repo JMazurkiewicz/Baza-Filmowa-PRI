@@ -53,7 +53,7 @@ void printMovie(const Movie* movie) {
         newLine();
 
     } else {
-        puts("Studio w ktorym realizowano film (juz) nie istnieje...");
+        puts("Film nie posiada zapisanego studia.");
     }
 
 }

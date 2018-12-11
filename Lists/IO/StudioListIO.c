@@ -41,6 +41,7 @@ void printStudioList(const StudioList* studios) {
 
         for(const StudioListNode* node = studios->head; node != NULL; node = node->next) {
 
+            printString("- ");
             printStudiosName(&node->value);
             newLine();
 

@@ -45,7 +45,7 @@ Actor* findActor(ActorList* list, StringView name, StringView lastName) {
 
 }
 
-bool deleteActor(ActorList* list, StringView name, StringView lastName) {
+void deleteActor(ActorList* list, StringView name, StringView lastName) {
 
     ActorListNode* previousElement = (ActorListNode*)list;
     ActorListNode* currentElement = list->head;
@@ -56,7 +56,7 @@ bool deleteActor(ActorList* list, StringView name, StringView lastName) {
 
             previousElement->next = currentElement->next;
             free(currentElement);
-            return true;
+            break;
 
         } else {
 
@@ -66,7 +66,5 @@ bool deleteActor(ActorList* list, StringView name, StringView lastName) {
         }
 
     }
-
-    return false;
 
 }

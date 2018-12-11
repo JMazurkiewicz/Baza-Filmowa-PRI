@@ -29,9 +29,10 @@ void printActorsWorkingWithStudio(const ActorList* actors, const RoleList* roles
 
     for(const ActorListNode* actorNode = actors->head; actorNode != NULL; actorNode = actorNode->next) {
 
-        for(const RoleListNode* roleNode = roles->head; roleNode != NULL; roleNode = roleNode->next)
+        for(const RoleListNode* roleNode = roles->head; roleNode != NULL; roleNode = roleNode->next) {
 
-            if(isThisRoleFromMovieOfStudio(&roleNode->value, studio)) {
+            if(isThisRoleOfActor(&roleNode->value, &actorNode->value) &&
+                isThisRoleFromMovieOfStudio(&roleNode->value, studio)) {
 
                 if(noResults) {
                     noResults = false;
@@ -42,6 +43,8 @@ void printActorsWorkingWithStudio(const ActorList* actors, const RoleList* roles
                 break;
 
             }
+
+        }
 
     }
 

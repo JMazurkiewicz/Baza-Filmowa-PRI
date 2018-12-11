@@ -11,10 +11,10 @@ static const MenuData DELETION_MENU_DATA = {
 
     .content =
         "Usun: \n"
-        "1) Aktora [bez usuwania rol]\n"
-        "2) Film [bez usuwania rol]\n"
-        "3) Role [niedostepne]\n"
-        "4) Studio [bez zerowania filmow]\n"
+        "1) Aktora\n"
+        "2) Film\n"
+        "3) Role\n"
+        "4) Studio\n"
         "5) Rezygnuje...\n",
 
     .maxOptionValue = 5
@@ -49,7 +49,7 @@ static void deleteActorFromDatabase(Database* database) {
 
     if(isActorListEmpty(&database->actors)) {
 
-        puts("Lista aktorow jest pusta!");
+        puts("\aLista aktorow jest pusta!");
         waitForEnter();
 
     } else {
@@ -57,13 +57,15 @@ static void deleteActorFromDatabase(Database* database) {
         String name, lastName;
         scanActorsFullName(name, lastName);
 
-        if(deleteActor(&database->actors, name, lastName)) {
+        Actor* actor = findActor(&database->actors, name, lastName);
+        if(actor != NULL) {
 
-            // @todo Usuwanie ról tego aktora
+            deleteRolesOfActor(&database->roles, actor);
+            deleteActor(&database->actors, name, lastName);
 
         } else {
 
-            puts("Taki aktor nie istnieje w bazie");
+            puts("\aTaki aktor nie istnieje w bazie!");
             waitForEnter();
 
         }
@@ -76,7 +78,7 @@ static void deleteMovieFromDatabase(Database* database) {
 
     if(isMovieListEmpty(&database->movies)) {
 
-        puts("Lista filmow jest pusta!");
+        puts("\aLista filmow jest pusta!");
         waitForEnter();
 
     } else {
@@ -84,13 +86,15 @@ static void deleteMovieFromDatabase(Database* database) {
         String title;
         scanMoviesTitle(title);
 
-        if(deleteMovie(&database->movies, title)) {
+        Movie* movie = findMovie(&database->movies, title);
+        if(movie != NULL) {
 
-            // @todo Usuwanie ról z tego filmu
+            deleteRolesFromMovie(&database->roles, movie);
+            deleteMovie(&database->movies, title);
 
         } else {
 
-            puts("Taki film nie istnieje w bazie");
+            puts("\aTaki film nie istnieje w bazie");
             waitForEnter();
 
         }
@@ -102,39 +106,29 @@ static void deleteMovieFromDatabase(Database* database) {
 static void deleteRoleFromDatabase(Database* database) {
 
     if(isRoleListEmpty(&database->roles)) {
-        puts("Lista rol jest pusta!");
+
+        puts("\aLista rol jest pusta!");
+
     } else {
 
-        String name, lastName;
-        scanActorsFullName(name, lastName);
+        Role roleToDelete;
 
-        const Actor* actor = findActor(&database->actors, name, lastName);
+        if(scanRoleFromDatabase(&roleToDelete, database)) {
 
-        if(actor == NULL) {
-            puts("Taki aktor nie istnieje w bazie!");
-        } else {
+            if(findRole(&database->roles, roleToDelete.actor, roleToDelete.movie) != NULL) {
 
-            String title;
-            scanMoviesTitle(title);
+                deleteRole(&database->roles, roleToDelete.actor, roleToDelete.movie);
+                return;
 
-            const Movie* movie = findMovie(&database->movies, title);
-
-            if(movie == NULL) {
-                puts("Taki film nie istnieje w bazie!");
             } else {
 
-                if(!deleteRole(&database->roles, actor, movie)) {
-                    puts("Nie ma takiej roli w bazie!");
-                } else {
-                    return;
-                }
+                puts("\aTaka rola nie istnieje w bazie!");
 
             }
 
         }
 
     }
-
     waitForEnter();
 
 }
@@ -143,7 +137,7 @@ static void deleteStudioFromDatabase(Database* database) {
 
     if(isStudioListEmpty(&database->studios)) {
 
-        puts("Lista studiow nagraniowych jest pusta!");
+        puts("\aLista studiow nagraniowych jest pusta!");
         waitForEnter();
 
     } else {
@@ -151,13 +145,15 @@ static void deleteStudioFromDatabase(Database* database) {
         String name;
         scanStudiosName(name);
 
-        if(deleteStudio(&database->studios, name)) {
+        Studio* studio = findStudio(&database->studios, name);
+        if(studio != NULL) {
 
-            // @todo Zerownie wskaźnika na studio w odpowiednich filmach.
+            removeStudioFromMovieList(&database->movies, studio);
+            deleteStudio(&database->studios, name);
 
         } else {
 
-            puts("Taki film nie istnieje w bazie");
+            puts("\aTaki film nie istnieje w bazie");
             waitForEnter();
 
         }

@@ -25,7 +25,8 @@ bool isMovieListEmpty(const MovieList* list);
 
 void addMovie(MovieList* list, const Movie* movie);
 Movie* findMovie(MovieList* list, StringView title);
-bool deleteMovie(MovieList* list, StringView title);
+void deleteMovie(MovieList* list, StringView title);
+void removeStudioFromMovieList(MovieList* list, const Studio* studio);
 
 void scanMoviesOfStudio(MovieList* movies, const Studio* studio);
 

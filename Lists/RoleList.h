@@ -27,7 +27,7 @@ const Role* findRole(const RoleList* list, const Actor* actor, const Movie* movi
 const Role* findRoleOfActor(const RoleList* list, const Actor* actor);
 const Role* findRoleFromMovie(const RoleList* list, const Movie* movie);
 
-bool deleteRole(const RoleList* list, const Actor* actor, const Movie* movie);
+void deleteRole(const RoleList* list, const Actor* actor, const Movie* movie);
 void deleteRolesOfActor(RoleList* list, const Actor* actor);
 void deleteRolesFromMovie(RoleList* list, const Movie* movie);
 

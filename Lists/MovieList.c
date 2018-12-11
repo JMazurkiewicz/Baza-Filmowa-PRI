@@ -45,7 +45,7 @@ Movie* findMovie(MovieList* list, StringView title) {
 
 }
 
-bool deleteMovie(MovieList* list, StringView title) {
+void deleteMovie(MovieList* list, StringView title) {
 
     MovieListNode* previousElement = (MovieListNode*)list;
     MovieListNode* currentElement = list->head;
@@ -56,7 +56,7 @@ bool deleteMovie(MovieList* list, StringView title) {
 
             previousElement->next = currentElement->next;
             free(currentElement);
-            return true;
+            break;
 
         } else {
 
@@ -67,6 +67,16 @@ bool deleteMovie(MovieList* list, StringView title) {
 
     }
 
-    return false;
+}
+
+void removeStudioFromMovieList(MovieList* list, const Studio* studio) {
+
+    for(MovieListNode* node = list->head; node != NULL; node = node->next) {
+
+        if(isMovieFromStudio(&node->value, studio)) {
+            node->value.studio = NULL;
+        }
+
+    }
 
 }

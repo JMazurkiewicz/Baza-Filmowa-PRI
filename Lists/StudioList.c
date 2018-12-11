@@ -45,7 +45,7 @@ Studio* findStudio(StudioList* list, StringView studioName) {
 
 }
 
-bool deleteStudio(StudioList* list, StringView studioName) {
+void deleteStudio(StudioList* list, StringView studioName) {
 
     StudioListNode* previousElement = (StudioListNode*)list;
     StudioListNode* currentElement = list->head;
@@ -56,7 +56,7 @@ bool deleteStudio(StudioList* list, StringView studioName) {
 
             previousElement->next = currentElement->next;
             free(currentElement);
-            return true;
+            break;
 
         } else {
 
@@ -66,7 +66,5 @@ bool deleteStudio(StudioList* list, StringView studioName) {
         }
 
     }
-
-    return false;
 
 }

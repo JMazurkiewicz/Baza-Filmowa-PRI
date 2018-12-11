@@ -5,6 +5,7 @@
 static void queryAboutActor(Database* database);
 static void queryAboutMovie(Database* database);
 static void queryAboutStudio(Database* database);
+static void printEverything(Database* database);
 
 static const MenuData QUERY_MENU_DATA = {
 
@@ -16,9 +17,10 @@ static const MenuData QUERY_MENU_DATA = {
         "4) Liste filmow\n"
         "5) Dane o konkretnym studiu nagraniowym\n"
         "6) Liste studiow nagraniowych\n"
-        "7) Rezygnuje...\n",
+        "7) Wszystkie listy\n"
+        "8) Rezygnuje...\n",
 
-    .maxOptionValue = 7
+    .maxOptionValue = 8
 
 };
 
@@ -54,7 +56,7 @@ void queryMenu(Database* database) {
         break;
 
     case 7:
-        return;
+        printEverything(database);
 
     }
 
@@ -126,5 +128,18 @@ void queryAboutStudio(Database* database) {
         printString("Takie studio nie istnieje!");
 
     }
+
+}
+
+static void printEverything(Database* database) {
+
+    newLine();
+    printActorList(&database->actors);
+
+    newLine();
+    printMovieList(&database->movies);
+
+    newLine();
+    printStudioList(&database->studios);
 
 }

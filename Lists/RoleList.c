@@ -74,22 +74,74 @@ const Role* findRoleFromMovie(const RoleList* list, const Movie* movie) {
 
 }
 
-bool deleteRole(const RoleList* list, const Actor* actor, const Movie* movie) {
+void deleteRole(const RoleList* list, const Actor* actor, const Movie* movie) {
 
-    // @todo
+    RoleListNode* previousElement = (RoleListNode*)list;
+    RoleListNode* currentElement = list->head;
 
-    return false;
+    while(currentElement != NULL) {
+
+        if(hasRoleTheseMembers(&currentElement->value, actor, movie)) {
+
+            previousElement->next = currentElement->next;
+            free(currentElement);
+            break;
+
+        } else {
+
+            previousElement = previousElement->next;
+            currentElement = currentElement->next;
+
+        }
+
+    }
 
 }
 
 void deleteRolesOfActor(RoleList* list, const Actor* actor) {
 
-    // @todo
+    RoleListNode* previousElement = (RoleListNode*)list;
+    RoleListNode* currentElement = list->head;
+
+    while(currentElement != NULL) {
+
+        if(isThisRoleOfActor(&currentElement->value, actor)) {
+
+            previousElement->next = currentElement->next;
+            free(currentElement);
+            currentElement = previousElement->next;
+
+        } else {
+
+            previousElement = previousElement->next;
+            currentElement = currentElement->next;
+
+        }
+
+    }
 
 }
 
 void deleteRolesFromMovie(RoleList* list, const Movie* movie) {
 
-    // @todo
+    RoleListNode* previousElement = (RoleListNode*)list;
+    RoleListNode* currentElement = list->head;
+
+    while(currentElement != NULL) {
+
+        if(isThisRoleFromMovie(&currentElement->value, movie)) {
+
+            previousElement->next = currentElement->next;
+            free(currentElement);
+            currentElement = previousElement->next;
+
+        } else {
+
+            previousElement = previousElement->next;
+            currentElement = currentElement->next;
+
+        }
+
+    }
 
 }
