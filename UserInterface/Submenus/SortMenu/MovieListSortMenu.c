@@ -55,7 +55,7 @@ bool alphabeticalTitleCompare(const void* left, const void* right) {
     const Movie* const leftMovie = left;
     const Movie* const rightMovie = right;
 
-    return strcmp(leftMovie->title, rightMovie->title) < 0;
+    return strCaseInsensitiveCompare(leftMovie->title, rightMovie->title) < 0;
 
 }
 

@@ -55,7 +55,7 @@ bool alphabeticalStudioNameCompare(const void* left, const void* right) {
     const Studio* const leftStudio = left;
     const Studio* const rightStudio = right;
 
-    return strcmp(leftStudio->name, rightStudio->name) < 0;
+    return strCaseInsensitiveCompare(leftStudio->name, rightStudio->name) < 0;
 
 }
 

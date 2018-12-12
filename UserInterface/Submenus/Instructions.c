@@ -13,7 +13,6 @@ static const StringView INSTRUCTIONS = {
     "5) W bazie nie moga pojawic sie dwa filmy o takich samych tytulach\n"
     "6) Studio nagraniowe moze realizowac wiele filmow\n"
     "7) W bazie nie moga pojawic sie dwa studia o takich samych nazwach\n"
-    ") "
     "\n"
     "Inne zasady:\n"
     "1) Wszystkie teksty wprowadzane w aplikacji moga miec maksymalnie 128 znakow\n"

@@ -3,19 +3,22 @@
 
 static void* nextNode(void* node);
 static const void* valueInNode(void* node, size_t valueOffset);
+static void changeNext(void* node, void* newNext);
 static void exchangeNextNodes(void* node1, void* node2);
 
 void listSort(void* list, size_t valueOffset, SortCompare compare) {
 
-	for(void* p = list; p != NULL && nextNode(p) != NULL; p = nextNode(p)) {
+	for(void* p = list; nextNode(p) != NULL; p = nextNode(p)) {
 
-		for(void* q = nextNode(p); q != NULL && nextNode(q) != NULL; q = nextNode(q)) {
+		for(void* q = nextNode(p); nextNode(q) != NULL; ) {
 
 			const void* valueQ = valueInNode(nextNode(q), valueOffset);
 			const void* valueP = valueInNode(nextNode(p), valueOffset);
 
 			if(compare(valueQ, valueP)) {
 				exchangeNextNodes(p, q);
+			} else {
+				q = nextNode(q);
 			}
 
 		}
@@ -25,7 +28,7 @@ void listSort(void* list, size_t valueOffset, SortCompare compare) {
 }
 
 void* nextNode(void* node) {
-	return *(void**)node;
+	return (node == NULL) ? (NULL) : (*(void**)node);
 }
 
 const void* valueInNode(void* node, size_t valueOffset) {

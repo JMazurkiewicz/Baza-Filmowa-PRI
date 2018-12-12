@@ -66,7 +66,7 @@ bool alphabeticalLastNameCompare(const void* left, const void* right) {
 }
 
 bool reversedAlphabeticalLastNameCompare(const void* left, const void* right) {
-    return alphabeticalNameCompare(right, left);
+    return alphabeticalLastNameCompare(right, left);
 }
 
 bool alphabeticalNameCompare(const void* left, const void* right) {
