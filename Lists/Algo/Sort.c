@@ -1,25 +1,51 @@
 #include "Lists/Algo/Sort.h"
+#include <string.h>
 
-//static void* nextNode(void* node);
-//static const void* valueOf(const void* node, size_t valueOffset);
-//static void exchangeNextNodes(void* node1, void* node2);
+static void* nextNode(void* node);
+static const void* valueInNode(void* node, size_t valueOffset);
+static void exchangeNextNodes(void* node1, void* node2);
 
 void listSort(void* list, size_t valueOffset, SortCompare compare) {
 
+	for(void* p = list; p != NULL && nextNode(p) != NULL; p = nextNode(p)) {
 
+		for(void* q = nextNode(p); q != NULL && nextNode(q) != NULL; q = nextNode(q)) {
+
+			const void* valueQ = valueInNode(nextNode(q), valueOffset);
+			const void* valueP = valueInNode(nextNode(p), valueOffset);
+
+			if(compare(valueQ, valueP)) {
+				exchangeNextNodes(p, q);
+			}
+
+		}
+
+	}
 
 }
 
 void* nextNode(void* node) {
-    return *(void**)node;
+	return *(void**)node;
 }
 
-const void* valueOf(const void* node, size_t valueOffset) {
-    return ((unsigned char*)node) + valueOffset;
+const void* valueInNode(void* node, size_t valueOffset) {
+	return ((unsigned char*)node) + valueOffset;
 }
 
-void exchangeNextNodes(void* node1, void* node2) {
+void changeNext(void* node, void* newNext) {
+	memmove(node, &newNext, sizeof(void*));
+}
 
+void exchangeNextNodes(void* p, void* q) {
 
+	void* pNext = nextNode(p);
+	void* qNext = nextNode(q);
+
+	changeNext(p, qNext);
+	changeNext(q, pNext);
+
+	void* temp = nextNode(pNext);
+	changeNext(pNext, nextNode(qNext));
+	changeNext(qNext, temp);
 
 }

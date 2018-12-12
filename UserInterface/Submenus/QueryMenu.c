@@ -57,6 +57,10 @@ void queryMenu(Database* database) {
 
     case 7:
         printEverything(database);
+        break;
+
+    case 8:
+        return;
 
     }
 

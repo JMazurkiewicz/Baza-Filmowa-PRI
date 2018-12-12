@@ -8,7 +8,6 @@ struct Movie {
 
     String title;
     String director;
-    int releaseYear;
     int runningTime;
 
     const Studio* studio;
