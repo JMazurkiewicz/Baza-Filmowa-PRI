@@ -9,24 +9,23 @@ int scanIntegerFromRange(int min, int max) {
     int input;
 
     while(scanf("%d", &input) == 0 || input < min || max < input) {
+        clearStdin();
         tryAgain();
     }
 
-    clearStdin();
     return input;
 
 }
 
 bool scanBoolean() {
 
-    char input = toupper(getchar());
+    char input;
 
-    while(input != 'T' && input != 'N') {
+    while(scanf("%c", &input) != 0 && (input = toupper(input)) != 'T' && input != 'N') {
+        clearStdin();
         tryAgain();
-        input = toupper(getchar());
     }
 
-    clearStdin();
     return input == 'T';
 
 }
@@ -40,11 +39,8 @@ void scanLineIf(String target, bool (*predicate)(StringView)) {
         scanLine(target);
     }
 
-    clearStdin();
-
 }
 
 void tryAgain(void) {
     printString("\aNieprawidlowe dane, sprobuj ponownie: ");
-    clearStdin();
 }

@@ -3,7 +3,16 @@
 #include "Utility/System.h"
 
 void clearStdin(void) {
-    fseek(stdin, 0, SEEK_END);
+
+    int input;
+    do {
+        input = getchar();
+    } while(input != '\n' && input != EOF);
+
+}
+
+void discardWhitespace(void) {
+    scanf(" ");
 }
 
 void waitForEnter(void) {
@@ -16,22 +25,22 @@ void waitForEnter(void) {
 
 void scanLine(String target) {
 
-    int input = getchar();
-    size_t charCounter = 0;
+    discardWhitespace();
 
-    while(input != '\n' && input != EOF) {
+    char input;
+	size_t charCounter = 0;
 
-        if(charCounter < STRING_MAX_LENGTH) {
-            target[charCounter++] = input;
-            input = getchar();
-        } else {
-            break;
-        }
+	while(scanf("%c", &input) != 0 && input != '\n') {
 
-    }
+		if(charCounter < 128) {
+			target[charCounter++] = input;
+		} else {
+			break;
+		}
 
-    target[charCounter] = '\0';
-    clearStdin();
+	}
+
+	target[charCounter] = '\0';
 
 }
 
