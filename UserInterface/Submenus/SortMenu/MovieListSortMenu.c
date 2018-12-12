@@ -1,5 +1,5 @@
-#include "Lists/MovieList.h"
 #include "Lists/Algo/Sort.h"
+#include "Lists/MovieList.h"
 #include <stddef.h>
 #include "UserInterface/MenuPlayer.h"
 #include "UserInterface/Submenus/SortMenu/MovieListSortMenu.h"

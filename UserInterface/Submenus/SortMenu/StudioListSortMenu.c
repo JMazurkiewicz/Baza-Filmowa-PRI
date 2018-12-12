@@ -1,5 +1,5 @@
-#include "Lists/StudioList.h"
 #include "Lists/Algo/Sort.h"
+#include "Lists/StudioList.h"
 #include <stddef.h>
 #include "UserInterface/MenuPlayer.h"
 #include "UserInterface/Submenus/SortMenu/StudioListSortMenu.h"

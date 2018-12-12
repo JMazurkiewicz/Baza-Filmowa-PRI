@@ -1,4 +1,5 @@
 #include "CommonIO/BasicIO.h"
+#include "Lists/Database.h"
 #include "UserInterface/MenuPlayer.h"
 #include "UserInterface/Submenus/QueryMenu.h"
 
@@ -9,7 +10,7 @@ static void printEverything(Database* database);
 
 static const MenuData QUERY_MENU_DATA = {
 
-    .content =
+    .content = 
         "Wypisz:\n"
         "1) Dane o konkretnym aktorze\n"
         "2) Liste aktorow\n"

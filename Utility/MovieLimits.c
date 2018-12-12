@@ -1,4 +1,3 @@
-#include <limits.h>
 #include "Utility/MovieLimits.h"
 
 const int MIN_ACTORS_YEAR_OF_BIRTH = 1888;

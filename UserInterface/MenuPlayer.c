@@ -18,7 +18,6 @@ void displayMenu(StringView content) {
 
     clearConsole();
     displayLogo();
-
     puts(content);
 
 }

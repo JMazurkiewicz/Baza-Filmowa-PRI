@@ -22,7 +22,7 @@ void scanMoviesOfStudio(MovieList* movies, const Studio* studio) {
 
         } else {
 
-            changeMoviesStudio(movie, studio);
+            changeStudioOfMovie(movie, studio);
             printString("Czy chcesz dodac kolejny film do studia (T/N): ");
 
         }

@@ -2,6 +2,7 @@
 
 #include "Lists/Declarations.h"
 #include "Objects/Role.h"
+#include <stdbool.h>
 
 struct RoleListNode {
 
@@ -23,9 +24,9 @@ bool isRoleListEmpty(const RoleList* list);
 
 void addRole(RoleList* list, const Actor* actor, const Movie* movie);
 
-const Role* findRole(const RoleList* list, const Actor* actor, const Movie* movie);
-const Role* findRoleOfActor(const RoleList* list, const Actor* actor);
-const Role* findRoleFromMovie(const RoleList* list, const Movie* movie);
+Role* findRole(RoleList* list, const Actor* actor, const Movie* movie);
+Role* findRoleOfActor(RoleList* list, const Actor* actor);
+Role* findRoleFromMovie(RoleList* list, const Movie* movie);
 
 void deleteRole(const RoleList* list, const Actor* actor, const Movie* movie);
 void deleteRolesOfActor(RoleList* list, const Actor* actor);

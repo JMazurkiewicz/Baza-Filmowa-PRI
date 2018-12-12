@@ -17,7 +17,7 @@ void scanMoviesIdentifier(Movie* movie) {
     scanMoviesTitle(movie->title);
 }
 
-void changeMoviesStudio(Movie* movie, const Studio* studio) {
+void changeStudioOfMovie(Movie* movie, const Studio* studio) {
 
     if(movie->studio != NULL) {
 

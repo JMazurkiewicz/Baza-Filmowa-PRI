@@ -6,7 +6,7 @@ typedef enum MainMenuResult {
     MAIN_MENU_DELETE,
     MAIN_MENU_QUERY,
     MAIN_MENU_SORT,
-    MAIN_MENU_RULES,
+    MAIN_MENU_INSTRUCTIONS,
     MAIN_MENU_EXIT
 
 } MainMenuResult;

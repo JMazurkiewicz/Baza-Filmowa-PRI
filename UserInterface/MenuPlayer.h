@@ -1,6 +1,5 @@
 #pragma once
 
-#include <stdbool.h>
 #include "Utility/String.h"
 
 typedef struct MenuData {

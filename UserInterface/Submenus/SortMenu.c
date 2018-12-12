@@ -1,4 +1,5 @@
 #include "CommonIO/BasicIO.h"
+#include "Lists/Database.h"
 #include "UserInterface/MenuPlayer.h"
 #include "UserInterface/Submenus/SortMenu.h"
 #include "UserInterface/Submenus/SortMenu/ActorListSortMenu.h"
@@ -45,7 +46,7 @@ void sortMenu(Database* database) {
 void actorListSort(ActorList* actors) {
 
     if(isActorListEmpty(actors)) {
-        puts("Lista aktorow jest pusta!");
+        puts("\aLista aktorow jest pusta!");
         waitForEnter();
     } else {
         actorListSortMenu(actors);
@@ -56,7 +57,7 @@ void actorListSort(ActorList* actors) {
 void movieListSort(MovieList* movies) {
 
     if(isMovieListEmpty(movies)) {
-        puts("Lista filmow jest pusta!");
+        puts("\aLista filmow jest pusta!");
         waitForEnter();
     } else {
         movieListSortMenu(movies);
@@ -67,7 +68,7 @@ void movieListSort(MovieList* movies) {
 void studioListSort(StudioList* studios) {
 
     if(isStudioListEmpty(studios)) {
-        puts("Lista studiow nagraniowych jest pusta!");
+        puts("\aLista studiow nagraniowych jest pusta!");
         waitForEnter();
     } else {
         studioListSortMenu(studios);

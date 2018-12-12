@@ -1,4 +1,5 @@
 #include "CommonIO/BasicIO.h"
+#include "Lists/Database.h"
 #include "UserInterface/MenuPlayer.h"
 #include "UserInterface/Submenus/DeletionMenu.h"
 
@@ -107,11 +108,11 @@ static void deleteRoleFromDatabase(Database* database) {
     if(isRoleListEmpty(&database->roles)) {
 
         puts("\aLista rol jest pusta!");
+        waitForEnter();
 
     } else {
 
         Role roleToDelete;
-
         if(scanRoleFromDatabase(&roleToDelete, database)) {
 
             if(findRole(&database->roles, roleToDelete.actor, roleToDelete.movie) != NULL) {
@@ -122,13 +123,13 @@ static void deleteRoleFromDatabase(Database* database) {
             } else {
 
                 puts("\aTaka rola nie istnieje w bazie!");
+                waitForEnter();
 
             }
 
         }
 
     }
-    waitForEnter();
 
 }
 

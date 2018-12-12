@@ -32,9 +32,9 @@ void addRole(RoleList* list, const Actor* actor, const Movie* movie) {
 
 }
 
-const Role* findRole(const RoleList* list, const Actor* actor, const Movie* movie) {
+Role* findRole(RoleList* list, const Actor* actor, const Movie* movie) {
 
-    for(const RoleListNode* node = list->head; node != NULL; node = node->next) {
+    for(RoleListNode* node = list->head; node != NULL; node = node->next) {
 
         if(hasRoleTheseMembers(&node->value, actor, movie)) {
             return &node->value;
@@ -46,9 +46,9 @@ const Role* findRole(const RoleList* list, const Actor* actor, const Movie* movi
 
 }
 
-const Role* findRoleOfActor(const RoleList* list, const Actor* actor) {
+Role* findRoleOfActor(RoleList* list, const Actor* actor) {
 
-    for(const RoleListNode* node = list->head; node != NULL; node = node->next) {
+    for(RoleListNode* node = list->head; node != NULL; node = node->next) {
 
         if(isThisRoleOfActor(&node->value, actor)) {
             return &node->value;
@@ -60,9 +60,9 @@ const Role* findRoleOfActor(const RoleList* list, const Actor* actor) {
 
 }
 
-const Role* findRoleFromMovie(const RoleList* list, const Movie* movie) {
+Role* findRoleFromMovie(RoleList* list, const Movie* movie) {
 
-    for(const RoleListNode* node = list->head; node != NULL; node = node->next) {
+    for(RoleListNode* node = list->head; node != NULL; node = node->next) {
 
         if(isThisRoleFromMovie(&node->value, movie)) {
             return &node->value;

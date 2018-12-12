@@ -32,7 +32,7 @@ int main(void) {
             sortMenu(&database);
             break;
 
-        case MAIN_MENU_RULES:
+        case MAIN_MENU_INSTRUCTIONS:
             instructions();
             break;
 

@@ -1,5 +1,4 @@
 #include "CommonIO/BasicIO.h"
-#include <stdio.h>
 #include "UserInterface/Logo.h"
 #include "Utility/String.h"
 
@@ -11,7 +10,7 @@ static StringView LOGO[5] = {
     "|____/ \\__,_/___\\__,_| |_|   |_|_|_| |_| |_|\\___/ \\_/\\_/ \\__,_|"
 };
 
-void displayLogo(void) {    
+void displayLogo(void) {
 
     for(int i = 0; i < 5; ++i) {
         puts(LOGO[i]);

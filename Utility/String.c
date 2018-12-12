@@ -10,11 +10,9 @@ bool strIsEmpty(StringView string) {
 size_t strFindIf(StringView string, int (*predicate)(int)) {
 
     for(size_t index = 0; string[index] != '\0'; ++index) {
-
         if(predicate(string[index]) != 0) {
             return index;
         }
-
     }
 
     return STRING_NPOS;
@@ -24,11 +22,9 @@ size_t strFindIf(StringView string, int (*predicate)(int)) {
 size_t strReverseFindIf(StringView string, int (*predicate)(int)) {
 
     for(size_t index = strlen(string); index-- > 0; ) {
-
         if(predicate(string[index]) != 0) {
             return index;
         }
-
     }
 
     return STRING_NPOS;
@@ -52,7 +48,7 @@ void strTrimWhitespace(String string) {
 
     if(posOfFirstGraphChar == STRING_NPOS) {
         string[0] = '\0';
-        return;        
+        return;
     }
 
     const size_t posAfterLastGraphChar = strReverseFindIf(string, isgraph) + 1;

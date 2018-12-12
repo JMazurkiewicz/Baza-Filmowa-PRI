@@ -46,6 +46,7 @@ void insertionMenu(Database* database) {
 
     case 5:
         insertStudioForMovie(database);
+        break;
 
     }
 
@@ -58,7 +59,7 @@ void insertNewActorIntoDatabase(Database* database) {
 
     if(findActor(&database->actors, newActor.name, newActor.lastName) != NULL) {
 
-        puts("Taki aktor juz istnieje w bazie!");
+        puts("\aTaki aktor juz istnieje w bazie!");
         waitForEnter();
 
     } else {
@@ -85,7 +86,7 @@ void insertNewMovieIntoDatabase(Database* database) {
 
     if(findMovie(&database->movies, newMovie.title) != NULL) {
 
-        printString("Taki film juz istnieje w bazie!\n");
+        printString("\aTaki film juz istnieje w bazie!\n");
         waitForEnter();
 
     } else {
@@ -114,7 +115,7 @@ void insertNewRoleIntoDatabase(Database* database) {
     if(scanRoleFromDatabase(&newRole, database)) {
 
         if(findRole(&database->roles, newRole.actor, newRole.movie) != NULL) {
-            puts("Taka rola istnieje juz w bazie!");
+            puts("\aTaka rola istnieje juz w bazie!");
         } else {
             addRole(&database->roles, newRole.actor, newRole.movie);
             return;
@@ -133,7 +134,7 @@ void insertNewStudioIntoDatabase(Database* database) {
 
     if(findStudio(&database->studios, newStudio.name) != NULL) {
 
-        printString("Takie studio juz istnieje w bazie!");
+        printString("\aTakie studio juz istnieje w bazie!");
         waitForEnter();
 
     } else {
@@ -156,6 +157,7 @@ void insertStudioForMovie(Database* database) {
     scanMoviesTitle(title);
 
     Movie* movie = findMovie(&database->movies, title);
+
     if(movie == NULL) {
         puts("\aNie ma takiego filmu w bazie!");
     } else {
@@ -164,13 +166,12 @@ void insertStudioForMovie(Database* database) {
         scanStudiosName(studioName);
 
         const Studio* studio = findStudio(&database->studios, studioName);
+
         if(studio == NULL) {
             puts("\aNie ma takiego studia w bazie!");
         } else {
-
-            changeMoviesStudio(movie, studio);
+            changeStudioOfMovie(movie, studio);
             return;
-
         }
 
     }
