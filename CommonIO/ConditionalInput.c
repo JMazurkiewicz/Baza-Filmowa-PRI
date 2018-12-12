@@ -19,6 +19,8 @@ int scanIntegerFromRange(int min, int max) {
 
 bool scanBoolean() {
 
+    discardWhitespace();
+
     char input;
 
     while(scanf("%c", &input) != 0 && (input = toupper(input)) != 'T' && input != 'N') {
