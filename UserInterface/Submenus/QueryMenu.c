@@ -10,7 +10,7 @@ static void printEverything(Database* database);
 
 static const MenuData QUERY_MENU_DATA = {
 
-    .content = 
+    .content =
         "Wypisz:\n"
         "1) Dane o konkretnym aktorze\n"
         "2) Liste aktorow\n"
@@ -72,21 +72,25 @@ void queryMenu(Database* database) {
 
 void queryAboutActor(Database* database) {
 
-    String name, lastName;
-    scanActorsFullName(name, lastName);
+    if(!isActorListEmpty(&database->actors)) {
 
-    const Actor* actor = findActor(&database->actors, name, lastName);
+        String name, lastName;
+        scanActorsFullName(name, lastName);
 
-    if(actor != NULL) {
+        const Actor* actor = findActor(&database->actors, name, lastName);
 
-        newLine();
-        printActor(actor);
-        printRolesOfActor(&database->roles, actor);
+        if(actor != NULL) {
+
+            newLine();
+            printActor(actor);
+            printRolesOfActor(&database->roles, actor);
+
+        } else {
+            printString("\aTaki aktor nie istnieje!");
+        }
 
     } else {
-
-        printString("Taki aktor nie istnieje!");
-
+        printString("\aLista aktorow jest pusta!");
     }
 
 }
@@ -95,43 +99,51 @@ void queryAboutActor(Database* database) {
 
 void queryAboutMovie(Database* database) {
 
-    String title;
-    scanMoviesTitle(title);
+    if(!isMovieListEmpty(&database->movies)) {
 
-    const Movie* movie = findMovie(&database->movies, title);
+        String title;
+        scanMoviesTitle(title);
 
-    if(movie != NULL) {
+        const Movie* movie = findMovie(&database->movies, title);
 
-        newLine();
-        printMovie(movie);
-        printRolesFromMovie(&database->roles, movie);
+        if(movie != NULL) {
+
+            newLine();
+            printMovie(movie);
+            printRolesFromMovie(&database->roles, movie);
+
+        } else {
+            printString("Taki film nie istnieje!");
+        }
 
     } else {
-
-        printString("Taki film nie istnieje!");
-
+        printString("\aLista filmow jest pusta!");
     }
 
 }
 
 void queryAboutStudio(Database* database) {
 
-    String name;
-    scanStudiosName(name);
+    if(!isStudioListEmpty(&database->studios)) {
 
-    const Studio* studio = findStudio(&database->studios, name);
+        String name;
+        scanStudiosName(name);
 
-    if(studio != NULL) {
+        const Studio* studio = findStudio(&database->studios, name);
 
-        newLine();
-        printStudio(studio);
-        printMoviesFromStudio(&database->movies, studio);
-        printActorsWorkingWithStudio(&database->actors, &database->roles, studio);
+        if(studio != NULL) {
+
+            newLine();
+            printStudio(studio);
+            printMoviesFromStudio(&database->movies, studio);
+            printActorsWorkingWithStudio(&database->actors, &database->roles, studio);
+
+        } else {
+            printString("\aTakie studio nie istnieje!");
+        }
 
     } else {
-
-        printString("Takie studio nie istnieje!");
-
+        printString("\aBaza studiow nagraniowych jest pusta!");
     }
 
 }

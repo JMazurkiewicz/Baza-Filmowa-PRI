@@ -18,7 +18,6 @@ void discardWhitespace(void) {
 void waitForEnter(void) {
 
     printString("Nacisnij enter aby kontynuowac...");
-    getchar();
     clearStdin();
 
 }

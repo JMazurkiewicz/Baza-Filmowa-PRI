@@ -6,6 +6,8 @@ static void tryAgain(void);
 
 int scanIntegerFromRange(int min, int max) {
 
+    discardWhitespace();
+
     int input;
 
     while(scanf("%d", &input) == 0 || input < min || max < input) {
@@ -13,6 +15,7 @@ int scanIntegerFromRange(int min, int max) {
         tryAgain();
     }
 
+    getchar();
     return input;
 
 }
@@ -28,6 +31,7 @@ bool scanBoolean() {
         tryAgain();
     }
 
+    getchar();
     return input == 'T';
 
 }
