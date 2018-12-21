@@ -36,6 +36,15 @@ int main(void) {
             instructions();
             break;
 
+        case MAIN_MENU_SAVE:
+            break;
+
+        case MAIN_MENU_SAVE_AS:
+            break;
+
+        case MAIN_MENU_LOAD:
+            break;
+
         case MAIN_MENU_EXIT:
             active = false;
             break;
