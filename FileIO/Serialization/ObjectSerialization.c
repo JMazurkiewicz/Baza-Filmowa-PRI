@@ -7,7 +7,6 @@
 
 void serializeActor(DatabaseFile* file, const Actor* actor) {
 
-    serializeAddress(file, actor);
     serializeString(file, actor->name);
     serializeString(file, actor->lastName);
     serializeInt32(file, actor->yearOfBirth);
@@ -16,7 +15,6 @@ void serializeActor(DatabaseFile* file, const Actor* actor) {
 
 void serializeMovie(DatabaseFile* file, const Movie* movie) {
 
-    serializeAddress(file, movie);
     serializeString(file, movie->title);
     serializeString(file, movie->director);
     serializeInt32(file, movie->runningTime);
@@ -33,7 +31,6 @@ void serializeRole(DatabaseFile* file, const Role* role) {
 
 void serializeStudio(DatabaseFile* file, const Studio* studio) {
 
-    serializeAddress(file, studio);
     serializeString(file, studio->name);
     serializeString(file, studio->address);
     serializeString(file, studio->contact);

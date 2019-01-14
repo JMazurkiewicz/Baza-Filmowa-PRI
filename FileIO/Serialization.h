@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FileIO/DatabaseFile.h"
 #include "Lists/Declarations.h"
+#include "Utility/String.h"
 
-void serializeDatabase(DatabaseFile* file, const Database* database);
+void serializeDatabase(StringView path, Database* database);

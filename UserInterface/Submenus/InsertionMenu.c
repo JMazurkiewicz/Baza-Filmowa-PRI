@@ -66,6 +66,7 @@ void insertNewActorIntoDatabase(Database* database) {
 
         scanActorsData(&newActor);
         addActor(&database->actors, &newActor);
+        database->isModified = true;
 
         if(!isMovieListEmpty(&database->movies)) {
 
@@ -98,6 +99,7 @@ void insertNewMovieIntoDatabase(Database* database) {
         }
 
         addMovie(&database->movies, &newMovie);
+        database->isModified = true;
 
         if(!isActorListEmpty(&database->actors)) {
             const Movie* const newlyAddedMovie = &database->movies.head->value;
@@ -115,11 +117,17 @@ void insertNewRoleIntoDatabase(Database* database) {
     if(scanRoleFromDatabase(&newRole, database)) {
 
         if(findRole(&database->roles, newRole.actor, newRole.movie) != NULL) {
+
             puts("\aTaka rola istnieje juz w bazie!");
+
         } else {
+
             addRole(&database->roles, newRole.actor, newRole.movie);
+            database->isModified = true;
             return;
+
         }
+
 
     }
 
@@ -141,6 +149,7 @@ void insertNewStudioIntoDatabase(Database* database) {
 
         scanStudiosData(&newStudio);
         addStudio(&database->studios, &newStudio);
+        database->isModified = true;
 
         if(!isMovieListEmpty(&database->movies)) {
             const Studio* const newlyAddedStudio = &database->studios.head->value;
@@ -168,10 +177,15 @@ void insertStudioForMovie(Database* database) {
         const Studio* studio = findStudio(&database->studios, studioName);
 
         if(studio == NULL) {
+
             puts("\aNie ma takiego studia w bazie!");
+            
         } else {
+
             changeStudioOfMovie(movie, studio);
+            database->isModified = true;
             return;
+
         }
 
     }

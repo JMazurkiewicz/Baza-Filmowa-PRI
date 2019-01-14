@@ -1,58 +1,19 @@
 #include "Lists/Database.h"
-#include <stdbool.h>
+#include <stdlib.h>
+#include <time.h>
 #include "UserInterface/MainMenu.h"
-#include "UserInterface/Submenus/DeletionMenu.h"
-#include "UserInterface/Submenus/InsertionMenu.h"
-#include "UserInterface/Submenus/Instructions.h"
-#include "UserInterface/Submenus/QueryMenu.h"
-#include "UserInterface/Submenus/SortMenu.h"
+#include "UserInterface/Submenus/SerializationMenus.h"
 
 int main(void) {
+
+    srand((unsigned)time(0));
 
     Database database;
     initDatabase(&database);
 
-    for(bool active = true; active; ) {
+    mainMenu(&database);
 
-        switch(mainMenu()) {
-
-        case MAIN_MENU_INSERT:
-            insertionMenu(&database);
-            break;
-
-        case MAIN_MENU_DELETE:
-            deletionMenu(&database);
-            break;
-
-        case MAIN_MENU_QUERY:
-            queryMenu(&database);
-            break;
-
-        case MAIN_MENU_SORT:
-            sortMenu(&database);
-            break;
-
-        case MAIN_MENU_INSTRUCTIONS:
-            instructions();
-            break;
-
-        case MAIN_MENU_SAVE:
-            break;
-
-        case MAIN_MENU_SAVE_AS:
-            break;
-
-        case MAIN_MENU_LOAD:
-            break;
-
-        case MAIN_MENU_EXIT:
-            active = false;
-            break;
-
-        }
-
-    }
-
+    saveAtExit(&database);
     freeDatabase(&database);
 
 }

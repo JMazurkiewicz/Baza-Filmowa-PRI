@@ -4,6 +4,7 @@
 #include "Lists/MovieList.h"
 #include "Lists/RoleList.h"
 #include "Lists/StudioList.h"
+#include <stdbool.h>
 
 struct Database {
 
@@ -11,6 +12,9 @@ struct Database {
     MovieList movies;
     RoleList roles;
     StudioList studios;
+
+    String fileName;
+    bool isModified;
 
 };
 

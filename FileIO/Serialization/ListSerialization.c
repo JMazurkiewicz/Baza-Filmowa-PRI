@@ -1,3 +1,4 @@
+#include "FileIO/Serialization/BasicSerialization.h"
 #include "FileIO/Serialization/ListSerialization.h"
 #include "FileIO/Serialization/ObjectSerialization.h"
 #include "FileIO/Serialization/TagSerialization.h"
@@ -11,6 +12,7 @@ void serializeActorList(DatabaseFile* file, const ActorList* list) {
     for(ActorListNode* node = list->head; node != 0; node = node->next) {
 
         startObjectSerialization(file);
+        serializeAddress(file, &node->value);
         serializeActor(file, &node->value);
         endObjectSerialization(file);
 
@@ -23,6 +25,7 @@ void serializeMovieList(DatabaseFile* file, const MovieList* list) {
     for(MovieListNode* node = list->head; node != 0; node = node->next) {
 
         startObjectSerialization(file);
+        serializeAddress(file, &node->value);
         serializeMovie(file, &node->value);
         endObjectSerialization(file);
 
@@ -47,6 +50,7 @@ void serializeStudioList(DatabaseFile* file, const StudioList* list) {
     for(StudioListNode* node = list->head; node != 0; node = node->next) {
 
         startObjectSerialization(file);
+        serializeAddress(file, &node->value);
         serializeStudio(file, &node->value);
         endObjectSerialization(file);
 

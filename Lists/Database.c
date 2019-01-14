@@ -7,6 +7,8 @@ void initDatabase(Database* database) {
     initMovieList(&database->movies);
     initStudioList(&database->studios);
 
+    database->isModified = false;
+
 }
 
 void freeDatabase(Database* database) {

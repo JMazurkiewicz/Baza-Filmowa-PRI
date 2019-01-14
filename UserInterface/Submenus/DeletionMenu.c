@@ -45,7 +45,7 @@ void deletionMenu(Database* database) {
 
 }
 
-static void deleteActorFromDatabase(Database* database) {
+void deleteActorFromDatabase(Database* database) {
 
     if(isActorListEmpty(&database->actors)) {
 
@@ -62,6 +62,7 @@ static void deleteActorFromDatabase(Database* database) {
 
             deleteRolesOfActor(&database->roles, actor);
             deleteActor(&database->actors, name, lastName);
+            database->isModified = true;
 
         } else {
 
@@ -74,7 +75,7 @@ static void deleteActorFromDatabase(Database* database) {
 
 }
 
-static void deleteMovieFromDatabase(Database* database) {
+void deleteMovieFromDatabase(Database* database) {
 
     if(isMovieListEmpty(&database->movies)) {
 
@@ -91,6 +92,7 @@ static void deleteMovieFromDatabase(Database* database) {
 
             deleteRolesFromMovie(&database->roles, movie);
             deleteMovie(&database->movies, title);
+            database->isModified = true;
 
         } else {
 
@@ -103,7 +105,7 @@ static void deleteMovieFromDatabase(Database* database) {
 
 }
 
-static void deleteRoleFromDatabase(Database* database) {
+void deleteRoleFromDatabase(Database* database) {
 
     if(isRoleListEmpty(&database->roles)) {
 
@@ -118,7 +120,7 @@ static void deleteRoleFromDatabase(Database* database) {
             if(findRole(&database->roles, roleToDelete.actor, roleToDelete.movie) != NULL) {
 
                 deleteRole(&database->roles, roleToDelete.actor, roleToDelete.movie);
-                return;
+                database->isModified = true;
 
             } else {
 
@@ -133,7 +135,7 @@ static void deleteRoleFromDatabase(Database* database) {
 
 }
 
-static void deleteStudioFromDatabase(Database* database) {
+void deleteStudioFromDatabase(Database* database) {
 
     if(isStudioListEmpty(&database->studios)) {
 
@@ -150,6 +152,7 @@ static void deleteStudioFromDatabase(Database* database) {
 
             removeStudioFromMovieList(&database->movies, studio);
             deleteStudio(&database->studios, name);
+            database->isModified = true;
 
         } else {
 
