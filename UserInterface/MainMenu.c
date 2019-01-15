@@ -2,6 +2,7 @@
 #include "UserInterface/MainMenu.h"
 #include "UserInterface/MenuPlayer.h"
 #include "UserInterface/Submenus/DeletionMenu.h"
+#include "UserInterface/Submenus/DeserializationMenu.h"
 #include "UserInterface/Submenus/InsertionMenu.h"
 #include "UserInterface/Submenus/Instructions.h"
 #include "UserInterface/Submenus/QueryMenu.h"
@@ -70,7 +71,7 @@ void mainMenu(Database* database) {
             break;
 
         case 9:
-            loadDatabaseFromFile(database);
+            deserializationMenu(database);
             break;
 
         case 10:

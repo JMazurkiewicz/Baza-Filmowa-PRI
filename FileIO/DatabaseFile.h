@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include "Utility/Byte.h"
 
+static const StringView DATABASE_FILE_EXTENSION = ".mbf";
+
 typedef struct DatabaseFile {
 
     FILE* handle;

@@ -7,6 +7,18 @@ bool strIsEmpty(StringView string) {
     return string[0] == '\0';
 }
 
+size_t strReverseFind(StringView string, char c) {
+
+    for(size_t index = strlen(string); index-- > 0; ) {
+        if(string[index] == c) {
+            return index;
+        }
+    }
+
+    return STRING_NPOS;
+
+}
+
 size_t strFindIf(StringView string, int (*predicate)(int)) {
 
     for(size_t index = 0; string[index] != '\0'; ++index) {

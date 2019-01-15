@@ -8,5 +8,3 @@ void newDatabase(Database* database);
 bool saveDatabaseIfModified(Database* database, StringView message);
 void saveDatabaseToFile(Database* database);
 void saveDatabaseAs(Database* database);
-
-void loadDatabaseFromFile(Database* database);

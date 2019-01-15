@@ -7,9 +7,13 @@
 static void serializationError(void);
 static void serializeData(DatabaseFile* file, const Database* database);
 
-void serializeDatabase(StringView path, Database* database) {
+void serializeDatabase(StringView dbFileName, Database* database) {
 
     DatabaseFile file;
+
+    String path;
+    strcpy(path, dbFileName);
+    strcat(path, DATABASE_FILE_EXTENSION);
 
     if(!openOutputFile(&file, path)) {
         serializationError();

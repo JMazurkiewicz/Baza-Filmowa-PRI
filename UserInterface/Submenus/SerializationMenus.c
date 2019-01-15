@@ -1,5 +1,5 @@
+#include "CommonIO/BasicIO.h"
 #include "CommonIO/ConditionalInput.h"
-#include "FileIO/DatabaseFile.h"
 #include "FileIO/Serialization.h"
 #include "Lists/Database.h"
 #include "UserInterface/Submenus/SerializationMenus.h"
@@ -58,10 +58,7 @@ void saveDatabaseAs(Database* database) {
     scanLine(fileName);
 
     strcpy(database->fileName, fileName);
-    saveDatabaseToFile(database);
+    serializeDatabase(database->fileName, database);
+    database->isModified = false;
 
-}
-
-void loadDatabaseFromFile(Database* database) {
-    // @todo
 }
