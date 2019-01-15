@@ -29,17 +29,12 @@ static const MenuData MAIN_MENU_DATA = {
     .maxOptionValue = 10
 
 };
-#include "Lists/Database.h"//@to remove
-#include "CommonIO/BasicIO.h"//@to remove
+
 void mainMenu(Database* database) {
 
     for(bool active = true; active; ) {
 
-        int x = playMenu(&MAIN_MENU_DATA);
-        printf("%s\n", (database->isModified?"TAK":"NIE"));
-        waitForEnter();
-
-        switch(x) {
+        switch(playMenu(&MAIN_MENU_DATA)) {
 
         case 1:
             insertionMenu(database);
@@ -61,9 +56,10 @@ void mainMenu(Database* database) {
             instructions();
             break;
 
-        case 6:
+        case 6: {
             newDatabase(database);
             break;
+        }
 
         case 7:
             saveDatabaseToFile(database);

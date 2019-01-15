@@ -13,7 +13,7 @@ int main(void) {
 
     mainMenu(&database);
 
-    saveAtExit(&database);
+    saveDatabaseIfModified(&database, "Czy chcesz zapisac baze przed opuszczeniem aplikacji (T/N): ");
     freeDatabase(&database);
 
 }

@@ -4,7 +4,32 @@
 #include "Lists/Database.h"
 #include "UserInterface/Submenus/SerializationMenus.h"
 
-void newDatabase(Database* database) {}
+void newDatabase(Database* database) {
+
+    if(saveDatabaseIfModified(database, "Czy chcesz zapisac baze przed utworzeniem nowej (T/N): ")) {
+        freeDatabase(database);
+    }
+
+}
+
+bool saveDatabaseIfModified(Database* database, StringView message) {
+
+    bool isDatabaseSaved = false;
+
+    if(database->isModified) {
+
+        printString(message);
+        isDatabaseSaved = scanBoolean();
+
+        if(isDatabaseSaved) {
+            saveDatabaseToFile(database);
+        }
+
+    }
+
+    return isDatabaseSaved;
+
+}
 
 void saveDatabaseToFile(Database* database) {
 
@@ -12,12 +37,13 @@ void saveDatabaseToFile(Database* database) {
 
         if(strIsEmpty(database->fileName)) {
 
+            puts("Twoja baza nie zostala jeszcze zapisana.");
             saveDatabaseAs(database);
 
         } else {
 
-            puts("Twoja baza nie zostala jeszcze zapisana.");
             serializeDatabase(database->fileName, database);
+            database->isModified = false;
 
         }
 
@@ -31,16 +57,8 @@ void saveDatabaseAs(Database* database) {
     String fileName;
     scanLine(fileName);
 
-    serializeDatabase(fileName, database);
-
-}
-
-void saveAtExit(Database* database) {
-
-    printString("Czy chcesz zapisac baze przed opuszczeniem aplikacji (T/N): ");
-    if(scanBoolean()) {
-        saveDatabaseToFile(database);
-    }
+    strcpy(database->fileName, fileName);
+    saveDatabaseToFile(database);
 
 }
 

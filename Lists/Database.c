@@ -1,5 +1,7 @@
 #include "Lists/Database.h"
 
+static void clearDatabaseInfo(Database* database);
+
 void initDatabase(Database* database) {
 
     initActorList(&database->actors);
@@ -7,7 +9,7 @@ void initDatabase(Database* database) {
     initMovieList(&database->movies);
     initStudioList(&database->studios);
 
-    database->isModified = false;
+    clearDatabaseInfo(database);
 
 }
 
@@ -17,5 +19,12 @@ void freeDatabase(Database* database) {
     freeRoleList(&database->roles);
     freeMovieList(&database->movies);
     freeStudioList(&database->studios);
+    
+    clearDatabaseInfo(database);
 
+}
+
+void clearDatabaseInfo(Database* database) {
+    database->isModified = false;
+    database->fileName[0] = '\0';
 }

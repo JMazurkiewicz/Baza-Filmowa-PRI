@@ -15,7 +15,6 @@ void serializeDatabase(StringView path, Database* database) {
         serializationError();
     } else {
         serializeData(&file, database);
-        database->isModified = false;
     }
 
 }
