@@ -1,5 +1,6 @@
 #pragma once
 
 #include "Lists/Declarations.h"
+#include <stdbool.h>
 
-void studioListSortMenu(StudioList* studios);
+bool studioListSortMenu(StudioList* studios);

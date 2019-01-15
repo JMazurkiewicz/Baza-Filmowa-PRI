@@ -1,5 +1,6 @@
 #pragma once
 
 #include "Lists/Declarations.h"
+#include <stdbool.h>
 
-void movieListSortMenu(MovieList* movies);
+bool movieListSortMenu(MovieList* movies);

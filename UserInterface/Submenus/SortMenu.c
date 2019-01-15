@@ -6,9 +6,9 @@
 #include "UserInterface/Submenus/SortMenu/MovieListSortMenu.h"
 #include "UserInterface/Submenus/SortMenu/StudioListSortMenu.h"
 
-static void actorListSort(ActorList* actors);
-static void movieListSort(MovieList* movies);
-static void studioListSort(StudioList* studios);
+static bool actorListSort(ActorList* actors);
+static bool movieListSort(MovieList* movies);
+static bool studioListSort(StudioList* studios);
 
 static const MenuData SORT_MENU_DATA = {
 
@@ -25,53 +25,86 @@ static const MenuData SORT_MENU_DATA = {
 
 void sortMenu(Database* database) {
 
+    bool isDatabaseModified = false;
+
     switch(playMenu(&SORT_MENU_DATA)) {
 
     case 1:
-        actorListSort(&database->actors);
+        isDatabaseModified = actorListSort(&database->actors);
         break;
 
     case 2:
-        movieListSort(&database->movies);
+        isDatabaseModified = movieListSort(&database->movies);
         break;
 
     case 3:
-        studioListSort(&database->studios);
+        isDatabaseModified = studioListSort(&database->studios);
         break;
 
     }
 
+    if(isDatabaseModified) {
+        database->isModified = true;
+    }
+
 }
 
-void actorListSort(ActorList* actors) {
+bool actorListSort(ActorList* actors) {
+
+    bool isSorted;
 
     if(isActorListEmpty(actors)) {
+
         puts("\aLista aktorow jest pusta!");
+        isSorted = false;
         waitForEnter();
+
     } else {
-        actorListSortMenu(actors);
+
+        isSorted = actorListSortMenu(actors);
+
     }
+
+    return isSorted;
 
 }
 
-void movieListSort(MovieList* movies) {
+bool movieListSort(MovieList* movies) {
+
+    bool isSorted;
 
     if(isMovieListEmpty(movies)) {
+
         puts("\aLista filmow jest pusta!");
+        isSorted = false;
         waitForEnter();
+
     } else {
-        movieListSortMenu(movies);
+
+        isSorted = movieListSortMenu(movies);
+
     }
+
+    return isSorted;
 
 }
 
-void studioListSort(StudioList* studios) {
+bool studioListSort(StudioList* studios) {
+
+    bool isSorted;
 
     if(isStudioListEmpty(studios)) {
+
         puts("\aLista studiow nagraniowych jest pusta!");
+        isSorted = false;
         waitForEnter();
+
     } else {
-        studioListSortMenu(studios);
+
+        isSorted = studioListSortMenu(studios);
+
     }
+
+    return isSorted;
 
 }

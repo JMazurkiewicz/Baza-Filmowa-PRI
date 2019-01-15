@@ -24,29 +24,36 @@ static const MenuData STUDIO_LIST_SORT_MENU_DATA = {
 
 };
 
-void studioListSortMenu(StudioList* studios) {
+static const size_t VALUE_OFFSET = offsetof(StudioListNode, value);
 
-    const size_t VALUE_OFFSET = offsetof(StudioListNode, value);
+bool studioListSortMenu(StudioList* studios) {
+
+    CompareFunction compareFunction;
 
     switch(playMenu(&STUDIO_LIST_SORT_MENU_DATA)) {
 
     case 1:
-        listSort(studios, VALUE_OFFSET, alphabeticalStudioNameCompare);
+        compareFunction = alphabeticalStudioNameCompare;
         break;
 
     case 2:
-        listSort(studios, VALUE_OFFSET, reversedAlphabeticalStudioNameCompare);
+        compareFunction = reversedAlphabeticalStudioNameCompare;
         break;
 
     case 3:
-        listSort(studios, VALUE_OFFSET, lessYearOfFoundingCompare);
+        compareFunction = lessYearOfFoundingCompare;
         break;
 
     case 4:
-        listSort(studios, VALUE_OFFSET, greaterYearOfFoundingCompare);
+        compareFunction = greaterYearOfFoundingCompare;
         break;
 
+    case 5:
+        return false;
+
     }
+
+    return listSort(studios, VALUE_OFFSET, compareFunction);
 
 }
 

@@ -24,29 +24,36 @@ static const MenuData ACTOR_LIST_SORT_MENU_DATA = {
 
 };
 
-void actorListSortMenu(ActorList* actors) {
+static const size_t VALUE_OFFSET = offsetof(ActorListNode, value);
 
-    const size_t VALUE_OFFSET = offsetof(ActorListNode, value);
+bool actorListSortMenu(ActorList* actors) {
+
+    CompareFunction compareFunction;
 
     switch(playMenu(&ACTOR_LIST_SORT_MENU_DATA)) {
 
     case 1:
-        listSort(actors, VALUE_OFFSET, alphabeticalLastNameCompare);
+        compareFunction = alphabeticalLastNameCompare;
         break;
 
     case 2:
-        listSort(actors, VALUE_OFFSET, reversedAlphabeticalLastNameCompare);
+        compareFunction = reversedAlphabeticalLastNameCompare;
         break;
 
     case 3:
-        listSort(actors, VALUE_OFFSET, alphabeticalNameCompare);
+        compareFunction = alphabeticalNameCompare;
         break;
 
     case 4:
-        listSort(actors, VALUE_OFFSET, reversedAlphabeticalNameCompare);
+        compareFunction = reversedAlphabeticalNameCompare;
         break;
 
+    case 5:
+        return false;
+
     }
+
+    return listSort(actors, VALUE_OFFSET, compareFunction);
 
 }
 

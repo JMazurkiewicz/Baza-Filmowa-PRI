@@ -3,6 +3,6 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-typedef bool (*Compare)(const void*, const void*);
+typedef bool (*CompareFunction)(const void*, const void*);
 
-void listSort(void* list, size_t valueOffset, Compare compare);
+bool listSort(void* list, size_t valueOffset, CompareFunction compare);

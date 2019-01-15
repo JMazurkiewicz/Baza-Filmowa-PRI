@@ -24,29 +24,36 @@ static const MenuData MOVIE_LIST_SORT_MENU_DATA = {
 
 };
 
-void movieListSortMenu(MovieList* movies) {
+static const size_t VALUE_OFFSET = offsetof(MovieListNode, value);
 
-    const size_t VALUE_OFFSET = offsetof(MovieListNode, value);
+bool movieListSortMenu(MovieList* movies) {
+
+    CompareFunction compareFunction;
 
     switch(playMenu(&MOVIE_LIST_SORT_MENU_DATA)) {
 
     case 1:
-        listSort(movies, VALUE_OFFSET, alphabeticalTitleCompare);
+        compareFunction = alphabeticalTitleCompare;
         break;
 
     case 2:
-        listSort(movies, VALUE_OFFSET, reversedAlphabeticalTitleCompare);
+        compareFunction = reversedAlphabeticalTitleCompare;
         break;
 
     case 3:
-        listSort(movies, VALUE_OFFSET, lessRunningTimeCompare);
+        compareFunction = lessRunningTimeCompare;
         break;
 
     case 4:
-        listSort(movies, VALUE_OFFSET, greaterRunningTimeCompare);
+        compareFunction = greaterRunningTimeCompare;
         break;
 
+    case 5:
+        return false;
+
     }
+
+    return listSort(movies, VALUE_OFFSET, compareFunction);
 
 }
 
