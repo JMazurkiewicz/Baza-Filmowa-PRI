@@ -15,3 +15,5 @@ typedef struct DatabaseFile {
 
 bool openOutputFile(DatabaseFile* file, StringView path);
 bool openInputFile(DatabaseFile* file, StringView path);
+
+void closeDatabaseFile(DatabaseFile* file);

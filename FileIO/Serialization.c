@@ -21,6 +21,8 @@ void serializeDatabase(StringView dbFileName, Database* database) {
         serializeData(&file, database);
     }
 
+    closeDatabaseFile(&file);
+
 }
 
 void serializationError(void) {

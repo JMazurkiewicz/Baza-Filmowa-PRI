@@ -6,10 +6,8 @@ bool openOutputFile(DatabaseFile* file, StringView path) {
     file->handle = fopen(path, "wb");
 
     if(file->handle != 0) {
-
         file->key = 0; // @toexchange (rand() % 255) + 1;
         return true;
-
     }
 
     return false;
@@ -21,4 +19,9 @@ bool openInputFile(DatabaseFile* file, StringView path) {
     file->handle = fopen(path, "rb");
     return file->handle != 0;
 
+}
+
+void closeDatabaseFile(DatabaseFile* file) {
+    fclose(file->handle);
+    file->handle = 0;
 }
