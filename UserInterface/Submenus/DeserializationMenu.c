@@ -1,27 +1,33 @@
 #include "CommonIO/BasicIO.h"
 #include "CommonIO/ConditionalInput.h"
+#include "FileIO/Deserialization.h"
+#include "FileIO/Deserialization/TagDeserialization.h"
 #include "FileIO/FileSystem.h"
 #include "UserInterface/Logo.h"
 #include "UserInterface/Submenus/DeserializationMenu.h"
 
 static size_t MAX_DATABASE_FILE_COUNT = 16;
 
-static void displayMenu(String *const dbNames, size_t countOfDbNames);
+static void displayMenu(String *const databaseFileNames, size_t countOfDatabaseFiles);
+static bool isInputValidForDeserialization(int input, size_t countOfDatabaseFiles);
 
 void deserializationMenu(Database* database) {
 
-    String dbFileNames[MAX_DATABASE_FILE_COUNT];
-    const size_t dbFileCount = getNamesOfDatabaseFiles(dbFileNames, MAX_DATABASE_FILE_COUNT);
+    String databaseFileNames[MAX_DATABASE_FILE_COUNT];
+    const size_t databaseFileCount = getNamesOfDatabaseFiles(databaseFileNames, MAX_DATABASE_FILE_COUNT);
 
-    displayMenu(dbFileNames, dbFileCount);
+    displayMenu(databaseFileNames, databaseFileCount);
 
-    // const int input = scanIntegerFromRange(1, dbFileCount+1);
-    // deserializeDatabase(dbFileCount[input], database);
-    waitForEnter();
+    printString("\nPodaj numer pliku, ktory chcesz wczytac: ");
+    const int input = scanIntegerFromRange(1, databaseFileCount+1);
+
+    if(isInputValidForDeserialization(input, databaseFileCount)) {
+        deserializeDatabase(databaseFileNames[input-1], database);
+    }
 
 }
 
-void displayMenu(String *const dbFileNames, size_t countOfDbNames) {
+void displayMenu(String *const databaseFileNames, size_t countOfDatabaseFiles) {
 
     clearConsole();
     displayLogo();
@@ -29,13 +35,21 @@ void displayMenu(String *const dbFileNames, size_t countOfDbNames) {
     puts("Wczytaj baze danych (lub zrezygnuj):");
 
     int i = 0;
-    while(i < countOfDbNames) {
+    while(i < countOfDatabaseFiles) {
 
-        printf("%d) %s\n", i+1, dbFileNames[i]);
+        printf("%d) %s [", i+1, databaseFileNames[i]);
+        const Date modificationDate = deserializeDate(databaseFileNames[i]);
+        printDate(&modificationDate);
+        puts("]");
+
         ++i;
 
     }
 
     printf("%d) Rezygnuje...\n", i+1);
 
+}
+
+bool isInputValidForDeserialization(int input, size_t countOfDatabaseFiles) {
+    return 1 <= input && input <= countOfDatabaseFiles;
 }

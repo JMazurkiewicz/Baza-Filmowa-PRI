@@ -21,9 +21,6 @@ void endListSerialization(DatabaseFile* file) {
 
 void serializeHeader(DatabaseFile* file) {
 
-    DatabaseFile helper = {file->handle, 0};
-    serializeByte(&helper, file->key);
-
     Date now;
     currentDate(&now);
     serializeInt64(file, dateToLongLong(&now));

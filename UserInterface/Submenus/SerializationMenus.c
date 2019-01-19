@@ -6,28 +6,22 @@
 
 void newDatabase(Database* database) {
 
-    if(saveDatabaseIfModified(database, "Czy chcesz zapisac baze przed utworzeniem nowej (T/N): ")) {
-        freeDatabase(database);
-    }
+    saveDatabaseIfModified(database, "Czy chcesz zapisac baze przed utworzeniem nowej (T/N): ");
+    freeDatabase(database);
 
 }
 
-bool saveDatabaseIfModified(Database* database, StringView message) {
-
-    bool isDatabaseSaved = false;
+void saveDatabaseIfModified(Database* database, StringView message) {
 
     if(database->isModified) {
 
         printString(message);
-        isDatabaseSaved = scanBoolean();
 
-        if(isDatabaseSaved) {
+        if(scanBoolean()) {
             saveDatabaseToFile(database);
         }
 
     }
-
-    return isDatabaseSaved;
 
 }
 

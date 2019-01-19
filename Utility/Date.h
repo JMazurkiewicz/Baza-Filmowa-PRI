@@ -17,3 +17,5 @@ void currentDate(Date* date);
 void dateToString(const Date* date, String target);
 long long dateToLongLong(const Date* date);
 void longLongToDate(long long value, Date* date);
+
+void printDate(const Date* date);

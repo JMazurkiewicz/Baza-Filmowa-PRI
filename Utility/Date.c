@@ -2,7 +2,7 @@
 #include <time.h>
 #include "Utility/Date.h"
 
-static const String format = "%02d.%02d.%04d %02d:%02d";
+static const String DATE_FORMAT = "%02d.%02d.%04d %02d:%02d";
 
 void currentDate(Date* date) {
 
@@ -18,7 +18,7 @@ void currentDate(Date* date) {
 }
 
 void dateToString(const Date* date, String target) {
-    sprintf(target, format, date->day, date->month, date->year, date->hour, date->minute);
+    sprintf(target, DATE_FORMAT, date->day, date->month, date->year, date->hour, date->minute);
 }
 
 long long dateToLongLong(const Date* date) {
@@ -51,4 +51,8 @@ void longLongToDate(long long value, Date* date) {
 
     date->year = value;
 
+}
+
+void printDate(const Date* date) {
+    printf(DATE_FORMAT, date->day, date->month, date->year, date->hour, date->minute);
 }

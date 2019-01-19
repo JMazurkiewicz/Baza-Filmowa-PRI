@@ -6,7 +6,7 @@
 #include "Lists/Database.h"
 #include <stdlib.h>
 
-void connectActorWithRoles(void* actorId, Actor* newActor, RoleList* roles);
+static void connectActorWithRoles(void* actorId, Actor* newActor, RoleList* roles);
 
 bool deserializeActorList(DatabaseFile* file, Database* database) {
 
@@ -21,7 +21,7 @@ bool deserializeActorList(DatabaseFile* file, Database* database) {
 
             currentNode->next = malloc(sizeof(ActorListNode));
             deserializeActor(file, &currentNode->next->value);
-            connectActorWithRoles(actorId, &currentNode->value, &database->roles);
+            connectActorWithRoles(actorId, &currentNode->next->value, &database->roles);
 
             currentNode = currentNode->next;
             endObjectDeserialization(file);

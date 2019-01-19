@@ -3,22 +3,18 @@
 #include "FileIO/Tag.h"
 
 void deserializeHeader(DatabaseFile* file) {
-
-    DatabaseFile helper = {file->handle, 0};
-    file->key = deserializeByte(&helper);
-
     deserializeInt64(file);
-
 }
 
 Date deserializeDate(StringView path) {
 
     DatabaseFile file;
-    openInputFile(&file, path);
+    if(!openInputFile(&file, path)) {
+        const Date empty = {0};
+        return empty;
+    }
 
-    file.key = deserializeByte(&file);
     long long dateValue = deserializeInt64(&file);
-
     closeDatabaseFile(&file);
 
     Date result;

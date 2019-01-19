@@ -1,22 +1,25 @@
 #include "FileIO/DatabaseFile.h"
 #include "FileIO/Deserialization.h"
 #include "Deserialization/ActorListDeserialization.h"
+#include "Deserialization/MovieListDeserialization.h"
 #include "Deserialization/RoleListDeserialization.h"
+#include "Deserialization/StudioListDeserialization.h"
 #include "Deserialization/TagDeserialization.h"
 #include "Lists/Database.h"
 
 static void deserializationError(void);
 static bool deserializeData(DatabaseFile* file, Database* database);
 
-void deserializeDatabase(StringView dbFilePath, Database* database) {
+void deserializeDatabase(StringView filePath, Database* database) {
 
     DatabaseFile file;
 
-    if(!openInputFile(&file, dbFilePath)) {
+    if(!openInputFile(&file, filePath)) {
         deserializationError();
     } else {
 
         Database newDatabase;
+        initDatabase(&newDatabase);
 
         if(deserializeData(&file, &newDatabase)) {
 
@@ -47,8 +50,8 @@ bool deserializeData(DatabaseFile* file, Database* database) {
 
     return
         deserializeRoleList(file, database) &&
-        deserializeActorList(file, database);// &&
-        //deserializeMovieList(file, database) &&
-        //deserializeStudioList(file, database);
+        deserializeActorList(file, database) &&
+        deserializeMovieList(file, database) &&
+        deserializeStudioList(file, database);
 
 }
