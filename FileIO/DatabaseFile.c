@@ -10,7 +10,7 @@ bool openOutputFile(DatabaseFile* file, StringView path) {
 
     if(file->handle != 0) {
 
-        const int newKey = 0; // @to_exchange (rand() % 255) + 1;
+        const int newKey = (rand() % 255) + 1;
         serializeByte(file, newKey);
         file->key = newKey;
 

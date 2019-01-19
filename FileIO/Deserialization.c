@@ -20,6 +20,7 @@ void deserializeDatabase(StringView filePath, Database* database) {
 
         Database newDatabase;
         initDatabase(&newDatabase);
+        strcpy(newDatabase.filePath, filePath);
 
         if(deserializeData(&file, &newDatabase)) {
 

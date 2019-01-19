@@ -7,15 +7,11 @@
 static void serializationError(void);
 static void serializeData(DatabaseFile* file, const Database* database);
 
-void serializeDatabase(StringView dbFileName, Database* database) {
+void serializeDatabase(StringView filePath, Database* database) {
 
     DatabaseFile file;
 
-    String path;
-    strcpy(path, dbFileName);
-    strcat(path, DATABASE_FILE_EXTENSION);
-
-    if(!openOutputFile(&file, path)) {
+    if(!openOutputFile(&file, filePath)) {
         serializationError();
     } else {
         serializeData(&file, database);
@@ -26,10 +22,8 @@ void serializeDatabase(StringView dbFileName, Database* database) {
 }
 
 void serializationError(void) {
-
     puts("Blad zapisu! Sprawdz czy podana sciezka jest prawidlowa.");
     waitForEnter();
-
 }
 
 void serializeData(DatabaseFile* file, const Database* database) {

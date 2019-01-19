@@ -19,12 +19,12 @@ void freeDatabase(Database* database) {
     freeRoleList(&database->roles);
     freeMovieList(&database->movies);
     freeStudioList(&database->studios);
-    
+
     clearDatabaseInfo(database);
 
 }
 
 void clearDatabaseInfo(Database* database) {
     database->isModified = false;
-    database->fileName[0] = '\0';
+    database->filePath[0] = '\0';
 }

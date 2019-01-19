@@ -5,29 +5,33 @@
 #include "FileIO/FileSystem.h"
 #include "UserInterface/Logo.h"
 #include "UserInterface/Submenus/DeserializationMenu.h"
+#include "UserInterface/Submenus/SerializationMenus.h"
 
 static size_t MAX_DATABASE_FILE_COUNT = 16;
 
-static void displayMenu(String *const databaseFileNames, size_t countOfDatabaseFiles);
-static bool isInputValidForDeserialization(int input, size_t countOfDatabaseFiles);
+static void displayMenu(String* fileNames, size_t databaseFileCount);
+static void printMenuOption(int optionIndex, StringView fileName);
+static int scanUsersChoice(size_t databaseFileCount);
+static bool isInputValidForDeserialization(int input, size_t databaseFileCount);
 
 void deserializationMenu(Database* database) {
 
-    String databaseFileNames[MAX_DATABASE_FILE_COUNT];
-    const size_t databaseFileCount = getNamesOfDatabaseFiles(databaseFileNames, MAX_DATABASE_FILE_COUNT);
+    String fileNames[MAX_DATABASE_FILE_COUNT];
+    const size_t databaseFileCount = getNamesOfDatabaseFiles(fileNames, MAX_DATABASE_FILE_COUNT);
 
-    displayMenu(databaseFileNames, databaseFileCount);
-
-    printString("\nPodaj numer pliku, ktory chcesz wczytac: ");
-    const int input = scanIntegerFromRange(1, databaseFileCount+1);
+    displayMenu(fileNames, databaseFileCount);
+    const int input = scanUsersChoice(databaseFileCount);
 
     if(isInputValidForDeserialization(input, databaseFileCount)) {
-        deserializeDatabase(databaseFileNames[input-1], database);
+
+        saveDatabaseIfModified(database, "Czy chcesz zapisac aktualna baze przed wczytaniem nowej");
+        deserializeDatabase(fileNames[input-1], database);
+
     }
 
 }
 
-void displayMenu(String *const databaseFileNames, size_t countOfDatabaseFiles) {
+void displayMenu(String* fileNames, size_t databaseFileCount) {
 
     clearConsole();
     displayLogo();
@@ -35,21 +39,28 @@ void displayMenu(String *const databaseFileNames, size_t countOfDatabaseFiles) {
     puts("Wczytaj baze danych (lub zrezygnuj):");
 
     int i = 0;
-    while(i < countOfDatabaseFiles) {
-
-        printf("%d) %s [", i+1, databaseFileNames[i]);
-        const Date modificationDate = deserializeDate(databaseFileNames[i]);
-        printDate(&modificationDate);
-        puts("]");
-
-        ++i;
-
+    for(; i < databaseFileCount; ++i) {
+        printMenuOption(i, fileNames[i]);
     }
 
     printf("%d) Rezygnuje...\n", i+1);
 
 }
 
-bool isInputValidForDeserialization(int input, size_t countOfDatabaseFiles) {
-    return 1 <= input && input <= countOfDatabaseFiles;
+void printMenuOption(int optionIndex, StringView fileName) {
+
+    printf("%d) %s [", optionIndex+1, fileName);
+    const Date modificationDate = deserializeDate(fileName);
+    printDate(&modificationDate);
+    puts("]");
+
+}
+
+int scanUsersChoice(size_t databaseFileCount) {
+    printString("\nPodaj numer pliku, ktory chcesz wczytac: ");
+    return scanIntegerFromRange(1, databaseFileCount+1);
+}
+
+bool isInputValidForDeserialization(int input, size_t databaseFileCount) {
+    return 1 <= input && input <= databaseFileCount;
 }
