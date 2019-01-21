@@ -7,30 +7,30 @@
 #include "Deserialization/TagDeserialization.h"
 #include "Lists/Database.h"
 
-static void deserializationError(void);
-static bool deserializeData(DatabaseFile* file, Database* database);
+static void deserializationError(StringView fileName);
+static bool deserializeDatabaseStructure(DatabaseFile* file, Database* database);
 
-void deserializeDatabase(StringView filePath, Database* database) {
+void deserializeDatabase(StringView fileName, Database* database) {
 
     DatabaseFile file;
 
-    if(!openInputFile(&file, filePath)) {
-        deserializationError();
+    if(!openInputFile(&file, fileName)) {
+        deserializationError(fileName);
     } else {
 
         Database newDatabase;
         initDatabase(&newDatabase);
-        strcpy(newDatabase.filePath, filePath);
+        strcpy(newDatabase.fileName, fileName);
 
-        if(deserializeData(&file, &newDatabase)) {
+        if(deserializeDatabaseStructure(&file, &newDatabase)) {
 
             freeDatabase(database);
             *database = newDatabase;
 
         } else {
 
+            deserializationError(fileName);
             freeDatabase(&newDatabase);
-            deserializationError();
 
         }
 
@@ -40,12 +40,12 @@ void deserializeDatabase(StringView filePath, Database* database) {
 
 }
 
-void deserializationError(void) {
-    puts("Blad odczytu! Plik moze byc uszkodzony lub nie istnieje.");
+void deserializationError(StringView fileName) {
+    printf("Blad odczytu! Plik \"%s\" moze byc uszkodzony lub nie istnieje.\n", fileName);
     waitForEnter();
 }
 
-bool deserializeData(DatabaseFile* file, Database* database) {
+bool deserializeDatabaseStructure(DatabaseFile* file, Database* database) {
 
     deserializeHeader(file);
 

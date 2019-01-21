@@ -1,6 +1,6 @@
+#include "FileIO/DatabaseFile.h"
 #include "FileIO/Deserialization/BasicDeserialization.h"
 #include "FileIO/Serialization/BasicSerialization.h"
-#include "FileIO/DatabaseFile.h"
 #include <stdlib.h>
 
 bool openOutputFile(DatabaseFile* file, StringView path) {

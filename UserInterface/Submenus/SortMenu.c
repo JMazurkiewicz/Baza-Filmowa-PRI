@@ -55,14 +55,12 @@ bool actorListSort(ActorList* actors) {
 
     if(isActorListEmpty(actors)) {
 
-        puts("\aLista aktorow jest pusta!");
         isSorted = false;
+        puts("\aLista aktorow jest pusta!");
         waitForEnter();
 
     } else {
-
         isSorted = actorListSortMenu(actors);
-
     }
 
     return isSorted;
@@ -75,14 +73,12 @@ bool movieListSort(MovieList* movies) {
 
     if(isMovieListEmpty(movies)) {
 
-        puts("\aLista filmow jest pusta!");
         isSorted = false;
+        puts("\aLista filmow jest pusta!");
         waitForEnter();
 
     } else {
-
         isSorted = movieListSortMenu(movies);
-
     }
 
     return isSorted;
@@ -95,14 +91,12 @@ bool studioListSort(StudioList* studios) {
 
     if(isStudioListEmpty(studios)) {
 
-        puts("\aLista studiow nagraniowych jest pusta!");
         isSorted = false;
+        puts("\aLista studiow nagraniowych jest pusta!");
         waitForEnter();
 
     } else {
-
         isSorted = studioListSortMenu(studios);
-
     }
 
     return isSorted;

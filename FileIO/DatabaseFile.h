@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CommonIO/BasicIO.h"
-#include <stdbool.h>
 #include "Utility/Byte.h"
 
 static const StringView DATABASE_FILE_EXTENSION = ".mbf";

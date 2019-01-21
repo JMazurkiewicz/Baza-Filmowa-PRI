@@ -2,21 +2,17 @@
 #include "FileIO/DatabaseFile.h"
 #include "FileIO/FileSystem.h"
 
-StringView getFileExtension(StringView file) {
-    return file + strReverseFind(file, '.');
-}
+static bool hasFileProperExtension(StringView fileName);
 
 size_t getNamesOfDatabaseFiles(String names[], size_t arraySize) {
 
     DIR* stream = opendir(".");
-    struct dirent* directory = readdir(stream);
     size_t directoryCount = 0;
+    struct dirent* directory = readdir(stream);
 
     while(directory != NULL && directoryCount < arraySize) {
 
-        const int hasFileProperExtension = strcmp(getFileExtension(directory->d_name), DATABASE_FILE_EXTENSION);
-
-        if(hasFileProperExtension == 0) {
+        if(hasFileProperExtension(directory->d_name)) {
 
             strcpy(names[directoryCount], directory->d_name);
             ++directoryCount;
@@ -28,5 +24,12 @@ size_t getNamesOfDatabaseFiles(String names[], size_t arraySize) {
     }
 
     return directoryCount;
+
+}
+
+bool hasFileProperExtension(StringView fileName) {
+
+    const StringView extension = fileName + strReverseFind(fileName, '.');
+    return strcmp(extension, DATABASE_FILE_EXTENSION) == 0;
 
 }

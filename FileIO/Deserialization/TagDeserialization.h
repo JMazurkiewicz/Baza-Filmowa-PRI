@@ -1,7 +1,7 @@
 #pragma once
 
 #include "FileIO/DatabaseFile.h"
-#include "Utility/Byte.h"
+#include <stdbool.h>
 #include "Utility/Date.h"
 
 void deserializeHeader(DatabaseFile* file);

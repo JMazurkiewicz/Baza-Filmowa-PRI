@@ -3,4 +3,4 @@
 #include "Lists/Declarations.h"
 #include "Utility/String.h"
 
-void serializeDatabase(StringView dbFileName, Database* database);
+void serializeDatabase(StringView fileName, Database* database);

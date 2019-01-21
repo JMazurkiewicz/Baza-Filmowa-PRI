@@ -27,19 +27,19 @@ void scanLine(String target) {
     discardWhitespace();
 
     char input;
-	size_t charCounter = 0;
+	size_t charCount = 0;
 
 	while(scanf("%c", &input) != 0 && input != '\n') {
 
-		if(charCounter < 128) {
-			target[charCounter++] = input;
+		if(charCount < STRING_MAX_LENGTH) {
+			target[charCount++] = input;
 		} else {
 			break;
 		}
 
 	}
 
-	target[charCounter] = '\0';
+	target[charCount] = '\0';
 
 }
 

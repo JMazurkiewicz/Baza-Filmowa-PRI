@@ -26,5 +26,5 @@ void freeDatabase(Database* database) {
 
 void clearDatabaseInfo(Database* database) {
     database->isModified = false;
-    database->filePath[0] = '\0';
+    database->fileName[0] = '\0';
 }

@@ -14,7 +14,7 @@ Date deserializeDate(StringView path) {
         return empty;
     }
 
-    long long dateValue = deserializeInt64(&file);
+    const long long dateValue = deserializeInt64(&file);
     closeDatabaseFile(&file);
 
     Date result;

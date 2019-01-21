@@ -4,29 +4,31 @@
 #include "FileIO/Serialization/TagSerialization.h"
 #include "Lists/Database.h"
 
-static void serializationError(void);
-static void serializeData(DatabaseFile* file, const Database* database);
+static void serializationError(StringView fileName);
+static void serializeDatabaseStructure(DatabaseFile* file, const Database* database);
 
-void serializeDatabase(StringView filePath, Database* database) {
+void serializeDatabase(StringView fileName, Database* database) {
 
     DatabaseFile file;
 
-    if(!openOutputFile(&file, filePath)) {
-        serializationError();
+    if(!openOutputFile(&file, fileName)) {
+        serializationError(fileName);
     } else {
-        serializeData(&file, database);
+        serializeDatabaseStructure(&file, database);
     }
 
     closeDatabaseFile(&file);
 
 }
 
-void serializationError(void) {
-    puts("Blad zapisu! Sprawdz czy podana sciezka jest prawidlowa.");
+void serializationError(StringView fileName) {
+
+    printf("Blad zapisu! Sprawdz czy nazwa \"%s\" jest prawidlowa.\n", fileName);
     waitForEnter();
+
 }
 
-void serializeData(DatabaseFile* file, const Database* database) {
+void serializeDatabaseStructure(DatabaseFile* file, const Database* database) {
 
     serializeHeader(file);
 

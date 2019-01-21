@@ -13,7 +13,7 @@ struct Database {
     RoleList roles;
     StudioList studios;
 
-    String filePath;
+    String fileName;
     bool isModified;
 
 };
