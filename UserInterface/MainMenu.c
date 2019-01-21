@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include "UserInterface/MainMenu.h"
 #include "UserInterface/MenuPlayer.h"
+#include "UserInterface/Submenus/DatabaseDeletionMenu.h"
 #include "UserInterface/Submenus/DeletionMenu.h"
 #include "UserInterface/Submenus/DeserializationMenu.h"
 #include "UserInterface/Submenus/InsertionMenu.h"
@@ -24,10 +25,11 @@ static const MenuData MAIN_MENU_DATA = {
         "7) Zapisz baze\n"
         "8) Zapisz baze jako...\n"
         "9) Wczytaj baze...\n"
+        "10) Usun baze...\n"
         "------------------------------------\n"
-        "10) Wyjscie\n",
+        "11) Wyjscie\n",
 
-    .maxOptionValue = 10
+    .maxOptionValue = 11
 
 };
 
@@ -75,6 +77,10 @@ void mainMenu(Database* database) {
             break;
 
         case 10:
+            databaseDeletionMenu();
+            break;
+
+        case 11:
             active = false;
             break;
 
