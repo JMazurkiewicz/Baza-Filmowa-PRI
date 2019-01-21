@@ -1,8 +1,13 @@
 #include <dirent.h>
 #include "FileIO/DatabaseFile.h"
 #include "FileIO/FileSystem.h"
+#include <unistd.h>
 
 static bool hasFileProperExtension(StringView fileName);
+
+bool doesFileExist(StringView fileName) {
+    return access(fileName, F_OK) != -1;
+}
 
 size_t getNamesOfDatabaseFiles(String names[], size_t arraySize) {
 

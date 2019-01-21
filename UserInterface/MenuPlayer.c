@@ -5,12 +5,12 @@
 
 static void displayMenu(StringView content);
 
-int playMenu(const MenuData* data) {
+int playMenu(const MenuData* menuData) {
 
-    displayMenu(data->content);
+    displayMenu(menuData->content);
 
     printString("Podaj numer opcji: ");
-    return scanIntegerFromRange(1, data->maxOptionValue);
+    return scanIntegerFromRange(1, menuData->maxOptionValue);
 
 }
 

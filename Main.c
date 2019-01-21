@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "UserInterface/MainMenu.h"
+#include "UserInterface/Submenus/Backup.h"
 #include "UserInterface/Submenus/SerializationMenus.h"
 
 int main(void) {
@@ -10,10 +11,11 @@ int main(void) {
 
     Database database;
     initDatabase(&database);
+    backup(&database);
 
     mainMenu(&database);
 
-    saveDatabaseIfModified(&database, "Czy chcesz zapisac baze przed opuszczeniem aplikacji");
+    saveAtExit(&database);
     freeDatabase(&database);
 
 }

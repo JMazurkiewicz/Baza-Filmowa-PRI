@@ -3,4 +3,4 @@
 #include "Lists/Declarations.h"
 #include "Utility/String.h"
 
-void deserializeDatabase(StringView fileName, Database* database);
+bool deserializeDatabase(StringView fileName, Database* database);

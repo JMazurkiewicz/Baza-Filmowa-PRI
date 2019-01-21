@@ -10,9 +10,10 @@
 static void deserializationError(StringView fileName);
 static bool deserializeDatabaseStructure(DatabaseFile* file, Database* database);
 
-void deserializeDatabase(StringView fileName, Database* database) {
+bool deserializeDatabase(StringView fileName, Database* database) {
 
     DatabaseFile file;
+    bool done = false;
 
     if(!openInputFile(&file, fileName)) {
         deserializationError(fileName);
@@ -26,6 +27,7 @@ void deserializeDatabase(StringView fileName, Database* database) {
 
             freeDatabase(database);
             *database = newDatabase;
+            done = true;
 
         } else {
 
@@ -37,6 +39,7 @@ void deserializeDatabase(StringView fileName, Database* database) {
     }
 
     closeDatabaseFile(&file);
+    return done;
 
 }
 

@@ -16,8 +16,7 @@ void saveDatabaseIfModified(Database* database, StringView question) {
 
     if(database->isModified) {
 
-        printString(question);
-        printString(" (T/N): ");
+        printf("%s (T/N): ", question);
 
         if(scanBoolean()) {
             saveDatabaseToFile(database);
@@ -57,5 +56,21 @@ void saveDatabaseAs(Database* database) {
     strcpy(database->fileName, fileName);
     serializeDatabase(database->fileName, database);
     database->isModified = false;
+
+}
+
+void saveAtExit(Database* database) {
+
+    if(database->isModified) {
+
+        printString("Czy chcesz zapisac baze przed opuszczeniem aplikacji (T/N): ");
+
+        if(!scanBoolean()) {
+            strcpy(database->fileName, BACKUP_FILE_NAME);
+        }
+
+        saveDatabaseToFile(database);
+
+    }
 
 }

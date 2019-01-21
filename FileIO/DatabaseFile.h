@@ -4,6 +4,7 @@
 #include "Utility/Byte.h"
 
 static const StringView DATABASE_FILE_EXTENSION = ".mbf";
+static const StringView BACKUP_FILE_NAME = "__backup__.mbf";
 
 typedef struct DatabaseFile {
 

@@ -9,4 +9,4 @@ typedef struct MenuData {
 
 } MenuData;
 
-int playMenu(const MenuData* data);
+int playMenu(const MenuData* menuData);
