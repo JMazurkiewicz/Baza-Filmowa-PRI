@@ -16,14 +16,9 @@ void currentDate(Date* date) {
     date->minute = now->tm_min;
 
 }
-
-void dateToString(const Date* date, String target) {
-    sprintf(target, DATE_FORMAT, date->day, date->month, date->year, date->hour, date->minute);
-}
-
 long long dateToLongLong(const Date* date) {
 
-    long long result = 0;
+    long long result;
 
     result = date->year * 100;
     result = (result + date->month) * 100;
