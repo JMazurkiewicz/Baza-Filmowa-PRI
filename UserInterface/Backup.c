@@ -17,6 +17,7 @@ void backup(Database* database) {
         printString("Dostepna jest kopia zapasowa poprzedniej bazy.\nCzy chcialbys z niej skorzystac (T/N): ");
 
         if(scanBoolean()) {
+            
             freeDatabase(database);
 
             if(deserializeDatabase(BACKUP_FILE_NAME, database)) {

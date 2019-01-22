@@ -16,6 +16,7 @@ void currentDate(Date* date) {
     date->minute = now->tm_min;
 
 }
+
 long long dateToLongLong(const Date* date) {
 
     long long result;
