@@ -28,6 +28,7 @@ size_t getNamesOfDatabaseFiles(String names[], size_t arraySize) {
 
     }
 
+    closedir(stream);
     return directoryCount;
 
 }
