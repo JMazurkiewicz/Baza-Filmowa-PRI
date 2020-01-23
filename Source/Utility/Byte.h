@@ -1,15 +1,19 @@
 #pragma once
 
+#include "System.h"
+
 typedef unsigned char Byte;
 
-#ifdef __BYTE_ORDER__
-# if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+#if defined(SYSTEM_WINDOWS)
 #  define LITTLE_ENDIAN
-# elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
-#  define BIG_ENDIAN
-# else
-#  error Unexpected byte order.
-# endif
+#elif defined(__BYTE_ORDER__)
+#  if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+#    define LITTLE_ENDIAN
+#  elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
+#    define BIG_ENDIAN
+#  else
+#    error Unexpected byte order.
+#  endif
 #else
-# error Unsupported compiler.
+#  error Unsupported compiler.
 #endif

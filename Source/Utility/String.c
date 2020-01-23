@@ -1,5 +1,5 @@
 #include <ctype.h>
-#include "Utility/String.h"
+#include "String.h"
 
 const size_t STRING_NPOS = -1;
 
@@ -19,7 +19,7 @@ size_t strReverseFind(StringView string, char c) {
 
 }
 
-size_t strFindIf(StringView string, int (*predicate)(int)) {
+size_t strFindIf(StringView string, CharPredicate predicate) {
 
     for(size_t index = 0; string[index] != '\0'; ++index) {
         if(predicate(string[index]) != 0) {
@@ -31,7 +31,7 @@ size_t strFindIf(StringView string, int (*predicate)(int)) {
 
 }
 
-size_t strReverseFindIf(StringView string, int (*predicate)(int)) {
+size_t strReverseFindIf(StringView string, CharPredicate predicate) {
 
     for(size_t index = strlen(string); index-- > 0; ) {
         if(predicate(string[index]) != 0) {

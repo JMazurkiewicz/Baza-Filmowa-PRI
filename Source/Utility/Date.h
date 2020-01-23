@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Utility/String.h"
+#include "String.h"
 
 typedef struct Date {
 
