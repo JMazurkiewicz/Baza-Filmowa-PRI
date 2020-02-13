@@ -4,7 +4,7 @@
 #include "UserInterface/Logo.h"
 #include "UserInterface/Submenus/DatabaseDeletionMenu.h"
 
-static size_t MAX_DATABASE_FILE_COUNT = 16;
+#define MAX_DATABASE_FILE_COUNT (16)
 
 static void displayMenu(String* fileNames, size_t databaseFileCount);
 static int scanUsersChoice(size_t databaseFileCount);
@@ -48,7 +48,7 @@ void displayMenu(String* fileNames, size_t databaseFileCount) {
 
 int scanUsersChoice(size_t databaseFileCount) {
     printString("\nPodaj numer pliku, ktory chcesz usunac: ");
-    return scanIntegerFromRange(1, databaseFileCount+1);
+    return scanBoundedInteger(1, databaseFileCount+1);
 }
 
 bool isInputValidForDatabaseDeletion(int input, size_t databaseFileCount) {

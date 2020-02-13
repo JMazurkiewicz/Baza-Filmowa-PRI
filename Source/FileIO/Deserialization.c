@@ -1,5 +1,5 @@
-#include "FileIO/DatabaseFile.h"
-#include "FileIO/Deserialization.h"
+#include "DatabaseFile.h"
+#include "Deserialization.h"
 #include "Deserialization/ActorListDeserialization.h"
 #include "Deserialization/MovieListDeserialization.h"
 #include "Deserialization/RoleListDeserialization.h"
@@ -24,16 +24,12 @@ bool deserializeDatabase(StringView fileName, Database* database) {
         strcpy(newDatabase.fileName, fileName);
 
         if(deserializeDatabaseStructure(&file, &newDatabase)) {
-
             freeDatabase(database);
             *database = newDatabase;
             done = true;
-
         } else {
-
             deserializationError(fileName);
             freeDatabase(&newDatabase);
-
         }
 
     }

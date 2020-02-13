@@ -1,6 +1,6 @@
-#include "CommonIO/ConditionalInput.h"
-#include "CommonIO/NameInput.h"
+#include "ConditionalInput.h"
 #include <ctype.h>
+#include "NameInput.h"
 #include <stdbool.h>
 
 static bool isNameValid(StringView name);

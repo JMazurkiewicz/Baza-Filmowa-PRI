@@ -2,7 +2,7 @@
 #include "Lists/Database.h"
 #include "Objects/Role.h"
 
-bool scanRoleFromDatabase(Role* role, Database* database) {
+bool scanRole(Role* role, Database* database) {
 
     String name, lastName;
     scanActorsFullName(name, lastName);
@@ -11,7 +11,7 @@ bool scanRoleFromDatabase(Role* role, Database* database) {
 
     if(role->actor == NULL) {
 
-        puts("\aTaki aktor nie istnieje w bazie!");
+        puts("Taki aktor nie istnieje w bazie!");
         return false;
 
     } else {
@@ -23,7 +23,7 @@ bool scanRoleFromDatabase(Role* role, Database* database) {
 
         if(role->movie == NULL) {
 
-            puts("\aTaki film nie istnieje w bazie!");
+            puts("Taki film nie istnieje w bazie!");
             return false;
 
         }

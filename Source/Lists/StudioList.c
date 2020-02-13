@@ -34,11 +34,9 @@ void addStudio(StudioList* list, const Studio* studio) {
 Studio* findStudio(StudioList* list, StringView studioName) {
 
     for(StudioListNode* node = list->head; node != NULL; node = node->next) {
-
         if(hasStudioThisName(&node->value, studioName)) {
             return &node->value;
         }
-
     }
 
     return NULL;
@@ -53,16 +51,12 @@ void deleteStudio(StudioList* list, StringView studioName) {
     while(currentElement != NULL) {
 
         if(hasStudioThisName(&currentElement->value, studioName)) {
-
             previousElement->next = currentElement->next;
             free(currentElement);
             break;
-
         } else {
-
             previousElement = previousElement->next;
             currentElement = currentElement->next;
-
         }
 
     }

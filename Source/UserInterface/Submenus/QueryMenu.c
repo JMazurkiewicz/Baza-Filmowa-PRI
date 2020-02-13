@@ -1,7 +1,7 @@
 #include "CommonIO/BasicIO.h"
 #include "Lists/Database.h"
 #include "UserInterface/MenuPlayer.h"
-#include "UserInterface/Submenus/QueryMenu.h"
+#include "UserInterface/Messages.h"
 
 static void queryAboutActor(Database* database);
 static void queryAboutMovie(Database* database);
@@ -80,17 +80,17 @@ void queryAboutActor(Database* database) {
         const Actor* actor = findActor(&database->actors, name, lastName);
 
         if(actor != NULL) {
-
             newLine();
             printActor(actor);
             printRolesOfActor(&database->roles, actor);
-
         } else {
-            printString("\aTaki aktor nie istnieje!");
+            printString(ACTOR_DOES_NOT_EXIST);
         }
 
     } else {
-        printString("\aLista aktorow jest pusta!");
+
+        printString(ACTOR_LIST_IS_EMPTY);
+    
     }
 
 }
@@ -107,17 +107,17 @@ void queryAboutMovie(Database* database) {
         const Movie* movie = findMovie(&database->movies, title);
 
         if(movie != NULL) {
-
             newLine();
             printMovie(movie);
             printRolesFromMovie(&database->roles, movie);
-
         } else {
-            printString("Taki film nie istnieje!");
+            printString(MOVIE_DOES_NOT_EXIST);
         }
 
     } else {
-        printString("\aLista filmow jest pusta!");
+
+        printString(MOVIE_LIST_IS_EMPTY);
+    
     }
 
 }
@@ -132,18 +132,18 @@ void queryAboutStudio(Database* database) {
         const Studio* studio = findStudio(&database->studios, name);
 
         if(studio != NULL) {
-
             newLine();
             printStudio(studio);
             printMoviesFromStudio(&database->movies, studio);
             printActorsWorkingWithStudio(&database->actors, &database->roles, studio);
-
         } else {
-            printString("\aTakie studio nie istnieje!");
+            printString(STUDIO_DOES_NOT_EXIST);
         }
 
     } else {
-        printString("\aBaza studiow nagraniowych jest pusta!");
+
+        printString(STUDIO_LIST_IS_EMPTY);
+    
     }
 
 }

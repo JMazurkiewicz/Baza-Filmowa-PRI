@@ -1,8 +1,6 @@
 #include <ctype.h>
 #include "String.h"
 
-const size_t STRING_NPOS = -1;
-
 bool strIsEmpty(StringView string) {
     return string[0] == '\0';
 }

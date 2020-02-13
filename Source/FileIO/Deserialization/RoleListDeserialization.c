@@ -1,9 +1,9 @@
-#include "FileIO/Deserialization/BasicDeserialization.h"
-#include "FileIO/Deserialization/ObjectDeserialization.h"
-#include "FileIO/Deserialization/RoleListDeserialization.h"
-#include "FileIO/Deserialization/TagDeserialization.h"
+#include "BasicDeserialization.h"
 #include "FileIO/Tag.h"
 #include "Lists/Database.h"
+#include "ObjectDeserialization.h"
+#include "RoleListDeserialization.h"
+#include "TagDeserialization.h"
 
 
 bool deserializeRoleList(DatabaseFile* file, Database* database) {

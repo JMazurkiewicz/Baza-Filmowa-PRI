@@ -1,14 +1,11 @@
 #include "CommonIO/BasicIO.h"
 #include "CommonIO/ConditionalInput.h"
 #include "Objects/Studio.h"
-#include "Utility/MovieLimits.h"
 
 void scanStudiosName(String name) {
-
     printString("Podaj nazwe studia: ");
     scanLine(name);
     strTrimWhitespace(name);
-
 }
 
 void scanStudiosIdentifier(Studio* studio) {
@@ -26,7 +23,7 @@ void scanStudiosData(Studio* studio) {
     strTrimWhitespace(studio->contact);
 
     printString("Podaj rok zalozenia studia: ");
-    studio->yearOfFounding = scanIntegerFromRange(MIN_STUDIOS_YEAR_OF_FOUNDING, MAX_STUDIOS_YEAR_OF_FOUNDING);
+    studio->yearOfFounding = scanBoundedInteger(MIN_STUDIOS_YEAR_OF_FOUNDING, MAX_STUDIOS_YEAR_OF_FOUNDING);
 
 }
 

@@ -14,7 +14,6 @@ void printActorList(const ActorList* list) {
     } else {
 
         puts("Lista aktorow:");
-
         for(const ActorListNode* node = list->head; node != NULL; node = node->next) {
             printActorOnList(&node->value);
         }
@@ -49,15 +48,13 @@ void printActorsWorkingWithStudio(const ActorList* actors, const RoleList* roles
     }
 
     if(noResults) {
-        puts("Studio nie wspolpracowalo z zadnymi aktorami.");
+        puts("Zaden aktor nie wspolpracowal z tym studiem.");
     }
 
 }
 
-static void printActorOnList(const Actor* actor) {
-
+void printActorOnList(const Actor* actor) {
     printString("- ");
     printActorsFullName(actor);
     newLine();
-
 }

@@ -1,10 +1,10 @@
-#include "FileIO/Deserialization/BasicDeserialization.h"
-#include "FileIO/Deserialization/MovieListDeserialization.h"
-#include "FileIO/Deserialization/ObjectDeserialization.h"
-#include "FileIO/Deserialization/TagDeserialization.h"
+#include "BasicDeserialization.h"
 #include "FileIO/Tag.h"
 #include "Lists/Database.h"
+#include "MovieListDeserialization.h"
+#include "ObjectDeserialization.h"
 #include <stdlib.h>
+#include "TagDeserialization.h"
 
 static void connectMovieWithRoles(void* movieId, Movie* newMovie, RoleList* roles);
 
@@ -28,7 +28,7 @@ bool deserializeMovieList(DatabaseFile* file, Database* database) {
 
         }
 
-        currentNode->next = 0;
+        currentNode->next = NULL;
         return nextTag == END_OF_LIST;
 
     }
@@ -38,13 +38,9 @@ bool deserializeMovieList(DatabaseFile* file, Database* database) {
 }
 
 void connectMovieWithRoles(void* movieId, Movie* newMovie, RoleList* roles) {
-
     for(RoleListNode* node = roles->head; node != 0; node = node->next) {
-
         if(node->value.movie == movieId) {
             node->value.movie = newMovie;
         }
-
     }
-
 }

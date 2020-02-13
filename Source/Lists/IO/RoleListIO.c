@@ -20,12 +20,12 @@ void scanRolesOfActor(RoleList* roles, MovieList* movies, const Actor* actor) {
         const Movie* const movie = findMovie(movies, title);
 
         if(movie == NULL) {
-            puts("\aTaki film nie istnieje w bazie!");
+            puts("Taki film nie istnieje w bazie!");
             printString(TRY_AGAIN);
         } else {
 
             if(findRole(roles, actor, movie) != NULL) {
-                puts("\aAktor posiada juz taka role!");
+                puts("Aktor posiada juz taka role!");
                 printString(TRY_AGAIN);
             } else {
                 addRole(roles, actor, movie);
@@ -50,12 +50,12 @@ void scanRolesFromMovie(RoleList* roles, ActorList* actors, const Movie* movie) 
         const Actor* const actor = findActor(actors, name, lastName);
 
         if(actor == NULL) {
-            puts("\aTaki aktor nie istnieje w bazie!");
+            puts("Taki aktor nie istnieje w bazie!");
             printString(TRY_AGAIN);
         } else {
 
             if(findRole(roles, actor, movie) != NULL) {
-                puts("\aFilm posiada juz takiego aktora!");
+                puts("Film posiada juz takiego aktora!");
                 printString(TRY_AGAIN);
             } else {
                 addRole(roles, actor, movie);

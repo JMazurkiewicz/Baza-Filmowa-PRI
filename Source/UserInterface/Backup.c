@@ -21,7 +21,7 @@ void backup(Database* database) {
             freeDatabase(database);
 
             if(deserializeDatabase(BACKUP_FILE_NAME, database)) {
-                database->isModified = true;
+                database->isDatabaseModified = true;
                 database->fileName[0] = '\0';
             }
 

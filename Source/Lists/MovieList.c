@@ -34,11 +34,9 @@ void addMovie(MovieList* list, const Movie* movie) {
 Movie* findMovie(MovieList* list, StringView title) {
 
     for(MovieListNode* node = list->head; node != NULL; node = node->next) {
-
         if(hasMovieThisTitle(&node->value, title)) {
             return &node->value;
         }
-
     }
 
     return NULL;
@@ -53,16 +51,12 @@ void deleteMovie(MovieList* list, StringView title) {
     while(currentElement != NULL) {
 
         if(hasMovieThisTitle(&currentElement->value, title)) {
-
             previousElement->next = currentElement->next;
             free(currentElement);
             break;
-
         } else {
-
             previousElement = previousElement->next;
             currentElement = currentElement->next;
-
         }
 
     }
@@ -72,11 +66,9 @@ void deleteMovie(MovieList* list, StringView title) {
 void removeStudioFromMovieList(MovieList* list, const Studio* studio) {
 
     for(MovieListNode* node = list->head; node != NULL; node = node->next) {
-
         if(isMovieFromStudio(&node->value, studio)) {
             node->value.studio = NULL;
         }
-
     }
 
 }

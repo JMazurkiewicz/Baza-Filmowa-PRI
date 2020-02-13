@@ -1,7 +1,7 @@
 #include "CommonIO/BasicIO.h"
 #include "Lists/Database.h"
 #include "UserInterface/MenuPlayer.h"
-#include "UserInterface/Submenus/InsertionMenu.h"
+#include "UserInterface/Messages.h"
 
 static void insertNewActorIntoDatabase(Database* database);
 static void insertNewMovieIntoDatabase(Database* database);
@@ -59,26 +59,23 @@ void insertNewActorIntoDatabase(Database* database) {
 
     if(findActor(&database->actors, newActor.name, newActor.lastName) != NULL) {
 
-        puts("\aTaki aktor juz istnieje w bazie!");
+        puts(ACTOR_ALREADY_EXIST);
         waitForEnter();
 
     } else {
 
         scanActorsData(&newActor);
         addActor(&database->actors, &newActor);
-        database->isModified = true;
+        database->isDatabaseModified = true;
 
         if(!isMovieListEmpty(&database->movies)) {
-
             const Actor* const newlyAddedActor = &database->actors.head->value;
             scanRolesOfActor(&database->roles, &database->movies, newlyAddedActor);
-
         }
 
     }
 
 }
-
 
 void insertNewMovieIntoDatabase(Database* database) {
 
@@ -87,7 +84,7 @@ void insertNewMovieIntoDatabase(Database* database) {
 
     if(findMovie(&database->movies, newMovie.title) != NULL) {
 
-        printString("\aTaki film juz istnieje w bazie!\n");
+        puts(MOVIE_ALREADY_EXIST);
         waitForEnter();
 
     } else {
@@ -99,7 +96,7 @@ void insertNewMovieIntoDatabase(Database* database) {
         }
 
         addMovie(&database->movies, &newMovie);
-        database->isModified = true;
+        database->isDatabaseModified = true;
 
         if(!isActorListEmpty(&database->actors)) {
             const Movie* const newlyAddedMovie = &database->movies.head->value;
@@ -114,20 +111,15 @@ void insertNewRoleIntoDatabase(Database* database) {
 
     Role newRole;
 
-    if(scanRoleFromDatabase(&newRole, database)) {
+    if(scanRole(&newRole, database)) {
 
         if(findRole(&database->roles, newRole.actor, newRole.movie) != NULL) {
-
-            puts("\aTaka rola istnieje juz w bazie!");
-
+            puts(ROLE_ALREADY_EXIST);
         } else {
-
             addRole(&database->roles, newRole.actor, newRole.movie);
-            database->isModified = true;
+            database->isDatabaseModified = true;
             return;
-
         }
-
 
     }
 
@@ -142,14 +134,14 @@ void insertNewStudioIntoDatabase(Database* database) {
 
     if(findStudio(&database->studios, newStudio.name) != NULL) {
 
-        printString("\aTakie studio juz istnieje w bazie!");
+        printString(STUDIO_ALREADY_EXIST);
         waitForEnter();
 
     } else {
 
         scanStudiosData(&newStudio);
         addStudio(&database->studios, &newStudio);
-        database->isModified = true;
+        database->isDatabaseModified = true;
 
         if(!isMovieListEmpty(&database->movies)) {
             const Studio* const newlyAddedStudio = &database->studios.head->value;
@@ -168,7 +160,7 @@ void insertStudioForMovie(Database* database) {
     Movie* movie = findMovie(&database->movies, title);
 
     if(movie == NULL) {
-        puts("\aNie ma takiego filmu w bazie!");
+        puts(MOVIE_DOES_NOT_EXIST);
     } else {
 
         String studioName;
@@ -177,15 +169,11 @@ void insertStudioForMovie(Database* database) {
         const Studio* studio = findStudio(&database->studios, studioName);
 
         if(studio == NULL) {
-
-            puts("\aNie ma takiego studia w bazie!");
-            
+            puts(STUDIO_DOES_NOT_EXIST);
         } else {
-
             changeStudioOfMovie(movie, studio);
-            database->isModified = true;
+            database->isDatabaseModified = true;
             return;
-
         }
 
     }

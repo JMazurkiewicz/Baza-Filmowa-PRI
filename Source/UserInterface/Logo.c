@@ -1,5 +1,5 @@
 #include "CommonIO/BasicIO.h"
-#include "UserInterface/Logo.h"
+#include "Logo.h"
 #include "Utility/String.h"
 
 static StringView LOGO[5] = {
@@ -11,10 +11,8 @@ static StringView LOGO[5] = {
 };
 
 void displayLogo(void) {
-
     for(int i = 0; i < 5; ++i) {
         puts(LOGO[i]);
     }
     newLine();
-
 }

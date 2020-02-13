@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Objects/Declarations.h"
+#include "Declarations.h"
 #include <stdbool.h>
 #include "Utility/String.h"
 
@@ -13,6 +13,9 @@ struct Movie {
     const Studio* studio;
 
 };
+
+#define MIN_MOVIES_RUNNING_TIME (1)
+#define MAX_MOVIES_RUNNING_TIME (14400)
 
 bool hasMovieThisTitle(const Movie* movie, StringView title);
 bool isMovieFromStudio(const Movie* movie, const Studio* studio);

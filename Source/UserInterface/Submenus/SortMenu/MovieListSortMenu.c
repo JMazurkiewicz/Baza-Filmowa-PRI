@@ -2,13 +2,12 @@
 #include "Lists/MovieList.h"
 #include <stddef.h>
 #include "UserInterface/MenuPlayer.h"
-#include "UserInterface/Submenus/SortMenu/MovieListSortMenu.h"
 #include "Utility/String.h"
 
-bool alphabeticalTitleCompare(const void* left, const void* right);
-bool reversedAlphabeticalTitleCompare(const void* left, const void* right);
-bool lessRunningTimeCompare(const void* left, const void* right);
-bool greaterRunningTimeCompare(const void* left, const void* right);
+static bool alphabeticalTitleCompare(const void* left, const void* right);
+static bool reversedAlphabeticalTitleCompare(const void* left, const void* right);
+static bool lessRunningTimeCompare(const void* left, const void* right);
+static bool greaterRunningTimeCompare(const void* left, const void* right);
 
 static const MenuData MOVIE_LIST_SORT_MENU_DATA = {
 
@@ -24,11 +23,9 @@ static const MenuData MOVIE_LIST_SORT_MENU_DATA = {
 
 };
 
-static const size_t VALUE_OFFSET = offsetof(MovieListNode, value);
-
 bool movieListSortMenu(MovieList* movies) {
 
-    CompareFunction compareFunction;
+    SortCompareFunction compareFunction;
 
     switch(playMenu(&MOVIE_LIST_SORT_MENU_DATA)) {
 
@@ -53,7 +50,7 @@ bool movieListSortMenu(MovieList* movies) {
 
     }
 
-    return listSort(movies, VALUE_OFFSET, compareFunction);
+    return listSort(movies, offsetof(MovieListNode, value), compareFunction);
 
 }
 

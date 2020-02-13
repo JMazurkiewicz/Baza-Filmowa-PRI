@@ -1,4 +1,4 @@
-#include "FileIO/Serialization/BasicSerialization.h"
+#include "BasicSerialization.h"
 
 void serializeByte(DatabaseFile* file, Byte byte) {
     fputc(byte + file->key, file->handle);
@@ -8,15 +8,14 @@ void serializeInteger(DatabaseFile* file, const Byte* firstByte, size_t width) {
 
 #if defined(LITTLE_ENDIAN)
 
-    for(int i = width; i--; ) {
+    while(width--) {
         serializeByte(file, *firstByte++);
     }
 
 #elif defined(BIG_ENDIAN)
 
     firstByte += width;
-
-    for(int i = width; i--; ) {
+    while(width--) {
         serializeByte(file, *--firstByte);
     }
 

@@ -1,6 +1,5 @@
 #include "CommonIO/BasicIO.h"
 #include "UserInterface/Logo.h"
-#include "UserInterface/Submenus/Instructions.h"
 #include "Utility/String.h"
 
 static const StringView INSTRUCTIONS = {

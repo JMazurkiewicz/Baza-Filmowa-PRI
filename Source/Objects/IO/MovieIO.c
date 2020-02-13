@@ -3,14 +3,11 @@
 #include "CommonIO/NameInput.h"
 #include "Objects/Movie.h"
 #include "Objects/Studio.h"
-#include "Utility/MovieLimits.h"
 
 void scanMoviesTitle(String title) {
-
     printString("Podaj tytul filmu: ");
     scanLine(title);
     strTrimWhitespace(title);
-
 }
 
 void scanMoviesIdentifier(Movie* movie) {
@@ -38,7 +35,7 @@ void scanMoviesData(Movie* movie) {
     scanName(movie->director);
 
     printString("Podaj czas trwania filmu w minutach: ");
-    movie->runningTime = scanIntegerFromRange(MIN_MOVIES_RUNNING_TIME, MAX_MOVIES_RUNNING_TIME);
+    movie->runningTime = scanBoundedInteger(MIN_MOVIES_RUNNING_TIME, MAX_MOVIES_RUNNING_TIME);
 
     movie->studio = NULL;
 
@@ -58,11 +55,9 @@ void printMovie(const Movie* movie) {
     printf("Czas trwania (w minutach): %d\n", movie->runningTime);
 
     if(movie->studio != NULL) {
-
         printString("Nazwa studia realizujacego film: ");
         printStudiosName(movie->studio);
         newLine();
-
     } else {
         puts("Film nie posiada zapisanego studia.");
     }

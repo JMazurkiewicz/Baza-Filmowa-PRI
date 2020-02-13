@@ -1,8 +1,8 @@
-#include "FileIO/DatabaseFile.h"
-#include "FileIO/Serialization.h"
-#include "FileIO/Serialization/ListSerialization.h"
-#include "FileIO/Serialization/TagSerialization.h"
+#include "DatabaseFile.h"
 #include "Lists/Database.h"
+#include "Serialization.h"
+#include "Serialization/ListSerialization.h"
+#include "Serialization/TagSerialization.h"
 
 static void serializationError(StringView fileName);
 static void serializeDatabaseStructure(DatabaseFile* file, const Database* database);
@@ -22,10 +22,8 @@ void serializeDatabase(StringView fileName, Database* database) {
 }
 
 void serializationError(StringView fileName) {
-
     printf("Blad zapisu! Sprawdz czy nazwa \"%s\" jest prawidlowa.\n", fileName);
     waitForEnter();
-
 }
 
 void serializeDatabaseStructure(DatabaseFile* file, const Database* database) {

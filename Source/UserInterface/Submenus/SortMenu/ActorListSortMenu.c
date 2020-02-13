@@ -2,13 +2,12 @@
 #include "Lists/Algo/Sort.h"
 #include <stddef.h>
 #include "UserInterface/MenuPlayer.h"
-#include "UserInterface/Submenus/SortMenu/ActorListSortMenu.h"
 #include "Utility/String.h"
 
-bool alphabeticalLastNameCompare(const void* left, const void* right);
-bool reversedAlphabeticalLastNameCompare(const void* left, const void* right);
-bool alphabeticalNameCompare(const void* left, const void* right);
-bool reversedAlphabeticalNameCompare(const void* left, const void* right);
+static bool alphabeticalLastNameCompare(const void* left, const void* right);
+static bool reversedAlphabeticalLastNameCompare(const void* left, const void* right);
+static bool alphabeticalNameCompare(const void* left, const void* right);
+static bool reversedAlphabeticalNameCompare(const void* left, const void* right);
 
 static const MenuData ACTOR_LIST_SORT_MENU_DATA = {
 
@@ -24,11 +23,9 @@ static const MenuData ACTOR_LIST_SORT_MENU_DATA = {
 
 };
 
-static const size_t VALUE_OFFSET = offsetof(ActorListNode, value);
-
 bool actorListSortMenu(ActorList* actors) {
 
-    CompareFunction compareFunction;
+    SortCompareFunction compareFunction;
 
     switch(playMenu(&ACTOR_LIST_SORT_MENU_DATA)) {
 
@@ -53,7 +50,7 @@ bool actorListSortMenu(ActorList* actors) {
 
     }
 
-    return listSort(actors, VALUE_OFFSET, compareFunction);
+    return listSort(actors, offsetof(ActorListNode, value), compareFunction);
 
 }
 

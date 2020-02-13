@@ -1,10 +1,10 @@
-#include "FileIO/Deserialization/BasicDeserialization.h"
-#include "FileIO/Deserialization/ObjectDeserialization.h"
-#include "FileIO/Deserialization/StudioListDeserialization.h"
-#include "FileIO/Deserialization/TagDeserialization.h"
+#include "BasicDeserialization.h"
 #include "FileIO/Tag.h"
 #include "Lists/Database.h"
+#include "ObjectDeserialization.h"
 #include <stdlib.h>
+#include "StudioListDeserialization.h"
+#include "TagDeserialization.h"
 
 static void connectStudioWithMovies(void* studioId, Studio* newStudio, MovieList* movies);
 
@@ -28,7 +28,7 @@ bool deserializeStudioList(DatabaseFile* file, Database* database) {
 
         }
 
-        currentNode->next = 0;
+        currentNode->next = NULL;
         return nextTag == END_OF_LIST;
 
     }
@@ -38,13 +38,9 @@ bool deserializeStudioList(DatabaseFile* file, Database* database) {
 }
 
 void connectStudioWithMovies(void* studioId, Studio* newStudio, MovieList* movies) {
-
     for(MovieListNode* node = movies->head; node != 0; node = node->next) {
-
         if(node->value.studio == studioId) {
             node->value.studio = newStudio;
         }
-
     }
-
 }

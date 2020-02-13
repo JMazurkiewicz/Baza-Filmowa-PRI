@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Lists/ActorList.h"
-#include "Lists/MovieList.h"
-#include "Lists/RoleList.h"
-#include "Lists/StudioList.h"
+#include "ActorList.h"
+#include "MovieList.h"
+#include "RoleList.h"
 #include <stdbool.h>
+#include "StudioList.h"
 
 struct Database {
 
@@ -14,7 +14,7 @@ struct Database {
     StudioList studios;
 
     String fileName;
-    bool isModified;
+    bool isDatabaseModified;
 
 };
 

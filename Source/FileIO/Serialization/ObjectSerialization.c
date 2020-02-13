@@ -1,9 +1,9 @@
-#include "FileIO/Serialization/BasicSerialization.h"
-#include "FileIO/Serialization/ObjectSerialization.h"
+#include "BasicSerialization.h"
 #include "Objects/Actor.h"
 #include "Objects/Movie.h"
 #include "Objects/Role.h"
 #include "Objects/Studio.h"
+#include "ObjectSerialization.h"
 
 void serializeActor(DatabaseFile* file, const Actor* actor) {
 

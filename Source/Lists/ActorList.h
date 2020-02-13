@@ -1,21 +1,17 @@
 #pragma once
 
-#include "Lists/Declarations.h"
+#include "Declarations.h"
 #include "Objects/Actor.h"
 #include <stdbool.h>
 #include "Utility/String.h"
 
 struct ActorListNode {
-
     ActorListNode* next;
     Actor value;
-
 };
 
 struct ActorList {
-
     ActorListNode* head;
-
 };
 
 void initActorList(ActorList* list);

@@ -1,7 +1,8 @@
 #include "CommonIO/BasicIO.h"
+#include "DeletionMenu.h"
 #include "Lists/Database.h"
 #include "UserInterface/MenuPlayer.h"
-#include "UserInterface/Submenus/DeletionMenu.h"
+#include "UserInterface/Messages.h"
 
 static void deleteActorFromDatabase(Database* database);
 static void deleteMovieFromDatabase(Database* database);
@@ -40,6 +41,7 @@ void deletionMenu(Database* database) {
 
     case 4:
         deleteStudioFromDatabase(database);
+        break;
 
     }
 
@@ -49,7 +51,7 @@ void deleteActorFromDatabase(Database* database) {
 
     if(isActorListEmpty(&database->actors)) {
 
-        puts("\aLista aktorow jest pusta!");
+        puts(ACTOR_LIST_IS_EMPTY);
         waitForEnter();
 
     } else {
@@ -58,17 +60,14 @@ void deleteActorFromDatabase(Database* database) {
         scanActorsFullName(name, lastName);
 
         Actor* actor = findActor(&database->actors, name, lastName);
-        if(actor != NULL) {
 
+        if(actor != NULL) {
             deleteRolesOfActor(&database->roles, actor);
             deleteActor(&database->actors, name, lastName);
-            database->isModified = true;
-
+            database->isDatabaseModified = true;
         } else {
-
-            puts("\aTaki aktor nie istnieje w bazie!");
+            puts(ACTOR_DOES_NOT_EXIST);
             waitForEnter();
-
         }
 
     }
@@ -79,7 +78,7 @@ void deleteMovieFromDatabase(Database* database) {
 
     if(isMovieListEmpty(&database->movies)) {
 
-        puts("\aLista filmow jest pusta!");
+        puts(MOVIE_LIST_IS_EMPTY);
         waitForEnter();
 
     } else {
@@ -88,17 +87,14 @@ void deleteMovieFromDatabase(Database* database) {
         scanMoviesTitle(title);
 
         Movie* movie = findMovie(&database->movies, title);
-        if(movie != NULL) {
 
+        if(movie != NULL) {
             deleteRolesFromMovie(&database->roles, movie);
             deleteMovie(&database->movies, title);
-            database->isModified = true;
-
+            database->isDatabaseModified = true;
         } else {
-
-            puts("\aTaki film nie istnieje w bazie");
+            puts(MOVIE_DOES_NOT_EXIST);
             waitForEnter();
-
         }
 
     }
@@ -109,24 +105,20 @@ void deleteRoleFromDatabase(Database* database) {
 
     if(isRoleListEmpty(&database->roles)) {
 
-        puts("\aLista rol jest pusta!");
+        puts(ROLE_LIST_IS_EMPTY);
         waitForEnter();
 
     } else {
 
         Role roleToDelete;
-        if(scanRoleFromDatabase(&roleToDelete, database)) {
+        if(scanRole(&roleToDelete, database)) {
 
             if(findRole(&database->roles, roleToDelete.actor, roleToDelete.movie) != NULL) {
-
                 deleteRole(&database->roles, roleToDelete.actor, roleToDelete.movie);
-                database->isModified = true;
-
+                database->isDatabaseModified = true;
             } else {
-
-                puts("\aTaka rola nie istnieje w bazie!");
+                puts(ROLE_DOES_NOT_EXIST);
                 waitForEnter();
-
             }
 
         }
@@ -139,7 +131,7 @@ void deleteStudioFromDatabase(Database* database) {
 
     if(isStudioListEmpty(&database->studios)) {
 
-        puts("\aLista studiow nagraniowych jest pusta!");
+        puts(STUDIO_LIST_IS_EMPTY);
         waitForEnter();
 
     } else {
@@ -148,17 +140,14 @@ void deleteStudioFromDatabase(Database* database) {
         scanStudiosName(name);
 
         Studio* studio = findStudio(&database->studios, name);
-        if(studio != NULL) {
 
+        if(studio != NULL) {
             removeStudioFromMovieList(&database->movies, studio);
             deleteStudio(&database->studios, name);
-            database->isModified = true;
-
+            database->isDatabaseModified = true;
         } else {
-
-            puts("\aTaki film nie istnieje w bazie");
+            puts(STUDIO_DOES_NOT_EXIST);
             waitForEnter();
-
         }
 
     }

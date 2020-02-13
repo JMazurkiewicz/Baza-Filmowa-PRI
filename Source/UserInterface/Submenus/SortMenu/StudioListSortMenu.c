@@ -2,13 +2,12 @@
 #include "Lists/StudioList.h"
 #include <stddef.h>
 #include "UserInterface/MenuPlayer.h"
-#include "UserInterface/Submenus/SortMenu/StudioListSortMenu.h"
 #include "Utility/String.h"
 
-bool alphabeticalStudioNameCompare(const void* left, const void* right);
-bool reversedAlphabeticalStudioNameCompare(const void* left, const void* right);
-bool lessYearOfFoundingCompare(const void* left, const void* right);
-bool greaterYearOfFoundingCompare(const void* left, const void* right);
+static bool alphabeticalStudioNameCompare(const void* left, const void* right);
+static bool reversedAlphabeticalStudioNameCompare(const void* left, const void* right);
+static bool lessYearOfFoundingCompare(const void* left, const void* right);
+static bool greaterYearOfFoundingCompare(const void* left, const void* right);
 
 static const MenuData STUDIO_LIST_SORT_MENU_DATA = {
 
@@ -24,11 +23,9 @@ static const MenuData STUDIO_LIST_SORT_MENU_DATA = {
 
 };
 
-static const size_t VALUE_OFFSET = offsetof(StudioListNode, value);
-
 bool studioListSortMenu(StudioList* studios) {
 
-    CompareFunction compareFunction;
+    SortCompareFunction compareFunction;
 
     switch(playMenu(&STUDIO_LIST_SORT_MENU_DATA)) {
 
@@ -53,7 +50,7 @@ bool studioListSortMenu(StudioList* studios) {
 
     }
 
-    return listSort(studios, VALUE_OFFSET, compareFunction);
+    return listSort(studios, offsetof(StudioListNode, value), compareFunction);
 
 }
 

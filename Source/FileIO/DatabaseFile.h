@@ -3,8 +3,8 @@
 #include "CommonIO/BasicIO.h"
 #include "Utility/Byte.h"
 
-static const StringView DATABASE_FILE_EXTENSION = ".mbf";
-static const StringView BACKUP_FILE_NAME = "__backup__.mbf";
+extern const StringView DATABASE_FILE_EXTENSION;
+extern const StringView BACKUP_FILE_NAME;
 
 typedef struct DatabaseFile {
 

@@ -2,16 +2,12 @@
 #include "CommonIO/ConditionalInput.h"
 #include "CommonIO/NameInput.h"
 #include "Objects/Actor.h"
-#include "Utility/MovieLimits.h"
 
 void scanActorsFullName(String name, String lastName) {
-
     printString("Podaj imie aktora: ");
     scanName(name);
-
     printString("Podaj nazwisko aktora: ");
     scanName(lastName);
-
 }
 
 void scanActorsIdentifiers(Actor* actor) {
@@ -19,10 +15,8 @@ void scanActorsIdentifiers(Actor* actor) {
 }
 
 void scanActorsData(Actor* actor) {
-
     printString("Podaj rok urodzenia aktora: ");
-    actor->yearOfBirth = scanIntegerFromRange(MIN_ACTORS_YEAR_OF_BIRTH, MAX_ACTORS_YEAR_OF_BIRTH);
-
+    actor->yearOfBirth = scanBoundedInteger(MIN_ACTORS_YEAR_OF_BIRTH, MAX_ACTORS_YEAR_OF_BIRTH);
 }
 
 void printActorsFullName(const Actor* actor) {
@@ -30,9 +24,7 @@ void printActorsFullName(const Actor* actor) {
 }
 
 void printActor(const Actor* actor) {
-
     printf("Imie: %s\n", actor->name);
     printf("Nazwisko: %s\n", actor->lastName);
     printf("Rok urodzenia: %d\n", actor->yearOfBirth);
-
 }

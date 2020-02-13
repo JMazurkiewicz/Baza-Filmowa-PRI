@@ -6,7 +6,7 @@ static const void* valueInNode(void* node, size_t valueOffset);
 static void changeNext(void* node, void* newNext);
 static void exchangeNextNodes(void* node1, void* node2);
 
-bool listSort(void* list, size_t valueOffset, CompareFunction compare) {
+bool listSort(void* list, size_t valueOffset, SortCompareFunction compare) {
 
 	bool hasRangeChanged = false;
 

@@ -2,7 +2,7 @@
 
 #include "Utility/Byte.h"
 
-extern const Byte START_OF_LIST;
-extern const Byte START_OF_OBJECT;
-extern const Byte END_OF_OBJECT;
-extern const Byte END_OF_LIST;
+#define START_OF_LIST ('\x01')
+#define START_OF_OBJECT ('\x02')
+#define END_OF_OBJECT ('\x03')
+#define END_OF_LIST ('\x04')

@@ -2,8 +2,6 @@
 #include "Date.h"
 #include <time.h>
 
-static const String DATE_FORMAT = "%02d.%02d.%04d %02d:%02d";
-
 void currentDate(Date* date) {
 
     const time_t nowInSeconds = time(0);
@@ -50,5 +48,5 @@ void longLongToDate(long long value, Date* date) {
 }
 
 void printDate(const Date* date) {
-    printf(DATE_FORMAT, date->day, date->month, date->year, date->hour, date->minute);
+    printf("%02d.%02d.%04d %02d:%02d", date->day, date->month, date->year, date->hour, date->minute);
 }

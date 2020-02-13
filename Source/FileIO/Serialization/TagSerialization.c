@@ -1,6 +1,6 @@
-#include "FileIO/Serialization/BasicSerialization.h"
-#include "FileIO/Serialization/TagSerialization.h"
+#include "BasicSerialization.h"
 #include "FileIO/Tag.h"
+#include "TagSerialization.h"
 #include "Utility/Date.h"
 
 void startListSerialization(DatabaseFile* file) {
@@ -20,9 +20,7 @@ void endListSerialization(DatabaseFile* file) {
 }
 
 void serializeHeader(DatabaseFile* file) {
-
     Date now;
     currentDate(&now);
     serializeInt64(file, dateToLongLong(&now));
-
 }

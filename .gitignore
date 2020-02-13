@@ -1,9 +1,10 @@
-build/
-
 *.exe
 *.out
 
 *.o
 *.obj
 
+.vs*
+build/
 __*
+*.mbf

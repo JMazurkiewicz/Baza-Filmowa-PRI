@@ -1,12 +1,12 @@
-#include "FileIO/Deserialization/BasicDeserialization.h"
-#include "FileIO/Deserialization/TagDeserialization.h"
+#include "BasicDeserialization.h"
 #include "FileIO/Tag.h"
+#include "TagDeserialization.h"
 
 void deserializeHeader(DatabaseFile* file) {
     deserializeInt64(file);
 }
 
-Date deserializeDate(StringView path) {
+Date deserializeDateFromFile(StringView path) {
 
     DatabaseFile file;
     if(!openInputFile(&file, path)) {

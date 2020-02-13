@@ -3,18 +3,16 @@
 #include "FileIO/DatabaseFile.h"
 #include "FileIO/Serialization.h"
 #include "Lists/Database.h"
-#include "UserInterface/Submenus/SerializationMenus.h"
+#include "SerializationMenus.h"
 
 void newDatabase(Database* database) {
-
     saveDatabaseIfModified(database, "Czy chcesz zapisac baze przed utworzeniem nowej");
     freeDatabase(database);
-
 }
 
 void saveDatabaseIfModified(Database* database, StringView question) {
 
-    if(database->isModified) {
+    if(database->isDatabaseModified) {
 
         printf("%s (T/N): ", question);
 
@@ -28,18 +26,14 @@ void saveDatabaseIfModified(Database* database, StringView question) {
 
 void saveDatabaseToFile(Database* database) {
 
-    if(database->isModified) {
+    if(database->isDatabaseModified) {
 
         if(strIsEmpty(database->fileName)) {
-
             puts("Twoja baza nie zostala jeszcze zapisana.");
             saveDatabaseAs(database);
-
         } else {
-
             serializeDatabase(database->fileName, database);
-            database->isModified = false;
-
+            database->isDatabaseModified = false;
         }
 
     }
@@ -55,13 +49,13 @@ void saveDatabaseAs(Database* database) {
 
     strcpy(database->fileName, fileName);
     serializeDatabase(database->fileName, database);
-    database->isModified = false;
+    database->isDatabaseModified = false;
 
 }
 
 void saveAtExit(Database* database) {
 
-    if(database->isModified) {
+    if(database->isDatabaseModified) {
 
         printString("Czy chcesz zapisac baze przed opuszczeniem aplikacji (T/N): ");
 

@@ -1,14 +1,12 @@
 #pragma once
 
+#include "Declarations.h"
 #include "Lists/Declarations.h"
-#include "Objects/Declarations.h"
 #include <stdbool.h>
 
 struct Role {
-
     const Actor* actor;
     const Movie* movie;
-
 };
 
 bool isThisRoleOfActor(const Role* role, const Actor* actor);
@@ -17,4 +15,4 @@ bool isThisRoleFromMovieOfStudio(const Role* role, const Studio* studio);
 
 bool hasRoleTheseMembers(const Role* role, const Actor* actor, const Movie* movie);
 
-bool scanRoleFromDatabase(Role* role, Database* database);
+bool scanRole(Role* role, Database* database);

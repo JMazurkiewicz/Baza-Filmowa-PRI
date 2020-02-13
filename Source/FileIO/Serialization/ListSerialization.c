@@ -1,15 +1,15 @@
-#include "FileIO/Serialization/BasicSerialization.h"
-#include "FileIO/Serialization/ListSerialization.h"
-#include "FileIO/Serialization/ObjectSerialization.h"
-#include "FileIO/Serialization/TagSerialization.h"
+#include "BasicSerialization.h"
 #include "Lists/ActorList.h"
 #include "Lists/MovieList.h"
 #include "Lists/RoleList.h"
 #include "Lists/StudioList.h"
+#include "ListSerialization.h"
+#include "ObjectSerialization.h"
+#include "TagSerialization.h"
 
 void serializeActorList(DatabaseFile* file, const ActorList* list) {
 
-    for(ActorListNode* node = list->head; node != 0; node = node->next) {
+    for(ActorListNode* node = list->head; node != NULL; node = node->next) {
 
         startObjectSerialization(file);
         serializeAddress(file, &node->value);
@@ -22,7 +22,7 @@ void serializeActorList(DatabaseFile* file, const ActorList* list) {
 
 void serializeMovieList(DatabaseFile* file, const MovieList* list) {
 
-    for(MovieListNode* node = list->head; node != 0; node = node->next) {
+    for(MovieListNode* node = list->head; node != NULL; node = node->next) {
 
         startObjectSerialization(file);
         serializeAddress(file, &node->value);
@@ -35,7 +35,7 @@ void serializeMovieList(DatabaseFile* file, const MovieList* list) {
 
 void serializeRoleList(DatabaseFile* file, const RoleList* list) {
 
-    for(RoleListNode* node = list->head; node != 0; node = node->next) {
+    for(RoleListNode* node = list->head; node != NULL; node = node->next) {
 
         startObjectSerialization(file);
         serializeRole(file, &node->value);
@@ -47,7 +47,7 @@ void serializeRoleList(DatabaseFile* file, const RoleList* list) {
 
 void serializeStudioList(DatabaseFile* file, const StudioList* list) {
 
-    for(StudioListNode* node = list->head; node != 0; node = node->next) {
+    for(StudioListNode* node = list->head; node != NULL; node = node->next) {
 
         startObjectSerialization(file);
         serializeAddress(file, &node->value);

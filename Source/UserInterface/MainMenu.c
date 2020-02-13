@@ -1,14 +1,14 @@
 #include <stdbool.h>
-#include "UserInterface/MainMenu.h"
-#include "UserInterface/MenuPlayer.h"
-#include "UserInterface/Submenus/DatabaseDeletionMenu.h"
-#include "UserInterface/Submenus/DeletionMenu.h"
-#include "UserInterface/Submenus/DeserializationMenu.h"
-#include "UserInterface/Submenus/InsertionMenu.h"
-#include "UserInterface/Submenus/Instructions.h"
-#include "UserInterface/Submenus/QueryMenu.h"
-#include "UserInterface/Submenus/SerializationMenus.h"
-#include "UserInterface/Submenus/SortMenu.h"
+#include "MainMenu.h"
+#include "MenuPlayer.h"
+#include "Submenus/DatabaseDeletionMenu.h"
+#include "Submenus/DeletionMenu.h"
+#include "Submenus/DeserializationMenu.h"
+#include "Submenus/InsertionMenu.h"
+#include "Submenus/Instructions.h"
+#include "Submenus/QueryMenu.h"
+#include "Submenus/SerializationMenus.h"
+#include "Submenus/SortMenu.h"
 
 static const MenuData MAIN_MENU_DATA = {
 
@@ -59,10 +59,9 @@ void mainMenu(Database* database) {
             instructions();
             break;
 
-        case 6: {
+        case 6:
             newDatabase(database);
             break;
-        }
 
         case 7:
             saveDatabaseToFile(database);
@@ -82,7 +81,6 @@ void mainMenu(Database* database) {
 
         case 11:
             active = false;
-            break;
 
         }
 

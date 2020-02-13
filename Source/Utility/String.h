@@ -4,13 +4,12 @@
 #include <string.h>
 
 #define STRING_MAX_LENGTH (127)
+#define STRING_NPOS ((size_t)(-1))
 
 typedef char String[STRING_MAX_LENGTH + 1];
 typedef const char* StringView;
 typedef const char* StringConstIterator;
 typedef int (*CharPredicate)(int);
-
-extern const size_t STRING_NPOS;
 
 bool strIsEmpty(StringView string);
 

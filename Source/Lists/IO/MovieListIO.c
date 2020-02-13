@@ -17,7 +17,7 @@ void scanMoviesOfStudio(MovieList* movies, const Studio* studio) {
 
         if(movie == NULL) {
 
-            puts("\aTaki film nie istnieje w bazie!");
+            puts("Taki film nie istnieje w bazie!");
             printString("Czy chcesz sprobowac ponownie dodac film do studia (T/N): ");
 
         } else {
@@ -75,9 +75,7 @@ void printMoviesFromStudio(const MovieList* list, const Studio* studio) {
 }
 
 void printMovieOnList(const Movie* movie) {
-
     printString("- ");
     printMoviesTitle(movie);
     newLine();
-
 }

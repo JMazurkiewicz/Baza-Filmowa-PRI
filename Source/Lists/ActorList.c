@@ -34,11 +34,9 @@ void addActor(ActorList* list, const Actor* actor) {
 Actor* findActor(ActorList* list, StringView name, StringView lastName) {
 
     for(ActorListNode* node = list->head; node != NULL; node = node->next) {
-
         if(hasActorTheseNames(&node->value, name, lastName)) {
             return &node->value;
         }
-
     }
 
     return NULL;
@@ -53,16 +51,12 @@ void deleteActor(ActorList* list, StringView name, StringView lastName) {
     while(currentElement != NULL) {
 
         if(hasActorTheseNames(&currentElement->value, name, lastName)) {
-
             previousElement->next = currentElement->next;
             free(currentElement);
             break;
-
         } else {
-
             previousElement = previousElement->next;
             currentElement = currentElement->next;
-
         }
 
     }

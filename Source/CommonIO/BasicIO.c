@@ -1,4 +1,4 @@
-#include "CommonIO/BasicIO.h"
+#include "BasicIO.h"
 #include <stdlib.h>
 #include "Utility/System.h"
 
@@ -16,10 +16,8 @@ void discardWhitespace(void) {
 }
 
 void waitForEnter(void) {
-
     printString("Nacisnij enter aby kontynuowac...");
     clearStdin();
-
 }
 
 void scanLine(String target) {

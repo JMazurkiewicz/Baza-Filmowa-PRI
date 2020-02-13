@@ -9,15 +9,14 @@ void deserializeInteger(DatabaseFile* file, Byte* firstByte, size_t width) {
 
 #if defined(LITTLE_ENDIAN)
 
-    for(int i = width; i--; ) {
+    while(width--) {
         *firstByte++ = deserializeByte(file);
     }
 
 #elif defined(BIG_ENDIAN)
 
     firstByte += width;
-
-    for(int i = width; i--; ) {
+    while(width--) {
         *--firstByte = deserializeByte(file);
     }
 

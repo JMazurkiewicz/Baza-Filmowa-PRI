@@ -1,16 +1,17 @@
 #pragma once
 
-#include "Objects/Declarations.h"
+#include "Declarations.h"
 #include <stdbool.h>
 #include "Utility/String.h"
 
 struct Actor {
-
     String name;
     String lastName;
     int yearOfBirth;
-
 };
+
+#define MIN_ACTORS_YEAR_OF_BIRTH (1888)
+#define MAX_ACTORS_YEAR_OF_BIRTH (2019)
 
 bool hasActorTheseNames(const Actor* actor, StringView name, StringView lastName);
 

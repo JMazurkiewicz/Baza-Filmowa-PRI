@@ -1,10 +1,11 @@
 #include "CommonIO/BasicIO.h"
 #include "Lists/Database.h"
+#include "SortMenu.h"
+#include "SortMenu/ActorListSortMenu.h"
+#include "SortMenu/MovieListSortMenu.h"
+#include "SortMenu/StudioListSortMenu.h"
 #include "UserInterface/MenuPlayer.h"
-#include "UserInterface/Submenus/SortMenu.h"
-#include "UserInterface/Submenus/SortMenu/ActorListSortMenu.h"
-#include "UserInterface/Submenus/SortMenu/MovieListSortMenu.h"
-#include "UserInterface/Submenus/SortMenu/StudioListSortMenu.h"
+#include "UserInterface/Messages.h"
 
 static bool actorListSort(ActorList* actors);
 static bool movieListSort(MovieList* movies);
@@ -44,7 +45,7 @@ void sortMenu(Database* database) {
     }
 
     if(isDatabaseModified) {
-        database->isModified = true;
+        database->isDatabaseModified = true;
     }
 
 }
@@ -54,11 +55,9 @@ bool actorListSort(ActorList* actors) {
     bool isSorted;
 
     if(isActorListEmpty(actors)) {
-
         isSorted = false;
-        puts("\aLista aktorow jest pusta!");
+        puts(ACTOR_LIST_IS_EMPTY);
         waitForEnter();
-
     } else {
         isSorted = actorListSortMenu(actors);
     }
@@ -72,11 +71,9 @@ bool movieListSort(MovieList* movies) {
     bool isSorted;
 
     if(isMovieListEmpty(movies)) {
-
         isSorted = false;
-        puts("\aLista filmow jest pusta!");
+        puts(MOVIE_LIST_IS_EMPTY);
         waitForEnter();
-
     } else {
         isSorted = movieListSortMenu(movies);
     }
@@ -90,11 +87,9 @@ bool studioListSort(StudioList* studios) {
     bool isSorted;
 
     if(isStudioListEmpty(studios)) {
-
         isSorted = false;
-        puts("\aLista studiow nagraniowych jest pusta!");
+        puts(STUDIO_LIST_IS_EMPTY);
         waitForEnter();
-
     } else {
         isSorted = studioListSortMenu(studios);
     }

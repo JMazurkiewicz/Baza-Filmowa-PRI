@@ -5,13 +5,14 @@
 #include "Utility/String.h"
 
 struct Studio {
-
     String name;
     String address;
     String contact;
     int yearOfFounding;
-
 };
+
+#define MIN_STUDIOS_YEAR_OF_FOUNDING (1888)
+#define MAX_STUDIOS_YEAR_OF_FOUNDING (2019)
 
 bool hasStudioThisName(const Studio* studio, StringView name);
 

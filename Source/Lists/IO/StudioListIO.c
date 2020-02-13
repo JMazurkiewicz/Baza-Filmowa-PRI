@@ -17,7 +17,7 @@ const Studio* scanStudioOfMovie(StudioList* studios) {
         const Studio* const studio = findStudio(studios, studioName);
 
         if(studio == NULL) {
-            puts("\aTakie studio nie istnieje w bazie!");
+            puts("Takie studio nie istnieje w bazie!");
             printString(TRY_AGAIN);
         } else {
             return studio;
