@@ -5,9 +5,7 @@
 void clearStdin(void) {
 
     int input;
-    do {
-        input = getchar();
-    } while(input != '\n' && input != EOF);
+    while((input = getchar()) != '\n' && input != EOF);
 
 }
 
@@ -24,17 +22,11 @@ void scanLine(String target) {
 
     discardWhitespace();
 
-    char input;
 	size_t charCount = 0;
+    int input;
 
-	while(scanf("%c", &input) != 0 && input != '\n') {
-
-		if(charCount < STRING_MAX_LENGTH) {
-			target[charCount++] = input;
-		} else {
-			break;
-		}
-
+	while((input = getchar()) != EOF && input != '\n' && charCount < STRING_MAX_LENGTH) {
+        target[charCount++] = input;
 	}
 
 	target[charCount] = '\0';

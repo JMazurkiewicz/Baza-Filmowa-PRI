@@ -43,7 +43,7 @@ void longLongToDate(long long value, Date* date) {
     date->month = value % 100;
     value /= 100;
 
-    date->year = value;
+    date->year = (int)value;
 
 }
 

@@ -54,7 +54,7 @@ void printMenuOption(int optionIndex, StringView fileName) {
 
 int scanUsersChoice(size_t databaseFileCount) {
     printString("\nPodaj numer pliku, ktory chcesz wczytac: ");
-    return scanBoundedInteger(1, databaseFileCount+1);
+    return scanBoundedInteger(1, (int)databaseFileCount+1);
 }
 
 bool isInputValidForDeserialization(int input, size_t databaseFileCount) {

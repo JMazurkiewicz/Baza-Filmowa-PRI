@@ -48,7 +48,7 @@ void displayMenu(String* fileNames, size_t databaseFileCount) {
 
 int scanUsersChoice(size_t databaseFileCount) {
     printString("\nPodaj numer pliku, ktory chcesz usunac: ");
-    return scanBoundedInteger(1, databaseFileCount+1);
+    return scanBoundedInteger(1, (int)databaseFileCount+1);
 }
 
 bool isInputValidForDatabaseDeletion(int input, size_t databaseFileCount) {

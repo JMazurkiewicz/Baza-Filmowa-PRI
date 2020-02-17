@@ -7,7 +7,7 @@
 
 int main(void) {
 
-    srand((unsigned)time(0));
+    srand((unsigned)time(NULL));
 
     Database database;
     initDatabase(&database);

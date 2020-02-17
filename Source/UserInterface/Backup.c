@@ -9,11 +9,10 @@
 
 void backup(Database* database) {
 
-    clearConsole();
-    displayLogo();
-
     if(doesFileExist(BACKUP_FILE_NAME)) {
 
+        clearConsole();
+        displayLogo();
         printString("Dostepna jest kopia zapasowa poprzedniej bazy.\nCzy chcialbys z niej skorzystac (T/N): ");
 
         if(scanBoolean()) {

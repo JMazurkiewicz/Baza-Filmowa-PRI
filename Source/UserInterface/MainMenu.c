@@ -81,6 +81,7 @@ void mainMenu(Database* database) {
 
         case 11:
             active = false;
+            break;
 
         }
 
