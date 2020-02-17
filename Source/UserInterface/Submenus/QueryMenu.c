@@ -84,12 +84,12 @@ void queryAboutActor(Database* database) {
             printActor(actor);
             printRolesOfActor(&database->roles, actor);
         } else {
-            printString(ACTOR_DOES_NOT_EXIST);
+            printString(MSG_ACTOR_DOES_NOT_EXIST);
         }
 
     } else {
 
-        printString(ACTOR_LIST_IS_EMPTY);
+        printString(MSG_ACTOR_LIST_IS_EMPTY);
     
     }
 
@@ -111,12 +111,12 @@ void queryAboutMovie(Database* database) {
             printMovie(movie);
             printRolesFromMovie(&database->roles, movie);
         } else {
-            printString(MOVIE_DOES_NOT_EXIST);
+            printString(MSG_MOVIE_DOES_NOT_EXIST);
         }
 
     } else {
 
-        printString(MOVIE_LIST_IS_EMPTY);
+        printString(MSG_MOVIE_LIST_IS_EMPTY);
     
     }
 
@@ -137,12 +137,12 @@ void queryAboutStudio(Database* database) {
             printMoviesFromStudio(&database->movies, studio);
             printActorsWorkingWithStudio(&database->actors, &database->roles, studio);
         } else {
-            printString(STUDIO_DOES_NOT_EXIST);
+            printString(MSG_STUDIO_DOES_NOT_EXIST);
         }
 
     } else {
 
-        printString(STUDIO_LIST_IS_EMPTY);
+        printString(MSG_STUDIO_LIST_IS_EMPTY);
     
     }
 

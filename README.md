@@ -1,8 +1,11 @@
 # Movie-DB #
 
-## Compilation with CMake ##
+## How to get Movie-DB ##
 
 ```bash
+git clone https://github.com/JMazurkiewicz/Baza-Filmowa-PRI.git
+cd Baza-Filmowa-PRI
+
 mkdir build
 cd build
 cmake ..

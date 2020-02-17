@@ -51,7 +51,7 @@ void deleteActorFromDatabase(Database* database) {
 
     if(isActorListEmpty(&database->actors)) {
 
-        puts(ACTOR_LIST_IS_EMPTY);
+        puts(MSG_ACTOR_LIST_IS_EMPTY);
         waitForEnter();
 
     } else {
@@ -66,7 +66,7 @@ void deleteActorFromDatabase(Database* database) {
             deleteActor(&database->actors, name, lastName);
             database->isDatabaseModified = true;
         } else {
-            puts(ACTOR_DOES_NOT_EXIST);
+            puts(MSG_ACTOR_DOES_NOT_EXIST);
             waitForEnter();
         }
 
@@ -78,7 +78,7 @@ void deleteMovieFromDatabase(Database* database) {
 
     if(isMovieListEmpty(&database->movies)) {
 
-        puts(MOVIE_LIST_IS_EMPTY);
+        puts(MSG_MOVIE_LIST_IS_EMPTY);
         waitForEnter();
 
     } else {
@@ -93,7 +93,7 @@ void deleteMovieFromDatabase(Database* database) {
             deleteMovie(&database->movies, title);
             database->isDatabaseModified = true;
         } else {
-            puts(MOVIE_DOES_NOT_EXIST);
+            puts(MSG_MOVIE_DOES_NOT_EXIST);
             waitForEnter();
         }
 
@@ -105,7 +105,7 @@ void deleteRoleFromDatabase(Database* database) {
 
     if(isRoleListEmpty(&database->roles)) {
 
-        puts(ROLE_LIST_IS_EMPTY);
+        puts(MSG_ROLE_LIST_IS_EMPTY);
         waitForEnter();
 
     } else {
@@ -117,7 +117,7 @@ void deleteRoleFromDatabase(Database* database) {
                 deleteRole(&database->roles, roleToDelete.actor, roleToDelete.movie);
                 database->isDatabaseModified = true;
             } else {
-                puts(ROLE_DOES_NOT_EXIST);
+                puts(MSG_ROLE_DOES_NOT_EXIST);
                 waitForEnter();
             }
 
@@ -131,7 +131,7 @@ void deleteStudioFromDatabase(Database* database) {
 
     if(isStudioListEmpty(&database->studios)) {
 
-        puts(STUDIO_LIST_IS_EMPTY);
+        puts(MSG_STUDIO_LIST_IS_EMPTY);
         waitForEnter();
 
     } else {
@@ -146,7 +146,7 @@ void deleteStudioFromDatabase(Database* database) {
             deleteStudio(&database->studios, name);
             database->isDatabaseModified = true;
         } else {
-            puts(STUDIO_DOES_NOT_EXIST);
+            puts(MSG_STUDIO_DOES_NOT_EXIST);
             waitForEnter();
         }
 

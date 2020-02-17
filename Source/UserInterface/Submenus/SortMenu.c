@@ -56,7 +56,7 @@ bool actorListSort(ActorList* actors) {
 
     if(isActorListEmpty(actors)) {
         isSorted = false;
-        puts(ACTOR_LIST_IS_EMPTY);
+        puts(MSG_ACTOR_LIST_IS_EMPTY);
         waitForEnter();
     } else {
         isSorted = actorListSortMenu(actors);
@@ -72,7 +72,7 @@ bool movieListSort(MovieList* movies) {
 
     if(isMovieListEmpty(movies)) {
         isSorted = false;
-        puts(MOVIE_LIST_IS_EMPTY);
+        puts(MSG_MOVIE_LIST_IS_EMPTY);
         waitForEnter();
     } else {
         isSorted = movieListSortMenu(movies);
@@ -88,7 +88,7 @@ bool studioListSort(StudioList* studios) {
 
     if(isStudioListEmpty(studios)) {
         isSorted = false;
-        puts(STUDIO_LIST_IS_EMPTY);
+        puts(MSG_STUDIO_LIST_IS_EMPTY);
         waitForEnter();
     } else {
         isSorted = studioListSortMenu(studios);

@@ -59,7 +59,7 @@ void insertNewActorIntoDatabase(Database* database) {
 
     if(findActor(&database->actors, newActor.name, newActor.lastName) != NULL) {
 
-        puts(ACTOR_ALREADY_EXIST);
+        puts(MSG_ACTOR_ALREADY_EXIST);
         waitForEnter();
 
     } else {
@@ -84,7 +84,7 @@ void insertNewMovieIntoDatabase(Database* database) {
 
     if(findMovie(&database->movies, newMovie.title) != NULL) {
 
-        puts(MOVIE_ALREADY_EXIST);
+        puts(MSG_MOVIE_ALREADY_EXIST);
         waitForEnter();
 
     } else {
@@ -114,7 +114,7 @@ void insertNewRoleIntoDatabase(Database* database) {
     if(scanRole(&newRole, database)) {
 
         if(findRole(&database->roles, newRole.actor, newRole.movie) != NULL) {
-            puts(ROLE_ALREADY_EXIST);
+            puts(MSG_ROLE_ALREADY_EXIST);
         } else {
             addRole(&database->roles, newRole.actor, newRole.movie);
             database->isDatabaseModified = true;
@@ -134,7 +134,7 @@ void insertNewStudioIntoDatabase(Database* database) {
 
     if(findStudio(&database->studios, newStudio.name) != NULL) {
 
-        printString(STUDIO_ALREADY_EXIST);
+        printString(MSG_STUDIO_ALREADY_EXIST);
         waitForEnter();
 
     } else {
@@ -160,7 +160,7 @@ void insertStudioForMovie(Database* database) {
     Movie* movie = findMovie(&database->movies, title);
 
     if(movie == NULL) {
-        puts(MOVIE_DOES_NOT_EXIST);
+        puts(MSG_MOVIE_DOES_NOT_EXIST);
     } else {
 
         String studioName;
@@ -169,7 +169,7 @@ void insertStudioForMovie(Database* database) {
         const Studio* studio = findStudio(&database->studios, studioName);
 
         if(studio == NULL) {
-            puts(STUDIO_DOES_NOT_EXIST);
+            puts(MSG_STUDIO_DOES_NOT_EXIST);
         } else {
             changeStudioOfMovie(movie, studio);
             database->isDatabaseModified = true;
